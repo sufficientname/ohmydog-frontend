@@ -25,6 +25,16 @@ function AppointmentListPage() {
     listPets()
   }, [])
 
+  function onSubmit(data) {
+    createAppointment(data)
+
+    if (!Object.keys(createAppointmentError).length) {
+      closeModal()
+
+      listAppointments()
+    }
+  }
+
   if (appointmentsLoading) {
     return <p>cargando...</p>
   }
@@ -42,7 +52,7 @@ function AppointmentListPage() {
         onRequestClose={closeModal}
         contentLabel="Example Modal"
       >
-        <AppointmentRequestForm createAppointment={ createAppointment } createAppointmentError={ createAppointmentError } petList={ petList }/>
+        <AppointmentRequestForm onSubmit={ onSubmit } createAppointmentError={ createAppointmentError } petList={ petList }/>
       </Modal>
     </>
   )

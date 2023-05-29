@@ -1,19 +1,25 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
+import App from './App'
 import { BrowserRouter } from 'react-router-dom'
-import { PetsContextProvider } from './contexts/PetsContext.jsx'
-import { AppointmentsContextProvider } from './contexts/AppointmentsContext.jsx'
+import { PetsContextProvider } from './contexts/PetsContext'
+
+import { AppointmentsContextProvider } from './contexts/AppointmentsContext'
+import { AppointmentsAdminContextProvider } from './contexts/AppointmentsAdminContext'
+
+import { UsersContextProvider } from './contexts/AuthContext'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
   <BrowserRouter>
-    <PetsContextProvider>
-      <AppointmentsContextProvider>
-        <App />
-      </AppointmentsContextProvider>
-    </PetsContextProvider>
+    <UsersContextProvider>
+      <PetsContextProvider>
+        <AppointmentsContextProvider><AppointmentsAdminContextProvider>
+          <App />
+          </AppointmentsAdminContextProvider></AppointmentsContextProvider>
+      </PetsContextProvider>
+    </UsersContextProvider>
   </BrowserRouter>
   // </React.StrictMode>,
 )

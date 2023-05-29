@@ -3,10 +3,13 @@ import PetsContext from '../contexts/PetsContext'
 import Modal from 'react-modal';
 import PetsTable from '../components/pets/PetsTable';
 import CreatePetForm from '../components/pets/CreatePetForm';
+import { useNavigate } from 'react-router-dom'
 
 
 function PetListPage() {
-    const { petsLoading, listPets, petList, createPet, createPetError } = useContext(PetsContext)
+    const navigate = useNavigate();
+
+    const { petsLoading, listPets, petList, createPet, createPetError, petDetail } = useContext(PetsContext)
 
     const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -21,6 +24,16 @@ function PetListPage() {
     useEffect(() => {
         listPets()
     }, [])
+
+    function onSubmit(data) {
+        createPet(data)
+    
+        if (!Object.keys(createPetError).length) {
+          closeModal()
+    
+          listPets()
+        }
+    }
 
     if (petsLoading) {
         return <p>cargando...</p>
@@ -39,7 +52,7 @@ function PetListPage() {
                 onRequestClose={closeModal}
                 contentLabel="Example Modal"
             >
-                <CreatePetForm createPet={ createPet } createPetError={ createPetError }/>
+                <CreatePetForm onSubmit={ onSubmit } createPetError={ createPetError }/>
             </Modal>
         </>
     )

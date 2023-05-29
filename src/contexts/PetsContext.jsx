@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { createContext, useState } from 'react'
+import { getBasicAuth } from '../utils/auth';
+
 
 const baseUrl = 'http://localhost:8000'
-
-const basicauth = { auth: { username: 'user1@mail.com', password: 'user1' } }
 
 
 const PetsContext = createContext({
@@ -25,7 +25,7 @@ export const PetsContextProvider = (props) => {
     const listPetsHandler = async () => {
         setIsLoading(true)
         await axios
-            .get(`${baseUrl}/users-api/pets/`, basicauth)
+            .get(`${baseUrl}/users-api/pets/`, getBasicAuth())
             .then((res) => {
                 setPetList(res.data)
             })
@@ -39,7 +39,7 @@ export const PetsContextProvider = (props) => {
     const retrievePetHandler = async (petId) => {
         setIsLoading(true)
         await axios
-            .get(`${baseUrl}/users-api/pets/${petId}`, basicauth)
+            .get(`${baseUrl}/users-api/pets/${petId}`, getBasicAuth())
             .then((res) => {
                 setPetDetail(res.data)
             })
@@ -51,9 +51,8 @@ export const PetsContextProvider = (props) => {
     }
 
     const createPetHandler = async (petData) => {
-        setIsLoading(true)
         await axios
-            .post(`${baseUrl}/users-api/pets/`, petData, basicauth)
+            .post(`${baseUrl}/users-api/pets/`, petData, getBasicAuth())
             .then((res) => {
                 setPetDetail(res.data)
                 setCreatePetError({})
@@ -63,7 +62,6 @@ export const PetsContextProvider = (props) => {
                 setCreatePetError(err.response.data)
                 console.log('error creating pet', err.response)
             })
-        setIsLoading(false)
     }
 
     return (

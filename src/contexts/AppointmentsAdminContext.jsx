@@ -6,27 +6,29 @@ import { getBasicAuth } from '../utils/auth';
 const baseUrl = 'http://localhost:8000'
 
 
-const AppointmentsContext = createContext({
+const AppointmentsAdminContext = createContext({
     appointmentsLoading: true,
     appointmentList: [],
     appointmentDetail: {},
     listAppointments: () => {},
     retrieveAppointment: () => {},
-    createAppointment: () => {},
-    createAppointmentError: {},
-    cancelAppointment: () => {}
+    acceptAppointment: () => {},
+    acceptAppointmentError: {},
+    rejectAppointment: () => {},
+    rejectAppointmentError: {},
 })
 
-export const AppointmentsContextProvider = (props) => {
+export const AppointmentsAdminContextProvider = (props) => {
     const [isLoading, setIsLoading] = useState(true)
     const [appointmentList, setAppointmentList] = useState([]);
     const [appointmentDetail, setAppointmentDetail] = useState({})
-    const [createAppointmentError, setCreateAppointmentError] = useState({})
+    const [acceptAppointmentError, setAcceptAppointmentError] = useState({})
+    const [rejectAppointmentError, setRejectAppointmentError] = useState({})
 
     const listAppointmentsHandler = async () => {
         setIsLoading(true)
         await axios
-            .get(`${baseUrl}/users-api/appointments/`, getBasicAuth())
+            .get(`${baseUrl}/admin-api/appointments/`, getBasicAuth())
             .then((res) => {
                 setAppointmentList(res.data)
             })
@@ -40,7 +42,7 @@ export const AppointmentsContextProvider = (props) => {
     const retrieveAppointmentHandler = async (appointmentId) => {
         setIsLoading(true)
         await axios
-            .get(`${baseUrl}/users-api/appointments/${appointmentId}`, getBasicAuth())
+            .get(`${baseUrl}/admin-api/appointments/${appointmentId}`, getBasicAuth())
             .then((res) => {
                 setAppointmentDetail(res.data)
             })
@@ -51,49 +53,52 @@ export const AppointmentsContextProvider = (props) => {
         setIsLoading(false)
     }
 
-    const createAppointmentHandler = async (appointmentData) => {
-        await axios
-            .post(`${baseUrl}/users-api/appointments/`, appointmentData, getBasicAuth())
-            .then((res) => {
-                setAppointmentDetail(res.data)
-                setCreateAppointmentError({})
-            })
-            .catch((err) => {
-                setCreateAppointmentError(err.response.data)
-                console.log('error creating appointment', err.response)
-            })
-    }
-
-    const cancelAppointmentHandler = async (appointmentData) => {
+    const acceptAppointmentHandler = async (appointmentData, data) => {
         setIsLoading(true)
         await axios
-            .post(`${baseUrl}/users-api/appointments/${appointmentData.id}/cancel/`, {}, getBasicAuth())
+            .post(`${baseUrl}/admin-api/appointments/${appointmentData.id}/approve/`, data, getBasicAuth())
             .then((res) => {
                 setAppointmentDetail(res.data)
             })
             .catch((err) => {
-                console.log('error canceling appointment', err.response)
+                setAcceptAppointmentError((err.response.data))
+                console.log('error accepting appointment', err.response)
+            })
+        setIsLoading(false)
+    }
+
+    const rejectAppointmentHandler = async (appointmentData, data) => {
+        setIsLoading(true)
+        await axios
+            .post(`${baseUrl}/admin-api/appointments/${appointmentData.id}/reject/`, data, getBasicAuth())
+            .then((res) => {
+                setAppointmentDetail(res.data)
+            })
+            .catch((err) => {
+                setRejectAppointmentError((err.response.data))
+                console.log('error rejecting appointment', err.response)
             })
         setIsLoading(false)
     }
 
     return (
-        <AppointmentsContext.Provider
+        <AppointmentsAdminContext.Provider
             value={{
                 appointmentsLoading: isLoading,
                 appointmentList: appointmentList,
                 appointmentDetail: appointmentDetail,
                 listAppointments: listAppointmentsHandler,
                 retrieveAppointment: retrieveAppointmentHandler,
-                createAppointment: createAppointmentHandler,
-                createAppointmentError: createAppointmentError,
-                cancelAppointment: cancelAppointmentHandler,
+                acceptAppointment: acceptAppointmentHandler,
+                acceptAppointmentError: acceptAppointmentError,
+                rejectAppointment: rejectAppointmentHandler,
+                rejectAppointmentError: rejectAppointmentError,
             }}
         >
             {props.children}
-        </AppointmentsContext.Provider>
+        </AppointmentsAdminContext.Provider>
     )
 
 }
 
-export default AppointmentsContext
+export default AppointmentsAdminContext

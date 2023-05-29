@@ -1,13 +1,15 @@
 import { useContext, useEffect, useState } from 'react'
-import AppointmentsContext from '../contexts/AppointmentsContext'
+import AppointmentsAdminContext from '../contexts/AppointmentsAdminContext'
 import { useParams } from 'react-router-dom';
 import { getDateMonthYear, getHoursAndMinutes } from '../utils/datetime'
-import { canCancelAppointment } from '../utils/appointments';
+import { canCancelAppointment } from '../utils/appointments'
+import AppointmentAcceptForm from '../components/appointments/AppointmentAcceptForm'
+import AppointmentRejectForm from '../components/appointments/AppointmentRejectForm'
 
 
-function AppointmentDetailPage() {
+function AppointmentDetailAdminPage() {
     const params = useParams()
-    const { appointmentsLoading, retrieveAppointment, appointmentDetail, cancelAppointment } = useContext(AppointmentsContext)
+    const { appointmentsLoading, retrieveAppointment, appointmentDetail, acceptAppointment, acceptAppointmentError, rejectAppointment, rejectAppointmentError } = useContext(AppointmentsAdminContext)
 
     useEffect(() => {
         retrieveAppointment(params.appointmentId)
@@ -17,8 +19,12 @@ function AppointmentDetailPage() {
     const actual_datetime = appointmentDetail.actual_datetime ? new Date(appointmentDetail.actual_datetime) : null
     const suggestion_datetime = appointmentDetail.suggestion_datetime ? new Date(appointmentDetail.suggestion_datetime) : null
 
-    function OnClickCancelAppointment() {
-        cancelAppointment(appointmentDetail)
+    function onSubmitAcceptAppointment(data) {
+        acceptAppointment(appointmentDetail, data)
+    }
+
+    function onSubmitRejectAppointment(data) {
+        rejectAppointment(appointmentDetail, data)
     }
 
     if (appointmentsLoading) {
@@ -38,10 +44,12 @@ function AppointmentDetailPage() {
                 <p>Hora sugerida: {getHoursAndMinutes(suggestion_datetime)}</p>
                 <p>Estado: {appointmentDetail.status}</p>
             </div>
-
-            { canCancelAppointment(appointmentDetail)
+            
+            { appointmentDetail.status == 'PEN'
                 ? <div className="row">
-                    <div className="column"><button className='button' onClick={ OnClickCancelAppointment }>Cancelar turno</button></div>
+                    <div className="column"><AppointmentAcceptForm onSubmit={ onSubmitAcceptAppointment } errors={ acceptAppointmentError }/></div>
+
+                    <div className="column"><AppointmentRejectForm onSubmit={ onSubmitRejectAppointment } errors={ rejectAppointmentError }/></div>
                 </div>
                 : null
             }
@@ -49,4 +57,4 @@ function AppointmentDetailPage() {
     )
 }
 
-export default AppointmentDetailPage
+export default AppointmentDetailAdminPage

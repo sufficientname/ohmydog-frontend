@@ -1,4 +1,4 @@
-export default function CreatePetForm({ createPet, createPetError }) {
+export default function CreatePetForm({ onSubmit, createPetError }) {
     const handleSubmit = (event) => {
         event.preventDefault();
     
@@ -7,7 +7,7 @@ export default function CreatePetForm({ createPet, createPetError }) {
     
         console.log('submitting', values);
         
-        createPet(values)
+        onSubmit(values)
     }
 
     return (

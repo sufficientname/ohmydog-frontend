@@ -12,7 +12,7 @@ const timeslots = [
     { id: 'TARDE', name: 'Tarde'}
 ]
 
-export default function AppointmentRequestForm({ createAppointment, createAppointmentError, petList }) {
+export default function AppointmentRequestForm({ onSubmit, createAppointmentError, petList }) {
     const handleSubmit = (event) => {
         event.preventDefault();
 
@@ -21,7 +21,7 @@ export default function AppointmentRequestForm({ createAppointment, createAppoin
 
         console.log('submitting', values);
 
-        createAppointment(values)
+        onSubmit(values)
     }
 
     return (

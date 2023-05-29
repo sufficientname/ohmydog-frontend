@@ -1,7 +1,8 @@
+import { useContext } from "react";
+import UsersContext from "../contexts/AuthContext";
 
 
-
-function LoginForm(loginError, onSubmit) {
+function LoginForm({loginError, onSubmit}) {
     const handleSubmit = (event) => {
         event.preventDefault();
 
@@ -18,12 +19,12 @@ function LoginForm(loginError, onSubmit) {
 
             <fieldset>
                 <label htmlFor="usernameField">Email</label>
-                <input type="email" name="username" id="usernameField" />
-                {loginError.username ? <p style={{ color: 'red' }}>{loginError.username[0]}</p> : null}
+                <input type="text" name="username" id="usernameField" />
+                {loginError.detail ? <p style={{ color: 'red' }}>{loginError.detail}</p> : null}
 
                 <label htmlFor="passwordField">Contraseña</label>
                 <input type="password" name="password" id="passwordField" />
-                {loginError.password ? <p style={{ color: 'red' }}>{loginError.password[0]}</p> : null}
+                {loginError.detail ? <p style={{ color: 'red' }}>{loginError.detail}</p> : null}
 
                 <input className="button-primary" type="submit" value="Iniciar sesion" />
             </fieldset>
@@ -33,10 +34,11 @@ function LoginForm(loginError, onSubmit) {
 
 
 export default function LoginPage() {
+    const { userDetail, login, loginError } = useContext(UsersContext)
 
     return (
         <>
-            <LoginForm loginError={{}} onSubmit={() => { }} />
+            <LoginForm loginError={loginError} onSubmit={ login } />
         </>
     )
 }
