@@ -56,11 +56,11 @@ export const AppointmentsContextProvider = (props) => {
             .post(`${baseUrl}/users-api/appointments/`, appointmentData, getBasicAuth())
             .then((res) => {
                 setAppointmentDetail(res.data)
+                setAppointmentList([...appointmentList, res.data])
                 setCreateAppointmentError({})
             })
             .catch((err) => {
                 setCreateAppointmentError(err.response.data)
-                console.log('error creating appointment', err.response)
             })
     }
 

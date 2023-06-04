@@ -1,40 +1,25 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect } from 'react'
+import { useNavigate  } from 'react-router-dom'
 import AppointmentsContext from '../contexts/AppointmentsContext'
-import Modal from 'react-modal'
-import AppointmentRequestForm from '../components/appointments/AppointmentRequestForm';
 import AppointmentsTable from '../components/appointments/AppointmentsTable';
 import PetsContext from '../contexts/PetsContext';
 
-
 function AppointmentListPage() {
-  const { appointmentsLoading, listAppointments, appointmentList, createAppointment, createAppointmentError } = useContext(AppointmentsContext)
-  const { petsLoading, listPets, petList } = useContext(PetsContext)
+  const { appointmentsLoading, listAppointments, appointmentList } = useContext(AppointmentsContext)
+  const { listPets } = useContext(PetsContext)
+  const navigate = useNavigate();
 
-  const [modalIsOpen, setIsOpen] = useState(false);
-
-  function openModal() {
-    setIsOpen(true);
-  }
-
-  function closeModal() {
-    setIsOpen(false);
+  const handleClick = (e) => {
+    e.preventDefault();
+    console.log("asdasdsoakd")
+    navigate('/appointments/create')
   }
 
   useEffect(() => {
     listAppointments()
     listPets()
   }, [])
-
-  function onSubmit(data) {
-    createAppointment(data)
-
-    if (!Object.keys(createAppointmentError).length) {
-      closeModal()
-
-      listAppointments()
-    }
-  }
-
+  
   if (appointmentsLoading) {
     return <p>cargando...</p>
   }
@@ -42,18 +27,10 @@ function AppointmentListPage() {
   return (
     <>
       <div className='float-right'>
-        <button className='button' onClick={openModal}>Solicitar turno</button>
+        <button className='button' onClick={handleClick}>Solicitar turno</button>
       </div>
 
       <AppointmentsTable appointments={appointmentList} />
-
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        contentLabel="Example Modal"
-      >
-        <AppointmentRequestForm onSubmit={ onSubmit } createAppointmentError={ createAppointmentError } petList={ petList }/>
-      </Modal>
     </>
   )
 }

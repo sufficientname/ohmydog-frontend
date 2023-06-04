@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate, Outlet } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import { useContext, useEffect } from 'react'
 import Navbar from './components/navbar/Navbar'
 import PetListPage from './pages/PetList'
@@ -8,6 +8,7 @@ import AppointmentListPage from './pages/AppointmentList'
 import AppointmentListAdminPage from './pages/AppointmentListAdmin'
 import AppointmentDetailPage from './pages/AppointmentDetail'
 import AppointmentDetailAdminPage from './pages/AppointmentDetailAdmin'
+import AppointmentCreatePage from './pages/AppointmentCreatePage'
 import LoginPage from './pages/Login'
 import AuthContext from './contexts/AuthContext'
 
@@ -36,6 +37,8 @@ function App() {
               <Route path="admin/users" element={<UserListAdminPage />}></Route>
               <Route path="admin/appointments" element={<AppointmentListAdminPage />} />
               <Route path="admin/appointments/:appointmentId" element={<AppointmentDetailAdminPage />} />
+              <Route path="admin/pets" element={<PetListPage />} />
+              <Route path="admin/pets/:petId" element={<PetDetailPage />} />
             </>
             : null
           }
@@ -46,6 +49,7 @@ function App() {
               <Route path="/pets/:petId" element={<PetDetailPage />} />
               <Route path="/appointments" element={<AppointmentListPage />} />
               <Route path="/appointments/:appointmentId" element={<AppointmentDetailPage />} />
+              <Route path="/appointments/create" element={<AppointmentCreatePage />} />
             </>
             : null
           }
