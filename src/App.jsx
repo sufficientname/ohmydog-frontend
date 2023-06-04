@@ -3,6 +3,7 @@ import { useContext, useEffect } from 'react'
 import Navbar from './components/navbar/Navbar'
 import PetListPage from './pages/PetList'
 import PetDetailPage from './pages/PetDetail'
+import PetCreatePage from './pages/PetCreatePage'
 import UserListAdminPage from './pages/UserListAdminPage'
 import AppointmentListPage from './pages/AppointmentList'
 import AppointmentListAdminPage from './pages/AppointmentListAdmin'
@@ -47,6 +48,7 @@ function App() {
             ? <>
               <Route path="/pets" element={<PetListPage />} />
               <Route path="/pets/:petId" element={<PetDetailPage />} />
+              <Route path="/pets/create" element={<PetCreatePage />} />
               <Route path="/appointments" element={<AppointmentListPage />} />
               <Route path="/appointments/:appointmentId" element={<AppointmentDetailPage />} />
               <Route path="/appointments/create" element={<AppointmentCreatePage />} />

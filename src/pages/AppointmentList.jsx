@@ -11,7 +11,6 @@ function AppointmentListPage() {
 
   const handleClick = (e) => {
     e.preventDefault();
-    console.log("asdasdsoakd")
     navigate('/appointments/create')
   }
 
