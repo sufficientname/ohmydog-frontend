@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import { useContext, useEffect } from 'react'
 import Navbar from './components/navbar/Navbar'
+import Home from './components/home/Home'
 import PetListPage from './pages/PetList'
 import PetDetailPage from './pages/PetDetail'
 import PetCreatePage from './pages/PetCreatePage'
@@ -31,7 +32,7 @@ function App() {
 
       <div className='container'>
         <Routes>
-          <Route path="/home" element={<p>og my dog</p>} />
+          <Route path="/home" element={<Home />} />
 
           { isStaff ?
             <>
