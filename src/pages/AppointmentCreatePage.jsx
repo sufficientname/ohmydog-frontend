@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import AppointmentsContext from "../contexts/AppointmentsContext";
 import PetsContext from "../contexts/PetsContext";
@@ -18,10 +18,14 @@ const timeslots = [
 ];
 
 export default function AppointmentCreatePage({}) {
-  const { createAppointment, createAppointmentError } =
-    useContext(AppointmentsContext);
-  const { petList } = useContext(PetsContext);
+  const { createAppointment } = useContext(AppointmentsContext);
+  const { petList, listPets } = useContext(PetsContext);
+  const [createAppointmentError, setCreateAppointmentError] = useState({});
   const navigate = useNavigate();
+
+  useEffect(() => {
+    listPets();
+  }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -31,9 +35,15 @@ export default function AppointmentCreatePage({}) {
 
     console.log("submitting", values);
 
-    createAppointment(values).then((res) => {
-      navigate("/appointments");
-    });
+    createAppointment(values)
+      .then((res) => {
+        navigate(`/appointments/${res.id}`);
+      })
+      .catch((err) => {
+        if (err.code === "ERR_BAD_REQUEST") {
+          setCreateAppointmentError(err.response.data);
+        }
+      });
   };
 
   return (
@@ -69,31 +79,27 @@ export default function AppointmentCreatePage({}) {
           <p style={{ color: "red" }}>{createAppointmentError.reason[0]}</p>
         ) : null}
 
-        <label htmlFor="requestDateField">Fecha</label>
+        <label htmlFor="dateField">Fecha</label>
         <input
           type="date"
-          name="request_date"
-          id="requestDateField"
+          name="date"
+          id="dateField"
           min={new Date().toISOString().split("T")[0]}
         />
-        {createAppointmentError.request_date ? (
-          <p style={{ color: "red" }}>
-            {createAppointmentError.request_date[0]}
-          </p>
+        {createAppointmentError.date ? (
+          <p style={{ color: "red" }}>{createAppointmentError.date[0]}</p>
         ) : null}
 
-        <label htmlFor="requestTimeslotField">Franja horaria</label>
-        <select name="request_timeslot" id="requestTimeslotField">
+        <label htmlFor="timeslotField">Franja horaria</label>
+        <select name="timeslot" id="timeslotField">
           {timeslots.map((timeslot) => (
             <option value={timeslot.id} key={timeslot.id}>
               {timeslot.name}
             </option>
           ))}
         </select>
-        {createAppointmentError.request_timeslot ? (
-          <p style={{ color: "red" }}>
-            {createAppointmentError.request_timeslot[0]}
-          </p>
+        {createAppointmentError.timeslot ? (
+          <p style={{ color: "red" }}>{createAppointmentError.timeslot[0]}</p>
         ) : null}
 
         <input className="button-primary" type="submit" value="Solicitar" />

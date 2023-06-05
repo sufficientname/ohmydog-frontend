@@ -1,52 +1,54 @@
-import { useContext, useEffect, useState } from 'react'
-import AppointmentsContext from '../contexts/AppointmentsContext'
-import { useParams } from 'react-router-dom';
-import { getDateMonthYear, getHoursAndMinutes } from '../utils/datetime'
-import { canCancelAppointment } from '../utils/appointments';
-
+import { useContext, useEffect } from "react";
+import AppointmentsContext from "../contexts/AppointmentsContext";
+import { useParams } from "react-router-dom";
 
 function AppointmentDetailPage() {
-    const params = useParams()
-    const { appointmentsLoading, retrieveAppointment, appointmentDetail, cancelAppointment } = useContext(AppointmentsContext)
+  const params = useParams();
+  const {
+    appointmentsLoading,
+    retrieveAppointment,
+    appointmentDetail,
+    cancelAppointment,
+  } = useContext(AppointmentsContext);
 
-    useEffect(() => {
-        retrieveAppointment(params.appointmentId)
-    }, [])
+  useEffect(() => {
+    retrieveAppointment(params.appointmentId);
+  }, []);
 
-    const request_date = appointmentDetail.request_date ? new Date(appointmentDetail.request_date) : null
-    const actual_datetime = appointmentDetail.actual_datetime ? new Date(appointmentDetail.actual_datetime) : null
-    const suggestion_datetime = appointmentDetail.suggestion_datetime ? new Date(appointmentDetail.suggestion_datetime) : null
+  function OnClickCancelAppointment() {
+    cancelAppointment(appointmentDetail);
+  }
 
-    function OnClickCancelAppointment() {
-        cancelAppointment(appointmentDetail)
-    }
+  if (appointmentsLoading) {
+    return <p>cargando...</p>;
+  }
 
-    if (appointmentsLoading) {
-        return <p>cargando...</p>
-    }
+  return (
+    <>
+      <div>
+        <p>Mascota: {appointmentDetail.pet_name}</p>
+        <p>Motivo: {appointmentDetail.reason}</p>
+        <p>Fecha solicitada: {appointmentDetail.date}</p>
+        <p>Franja horaria solicitada: {appointmentDetail.timeslot}</p>
+        <p>Fecha fijada: {appointmentDetail.date}</p>
+        <p>Hora fijada: {appointmentDetail.hour}</p>
+        <p>Fecha sugerida: {appointmentDetail.suggestion_date}</p>
+        <p>Estado: {appointmentDetail.status}</p>
+      </div>
 
-    return (
-        <>
-            <div>
-                <p>Mascota: {appointmentDetail.pet_name}</p>
-                <p>Motivo: {appointmentDetail.reason}</p>
-                <p>Fecha solicitada: {getDateMonthYear(request_date)}</p>
-                <p>Franja horaria solicitada: {appointmentDetail.request_timeslot}</p>
-                <p>Fecha fijada: {getDateMonthYear(actual_datetime)}</p>
-                <p>Hora fijada: {getHoursAndMinutes(actual_datetime)}</p>
-                <p>Fecha sugerida: {getDateMonthYear(suggestion_datetime)}</p>
-                <p>Hora sugerida: {getHoursAndMinutes(suggestion_datetime)}</p>
-                <p>Estado: {appointmentDetail.status}</p>
-            </div>
-
-            { canCancelAppointment(appointmentDetail)
-                ? <div className="row">
-                    <div className="column"><button className='button' onClick={ OnClickCancelAppointment }>Cancelar turno</button></div>
-                </div>
-                : null
-            }
-        </>
-    )
+      <div className="row">
+        <div className="column">
+          <button
+            className="button"
+            onClick={OnClickCancelAppointment}
+            disabled={!appointmentDetail.can_cancel}
+          >
+            Cancelar turno
+          </button>
+        </div>
+      </div>
+    </>
+  );
 }
 
-export default AppointmentDetailPage
+export default AppointmentDetailPage;

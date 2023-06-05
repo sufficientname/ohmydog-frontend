@@ -1,9 +1,8 @@
-import { useContext, useState } from 'react'
-import UsersAdminContext from '../contexts/UsersAdminContext'
-
+import { useContext, useState } from "react";
+import UsersAdminContext from "../contexts/UsersAdminContext";
 
 function UserListAdminPage() {
-  const { createUser, createUserError } = useContext(UsersAdminContext)
+  const { createUser, createUserError } = useContext(UsersAdminContext);
   const [modalIsOpen, setIsOpen] = useState(false);
 
   function openModal() {
@@ -15,12 +14,12 @@ function UserListAdminPage() {
   }
 
   function onSubmit(data) {
-    createUser(data)
+    createUser(data);
   }
 
   return (
     <>
-        {/* <div className='float-right'>
+      {/* <div className='float-right'>
             <button className='button' onClick={ openModal }>Agregar cliente</button>
         </div>
 
@@ -33,7 +32,7 @@ function UserListAdminPage() {
         <CreateUserForm onSubmit={ onSubmit } errors={ createUserError } />
       </Modal> */}
     </>
-  )
+  );
 }
 
-export default UserListAdminPage
+export default UserListAdminPage;

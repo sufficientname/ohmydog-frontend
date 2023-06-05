@@ -1,28 +1,20 @@
-import { Link } from 'react-router-dom';
-import { getDateMonthYear, getHoursAndMinutes } from '../../utils/datetime'
+import { Link } from "react-router-dom";
 
 function AppointmentTableRow({ appointment }) {
-  let date, time
-  if (appointment.actual_datetime == null) {
-    const request_date = new Date(appointment.request_date)
-    date = getDateMonthYear(request_date)
-    time = appointment.request_timeslot
-  } else {
-    const actual_datetime = new Date(appointment.actual_datetime)
-    date = getDateMonthYear(actual_datetime)
-    time = getHoursAndMinutes(actual_datetime)
-  }
-
   return (
     <tr>
-      <td><Link to={`/pets/${appointment.pet_id}`}>{appointment.pet_name}</Link></td>
+      <td>
+        <Link to={`/pets/${appointment.pet_id}`}>{appointment.pet_name}</Link>
+      </td>
       <td>{appointment.reason}</td>
-      <td>{date}</td>
-      <td>{time}</td>
+      <td>{appointment.date}</td>
+      <td>{appointment.hour || appointment.timeslot}</td>
       <td>{appointment.status}</td>
-      <td><Link to={`/appointments/${appointment.id}`}>Ver detalle</Link></td>
+      <td>
+        <Link to={`/appointments/${appointment.id}`}>Ver detalle</Link>
+      </td>
     </tr>
-  )
+  );
 }
 
 export default function AppointmentsTable({ appointments }) {
@@ -39,8 +31,10 @@ export default function AppointmentsTable({ appointments }) {
         </tr>
       </thead>
       <tbody>
-        {appointments.map((appointment) => <AppointmentTableRow appointment={appointment} key={appointment.id} />)}
+        {appointments.map((appointment) => (
+          <AppointmentTableRow appointment={appointment} key={appointment.id} />
+        ))}
       </tbody>
     </table>
-  )
+  );
 }

@@ -55,7 +55,7 @@ export const AppointmentsAdminContextProvider = (props) => {
     setIsLoading(true);
     await axios
       .post(
-        `${baseUrl}/admin-api/appointments/${appointmentData.id}/approve/`,
+        `${baseUrl}/admin-api/appointments/${appointmentData.id}/accept/`,
         data,
         getBasicAuth()
       )

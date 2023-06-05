@@ -49,7 +49,7 @@ export default function CreatePetForm() {
           type="date"
           name="birthdate"
           id="birthdateField"
-          min={new Date().toISOString().split("T")[0]}
+          max={new Date().toISOString().split("T")[0]}
         />
         {createPetError.birthdate ? (
           <p style={{ color: "red" }}>{createPetError.birthdate[0]}</p>
