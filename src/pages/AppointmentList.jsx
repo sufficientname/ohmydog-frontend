@@ -1,72 +1,52 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import AppointmentsContext from "../contexts/AppointmentsContext";
-import Modal from "react-modal";
-import AppointmentRequestForm from "../components/appointments/AppointmentRequestForm";
-import AppointmentsTable from "../components/appointments/AppointmentsTable";
-import PetsContext from "../contexts/PetsContext";
+import { useNavigate, Link } from "react-router-dom";
+import Loader from "../components/loader";
+import Table from "../components/table";
 
-function AppointmentListPage() {
-  const {
-    appointmentsLoading,
-    listAppointments,
-    appointmentList,
-    createAppointment,
-    createAppointmentError,
-  } = useContext(AppointmentsContext);
-  const { petsLoading, listPets, petList } = useContext(PetsContext);
-
-  const [modalIsOpen, setIsOpen] = useState(false);
-
-  function openModal() {
-    setIsOpen(true);
-  }
-
-  function closeModal() {
-    setIsOpen(false);
-  }
+export default function AppointmentListPage() {
+  const { appointmentsLoading, listAppointments, appointmentList } =
+    useContext(AppointmentsContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     listAppointments();
-    listPets();
   }, []);
 
-  function onSubmit(data) {
-    createAppointment(data);
-
-    if (!Object.keys(createAppointmentError).length) {
-      closeModal();
-
-      listAppointments();
-    }
-  }
-
-  if (appointmentsLoading) {
-    return <p>cargando...</p>;
+  function onClick(event) {
+    navigate("/appointments/create");
   }
 
   return (
-    <>
+    <Loader loading={appointmentsLoading}>
       <div className="float-right">
-        <button className="button" onClick={openModal}>
+        <button className="button" onClick={onClick}>
           Solicitar turno
         </button>
       </div>
 
-      <AppointmentsTable appointments={appointmentList} />
-
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        contentLabel="Example Modal"
-      >
-        <AppointmentRequestForm
-          onSubmit={onSubmit}
-          createAppointmentError={createAppointmentError}
-          petList={petList}
-        />
-      </Modal>
-    </>
+      <Table
+        headers={[
+          { key: "pet_name", name: "Mascota", wrapper: petNameWrapper },
+          { key: "reason", name: "Motivo" },
+          { key: "date", name: "Fecha" },
+          { key: "hour", name: "Hora", wrapper: hourWrapper },
+          { wrapper: seeDetailWrapper },
+        ]}
+        data={appointmentList}
+      />
+    </Loader>
   );
 }
 
-export default AppointmentListPage;
+function petNameWrapper(value, appointment) {
+  return <Link to={`/pets/${appointment.pet_id}`}>{value}</Link>;
+}
+
+function hourWrapper(value, appointment) {
+  return appointment.hour || appointment.timeslot;
+}
+
+function seeDetailWrapper(value, appointment) {
+  return <Link to={`/appointments/${appointment.id}`}>Ver detalle</Link>;
+}

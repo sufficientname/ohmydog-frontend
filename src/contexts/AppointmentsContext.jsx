@@ -49,7 +49,7 @@ export const AppointmentsContextProvider = (props) => {
     setIsLoading(false);
   };
 
-  const createAppointmentHandler = async (appointmentData) => {
+  const createAppointmentHandler = async (appointmentData, onCreate) => {
     await axios
       .post(
         `${baseUrl}/users-api/appointments/`,
@@ -59,6 +59,9 @@ export const AppointmentsContextProvider = (props) => {
       .then((res) => {
         setAppointmentDetail(res.data);
         setCreateAppointmentError({});
+        if (onCreate) {
+          onCreate(res.data);
+        }
       })
       .catch((err) => {
         setCreateAppointmentError(err.response.data);

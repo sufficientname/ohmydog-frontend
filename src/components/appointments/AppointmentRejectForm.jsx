@@ -1,4 +1,8 @@
-export default function AppointmentRejectForm({ appointment, onSubmit, errors }) {
+export default function AppointmentRejectForm({
+  appointment,
+  onSubmit,
+  errors,
+}) {
   const handleSubmit = (event) => {
     event.preventDefault();
 

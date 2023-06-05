@@ -1,17 +1,24 @@
-import { Routes, Route, Navigate, Outlet } from "react-router-dom";
 import { useContext, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import PetListPage from "./pages/PetList";
+import PetListAdminPage from "./pages/PetListAdmin";
 import PetDetailPage from "./pages/PetDetail";
-import UserListAdminPage from "./pages/UserListAdminPage";
+import PetDetailAdminPage from "./pages/PetDetailAdmin";
+import PetCreatePage from "./pages/PetCreate";
+import UserListAdminPage from "./pages/UserListAdmin";
+import UserDetailAdminPage from "./pages/UserDetailAdmin";
+import UserCreateAdminPage from "./pages/UserCreateAdmin";
 import AppointmentListPage from "./pages/AppointmentList";
 import AppointmentListAdminPage from "./pages/AppointmentListAdmin";
 import AppointmentDetailPage from "./pages/AppointmentDetail";
 import AppointmentDetailAdminPage from "./pages/AppointmentDetailAdmin";
+import AppointmentCreatePage from "./pages/AppointmentCreate";
+import AdoptionListPage from "./pages/AdoptionList";
 import LoginPage from "./pages/Login";
 import AuthContext from "./contexts/AuthContext";
 
-function App() {
+export default function App() {
   const { userDetail, logout, retrieveUser } = useContext(AuthContext);
 
   useEffect(() => {
@@ -34,6 +41,19 @@ function App() {
             <>
               <Route path="admin/users" element={<UserListAdminPage />}></Route>
               <Route
+                path="admin/users/:userId"
+                element={<UserDetailAdminPage />}
+              />
+              <Route
+                path="admin/users/create"
+                element={<UserCreateAdminPage />}
+              />
+              <Route path="admin/pets" element={<PetListAdminPage />} />
+              <Route
+                path="admin/pets/:petId"
+                element={<PetDetailAdminPage />}
+              />
+              <Route
                 path="admin/appointments"
                 element={<AppointmentListAdminPage />}
               />
@@ -48,11 +68,23 @@ function App() {
             <>
               <Route path="/pets" element={<PetListPage />} />
               <Route path="/pets/:petId" element={<PetDetailPage />} />
+              <Route path="/pets/create" element={<PetCreatePage />} />
+
               <Route path="/appointments" element={<AppointmentListPage />} />
               <Route
                 path="/appointments/:appointmentId"
                 element={<AppointmentDetailPage />}
               />
+              <Route
+                path="/appointments/create"
+                element={<AppointmentCreatePage />}
+              />
+            </>
+          ) : null}
+
+          {true ? (
+            <>
+              <Route path="/adoptions" element={<AdoptionListPage />} />
             </>
           ) : null}
 
@@ -64,5 +96,3 @@ function App() {
     </>
   );
 }
-
-export default App;

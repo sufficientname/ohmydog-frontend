@@ -3,8 +3,9 @@ import AppointmentsAdminContext from "../contexts/AppointmentsAdminContext";
 import { useParams } from "react-router-dom";
 import AppointmentAcceptForm from "../components/appointments/AppointmentAcceptForm";
 import AppointmentRejectForm from "../components/appointments/AppointmentRejectForm";
+import Loader from "../components/loader";
 
-function AppointmentDetailAdminPage() {
+export default function AppointmentDetailAdminPage() {
   const params = useParams();
   const {
     appointmentsLoading,
@@ -28,12 +29,8 @@ function AppointmentDetailAdminPage() {
     rejectAppointment(appointmentDetail, data);
   }
 
-  if (appointmentsLoading) {
-    return <p>cargando...</p>;
-  }
-
   return (
-    <>
+    <Loader loading={appointmentsLoading}>
       <div>
         <p>Cliente: {appointmentDetail.user_fullname}</p>
         <p>Mascota: {appointmentDetail.pet_name}</p>
@@ -65,8 +62,6 @@ function AppointmentDetailAdminPage() {
           </div>
         </div>
       ) : null}
-    </>
+    </Loader>
   );
 }
-
-export default AppointmentDetailAdminPage;

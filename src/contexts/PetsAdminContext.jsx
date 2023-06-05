@@ -4,7 +4,7 @@ import { getBasicAuth } from "../utils/auth";
 
 const baseUrl = "http://localhost:8000";
 
-const PetsContext = createContext({
+const PetsAdminContext = createContext({
   petsLoading: true,
   petList: [],
   petDetail: {},
@@ -14,7 +14,7 @@ const PetsContext = createContext({
   createPetEror: {},
 });
 
-export const PetsContextProvider = (props) => {
+export const PetsAdminContextProvider = (props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [petList, setPetList] = useState([]);
   const [petDetail, setPetDetail] = useState({});
@@ -23,7 +23,7 @@ export const PetsContextProvider = (props) => {
   const listPetsHandler = async () => {
     setIsLoading(true);
     await axios
-      .get(`${baseUrl}/users-api/pets/`, getBasicAuth())
+      .get(`${baseUrl}/admin-api/pets/`, getBasicAuth())
       .then((res) => {
         setPetList(res.data);
       })
@@ -37,7 +37,7 @@ export const PetsContextProvider = (props) => {
   const retrievePetHandler = async (petId) => {
     setIsLoading(true);
     await axios
-      .get(`${baseUrl}/users-api/pets/${petId}`, getBasicAuth())
+      .get(`${baseUrl}/admin-api/pets/${petId}`, getBasicAuth())
       .then((res) => {
         setPetDetail(res.data);
       })
@@ -48,15 +48,12 @@ export const PetsContextProvider = (props) => {
     setIsLoading(false);
   };
 
-  const createPetHandler = async (petData, onCreate) => {
+  const createPetHandler = async (petData) => {
     await axios
-      .post(`${baseUrl}/users-api/pets/`, petData, getBasicAuth())
+      .post(`${baseUrl}/admin-api/pets/`, petData, getBasicAuth())
       .then((res) => {
         setPetDetail(res.data);
         setCreatePetError({});
-        if (onCreate) {
-          onCreate(res.data);
-        }
       })
       .catch((err) => {
         setPetDetail({});
@@ -66,7 +63,7 @@ export const PetsContextProvider = (props) => {
   };
 
   return (
-    <PetsContext.Provider
+    <PetsAdminContext.Provider
       value={{
         petsLoading: isLoading,
         petList: petList,
@@ -78,8 +75,8 @@ export const PetsContextProvider = (props) => {
       }}
     >
       {props.children}
-    </PetsContext.Provider>
+    </PetsAdminContext.Provider>
   );
 };
 
-export default PetsContext;
+export default PetsAdminContext;

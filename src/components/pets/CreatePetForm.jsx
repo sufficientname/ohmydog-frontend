@@ -1,4 +1,4 @@
-export default function CreatePetForm({ onSubmit, createPetError }) {
+export default function CreatePetForm({ onSubmit, errors }) {
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -13,26 +13,24 @@ export default function CreatePetForm({ onSubmit, createPetError }) {
   return (
     <form onSubmit={handleSubmit}>
       <fieldset>
-        {createPetError.non_field_errors ? (
-          <p style={{ color: "red" }}>{createPetError.non_field_errors[0]}</p>
+        {errors.non_field_errors ? (
+          <p style={{ color: "red" }}>{errors.non_field_errors[0]}</p>
         ) : null}
 
         <label htmlFor="nameField">Nombre</label>
         <input type="text" name="name" id="nameField" />
-        {createPetError.name ? (
-          <p style={{ color: "red" }}>{createPetError.name[0]}</p>
-        ) : null}
+        {errors.name ? <p style={{ color: "red" }}>{errors.name[0]}</p> : null}
 
         <label htmlFor="breedField">Raza</label>
         <input type="text" name="breed" id="breedField" />
-        {createPetError.breed ? (
-          <p style={{ color: "red" }}>{createPetError.breed[0]}</p>
+        {errors.breed ? (
+          <p style={{ color: "red" }}>{errors.breed[0]}</p>
         ) : null}
 
         <label htmlFor="colorField">Color</label>
         <input type="text" name="color" id="colorField" />
-        {createPetError.color ? (
-          <p style={{ color: "red" }}>{createPetError.color[0]}</p>
+        {errors.color ? (
+          <p style={{ color: "red" }}>{errors.color[0]}</p>
         ) : null}
 
         <label htmlFor="birthdateField">Fecha de nacimiento</label>
@@ -42,8 +40,8 @@ export default function CreatePetForm({ onSubmit, createPetError }) {
           id="birthdateField"
           max={new Date().toISOString().split("T")[0]}
         />
-        {createPetError.birthdate ? (
-          <p style={{ color: "red" }}>{createPetError.birthdate[0]}</p>
+        {errors.birthdate ? (
+          <p style={{ color: "red" }}>{errors.birthdate[0]}</p>
         ) : null}
 
         <input className="button-primary" type="submit" value="Agregar" />

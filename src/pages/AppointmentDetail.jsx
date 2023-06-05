@@ -1,8 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import AppointmentsContext from "../contexts/AppointmentsContext";
 import { useParams } from "react-router-dom";
+import Loader from "../components/loader";
 
-function AppointmentDetailPage() {
+export default function AppointmentDetailPage() {
   const params = useParams();
   const {
     appointmentsLoading,
@@ -19,12 +20,14 @@ function AppointmentDetailPage() {
     cancelAppointment(appointmentDetail);
   }
 
-  if (appointmentsLoading) {
-    return <p>cargando...</p>;
-  }
-
   return (
-    <>
+    <Loader loading={appointmentsLoading}>
+      {appointmentDetail.booster_date ? (
+        <pre>
+          <code>{`Fecha para el refuerzo: ${appointmentDetail.booster_date}`}</code>
+        </pre>
+      ) : null}
+
       <div>
         <p>Mascota: {appointmentDetail.pet_name}</p>
         <p>Motivo: {appointmentDetail.reason}</p>
@@ -47,8 +50,6 @@ function AppointmentDetailPage() {
           </button>
         </div>
       </div>
-    </>
+    </Loader>
   );
 }
-
-export default AppointmentDetailPage;

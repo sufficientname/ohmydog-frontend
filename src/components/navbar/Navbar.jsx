@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function Navbar({ logout, userDetail }) {
+export default function Navbar({ logout, userDetail }) {
   const isLogged = Object.keys(userDetail).length;
   const isStaff = isLogged && userDetail.is_staff;
   const isCustomer = isLogged && !userDetail.is_staff;
@@ -19,6 +19,9 @@ function Navbar({ logout, userDetail }) {
               <Link to="/admin/users">Clientes</Link>
             </li>
             <li>
+              <Link to="/admin/pets">Mascotas</Link>
+            </li>
+            <li>
               <Link to="/admin/appointments">Turnos</Link>
             </li>
           </>
@@ -31,6 +34,14 @@ function Navbar({ logout, userDetail }) {
             </li>
             <li>
               <Link to="/appointments">Turnos</Link>
+            </li>
+          </>
+        ) : null}
+
+        {true ? (
+          <>
+            <li>
+              <Link to="/adoptions">Adopciones</Link>
             </li>
           </>
         ) : null}
@@ -50,5 +61,3 @@ function Navbar({ logout, userDetail }) {
     </div>
   );
 }
-
-export default Navbar;

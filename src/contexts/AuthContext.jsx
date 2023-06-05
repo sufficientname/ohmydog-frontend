@@ -4,7 +4,7 @@ import { getBasicAuth, setBasicAuth, removeBasicAuth } from "../utils/auth";
 
 const baseUrl = "http://localhost:8000";
 
-const UsersContext = createContext({
+const AuthContext = createContext({
   usersLoading: true,
   userDetail: {},
   retrieveUser: () => {},
@@ -13,7 +13,7 @@ const UsersContext = createContext({
   loginError: {},
 });
 
-export const UsersContextProvider = (props) => {
+export const AuthContextProvider = (props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [userDetail, setUserDetail] = useState({});
   const [loginError, setLoginError] = useState({});
@@ -60,7 +60,7 @@ export const UsersContextProvider = (props) => {
   };
 
   return (
-    <UsersContext.Provider
+    <AuthContext.Provider
       value={{
         usersLoading: isLoading,
         userDetail: userDetail,
@@ -71,8 +71,8 @@ export const UsersContextProvider = (props) => {
       }}
     >
       {props.children}
-    </UsersContext.Provider>
+    </AuthContext.Provider>
   );
 };
 
-export default UsersContext;
+export default AuthContext;

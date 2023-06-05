@@ -1,8 +1,10 @@
 import { useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
 import AppointmentsAdminContext from "../contexts/AppointmentsAdminContext";
-import AppointmentsTable from "../components/appointments/AppointmentsTableAdmin";
+import Loader from "../components/loader";
+import Table from "../components/table";
 
-function AppointmentListAdminPage() {
+export default function AppointmentListAdminPage() {
   const { appointmentsLoading, listAppointments, appointmentList } = useContext(
     AppointmentsAdminContext
   );
@@ -11,15 +13,31 @@ function AppointmentListAdminPage() {
     listAppointments();
   }, []);
 
-  if (appointmentsLoading) {
-    return <p>cargando...</p>;
-  }
-
   return (
-    <>
-      <AppointmentsTable appointments={appointmentList} />
-    </>
+    <Loader loading={appointmentsLoading}>
+      <Table
+        headers={[
+          { key: "user_fullname", name: "Cliente" },
+          { key: "pet_name", name: "Mascota", wrapper: petNameWrapper },
+          { key: "reason", name: "Motivo" },
+          { key: "date", name: "Fecha" },
+          { key: "hour", name: "Hora", wrapper: hourWrapper },
+          { wrapper: seeDetailWrapper },
+        ]}
+        data={appointmentList}
+      />
+    </Loader>
   );
 }
 
-export default AppointmentListAdminPage;
+function petNameWrapper(value, appointment) {
+  return <Link to={`/pets/${appointment.pet_id}`}>{value}</Link>;
+}
+
+function hourWrapper(value, appointment) {
+  return appointment.hour || appointment.timeslot;
+}
+
+function seeDetailWrapper(value, appointment) {
+  return <Link to={`/admin/appointments/${appointment.id}`}>Ver detalle</Link>;
+}

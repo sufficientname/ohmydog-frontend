@@ -13,8 +13,8 @@ export default function AppointmentAcceptForm({
 
     onSubmit(values);
   };
-  
-  console.log(appointment)
+
+  console.log(appointment);
 
   return (
     <form onSubmit={handleSubmit}>
