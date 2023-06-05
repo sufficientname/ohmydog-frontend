@@ -1,24 +1,25 @@
-import { useContext, useEffect } from 'react'
-import AppointmentsAdminContext from '../contexts/AppointmentsAdminContext'
-import AppointmentsTable from '../components/appointments/AppointmentsTableAdmin';
-
+import { useContext, useEffect } from "react";
+import AppointmentsAdminContext from "../contexts/AppointmentsAdminContext";
+import AppointmentsTable from "../components/appointments/AppointmentsTableAdmin";
 
 function AppointmentListAdminPage() {
-  const { appointmentsLoading, listAppointments, appointmentList } = useContext(AppointmentsAdminContext)
+  const { appointmentsLoading, listAppointments, appointmentList } = useContext(
+    AppointmentsAdminContext
+  );
 
   useEffect(() => {
-    listAppointments()
-  }, [])
+    listAppointments();
+  }, []);
 
   if (appointmentsLoading) {
-    return <p>cargando...</p>
+    return <p>cargando...</p>;
   }
 
   return (
     <>
-      <AppointmentsTable appointments={ appointmentList } />
+      <AppointmentsTable appointments={appointmentList} />
     </>
-  )
+  );
 }
 
-export default AppointmentListAdminPage
+export default AppointmentListAdminPage;
