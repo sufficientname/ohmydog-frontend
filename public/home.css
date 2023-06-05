@@ -1,0 +1,8 @@
+.home {
+  text-align: center;
+}
+
+.home-logo {
+  height: 80vmin;
+  pointer-events: none;
+}
