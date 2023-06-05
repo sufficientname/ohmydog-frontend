@@ -13,6 +13,7 @@ function Navbar({ logout, userDetail }) {
         { isStaff
           ? <>
             <li><Link to="/admin/users">Clientes</Link></li>
+            <li><Link to="/admin/pets">Mascotas</Link></li>
             <li><Link to="/admin/appointments">Turnos</Link></li>
           </>
           : null
