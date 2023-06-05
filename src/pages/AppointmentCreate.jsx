@@ -4,7 +4,7 @@ import AppointmentsContext from "../contexts/AppointmentsContext";
 import PetsContext from "../contexts/PetsContext";
 import AppointmentRequestForm from "../components/appointments/AppointmentRequestForm";
 
-export default function AppointmentCreatePage({}) {
+export default function AppointmentCreatePage() {
   const { createAppointment, createAppointmentError } =
     useContext(AppointmentsContext);
   const { listPets, petList } = useContext(PetsContext);

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import AppointmentsAdminContext from "../contexts/AppointmentsAdminContext";
 import { useParams } from "react-router-dom";
 import AppointmentAcceptForm from "../components/appointments/AppointmentAcceptForm";

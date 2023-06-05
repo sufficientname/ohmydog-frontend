@@ -1,4 +1,4 @@
-export default function CreateUserForm({ onSubmit, errors }) {
+export default function CreateUserAdminForm({ onSubmit, errors }) {
   const handleSubmit = (event) => {
     event.preventDefault();
 

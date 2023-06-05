@@ -1,23 +1,53 @@
-import { useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 import UsersAdminContext from "../contexts/UsersAdminContext";
-import CreateUserForm from "../components/users/CreateUserForm";
+import CreateUserAdminForm from "../components/users/CreateUserAdminForm";
+import PetsAdminContext from "../contexts/PetsAdminContext";
+import CreatePetAdminForm from "../components/pets/CreatePetAdminForm";
 
-export default function AppointmentCreatePage({}) {
-  const { createUser, createUserError } = useContext(UsersAdminContext);
-  const navigate = useNavigate();
+export default function AppointmentCreatePage() {
+  const [step, setStep] = useState(0);
 
-  function onCreate(data) {
-    navigate(`/admin/users/${data.id}`);
+  const { userDetail, createUser, createUserError } =
+    useContext(UsersAdminContext);
+  const { createPet, createPetError } = useContext(PetsAdminContext);
+
+  function onClickSkip(event) {
+    setStep(2);
   }
 
-  function onSubmit(data) {
-    createUser(data, onCreate);
+  function onSubmitUser(data) {
+    createUser(data, () => setStep(1));
   }
 
-  return (
-    <>
-      <CreateUserForm onSubmit={onSubmit} errors={createUserError} />
-    </>
-  );
+  function onSubmitPet(data) {
+    createPet(data, () => setStep(2));
+  }
+
+  if (step == 0) {
+    return (
+      <CreateUserAdminForm onSubmit={onSubmitUser} errors={createUserError} />
+    );
+  }
+
+  if (step == 1) {
+    return (
+      <>
+        <CreatePetAdminForm
+          users={[userDetail]}
+          onSubmit={onSubmitPet}
+          errors={createPetError}
+        />
+        <button className="button" onClick={onClickSkip}>
+          Omitir
+        </button>
+      </>
+    );
+  }
+
+  if (step == 2) {
+    return <Navigate to={`/admin/users/${userDetail.id}`} />;
+  }
+
+  return null;
 }

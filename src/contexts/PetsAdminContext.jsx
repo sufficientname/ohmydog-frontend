@@ -48,12 +48,13 @@ export const PetsAdminContextProvider = (props) => {
     setIsLoading(false);
   };
 
-  const createPetHandler = async (petData) => {
+  const createPetHandler = async (petData, onCreate) => {
     await axios
       .post(`${baseUrl}/admin-api/pets/`, petData, getBasicAuth())
       .then((res) => {
         setPetDetail(res.data);
         setCreatePetError({});
+        onCreate(res.data);
       })
       .catch((err) => {
         setPetDetail({});

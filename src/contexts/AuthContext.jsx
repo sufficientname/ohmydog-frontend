@@ -10,6 +10,7 @@ const AuthContext = createContext({
   retrieveUser: () => {},
   login: () => {},
   logout: () => {},
+  setPassword: () => {},
   loginError: {},
 });
 
@@ -32,7 +33,7 @@ export const AuthContextProvider = (props) => {
     setIsLoading(false);
   };
 
-  const loginHandler = async ({ username, password }) => {
+  const loginHandler = async ({ username, password }, onSuccess) => {
     setIsLoading(true);
     const basicauth = { auth: { username: username, password: password } };
     await axios
@@ -41,6 +42,7 @@ export const AuthContextProvider = (props) => {
         setBasicAuth(username, password);
         setUserDetail(res.data);
         setLoginError({});
+        onSuccess(res.data);
       })
       .catch((err) => {
         removeBasicAuth();
@@ -59,6 +61,25 @@ export const AuthContextProvider = (props) => {
     setLoginError({});
   };
 
+  const setPasswordHandler = async (data, onSuccess) => {
+    setIsLoading(true);
+    await axios
+      .post(`${baseUrl}/users-api/users/me/password/`, data, getBasicAuth())
+      .then((res) => {
+        console.log(res.data);
+        setBasicAuth(res.data.email, data.password);
+        setUserDetail(res.data);
+        setLoginError({});
+        onSuccess(res.data);
+      })
+      .catch((err) => {
+        setUserDetail({});
+        setLoginError({ detail: "email o contraseña incorrectas" });
+        console.log("error setting password", err.response);
+      });
+    setIsLoading(false);
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -67,6 +88,7 @@ export const AuthContextProvider = (props) => {
         retrieveUser: retrieveUserHandler,
         login: loginHandler,
         logout: logoutHandler,
+        setPassword: setPasswordHandler,
         loginError: loginError,
       }}
     >

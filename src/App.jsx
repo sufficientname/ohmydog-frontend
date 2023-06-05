@@ -15,7 +15,10 @@ import AppointmentDetailPage from "./pages/AppointmentDetail";
 import AppointmentDetailAdminPage from "./pages/AppointmentDetailAdmin";
 import AppointmentCreatePage from "./pages/AppointmentCreate";
 import AdoptionListPage from "./pages/AdoptionList";
+import AdoptionCreatePage from "./pages/AdoptionCreate";
 import LoginPage from "./pages/Login";
+import LoginSetPasswordPage from "./pages/LoginSetPassword";
+import HomePage from "./pages/Home";
 import AuthContext from "./contexts/AuthContext";
 
 export default function App() {
@@ -35,11 +38,13 @@ export default function App() {
 
       <div className="container">
         <Routes>
-          <Route path="/home" element={<p>og my dog</p>} />
+          <Route path="/home" element={<HomePage />} />
 
+          {/* Staff routes */}
           {isStaff ? (
             <>
-              <Route path="admin/users" element={<UserListAdminPage />}></Route>
+              {/* users */}
+              <Route path="admin/users" element={<UserListAdminPage />} />
               <Route
                 path="admin/users/:userId"
                 element={<UserDetailAdminPage />}
@@ -48,11 +53,15 @@ export default function App() {
                 path="admin/users/create"
                 element={<UserCreateAdminPage />}
               />
+
+              {/* pets */}
               <Route path="admin/pets" element={<PetListAdminPage />} />
               <Route
                 path="admin/pets/:petId"
                 element={<PetDetailAdminPage />}
               />
+
+              {/* appointments */}
               <Route
                 path="admin/appointments"
                 element={<AppointmentListAdminPage />}
@@ -64,12 +73,20 @@ export default function App() {
             </>
           ) : null}
 
+          {/* Customer routes */}
           {isCustomer ? (
             <>
+              <Route
+                path="/login/set-password"
+                element={<LoginSetPasswordPage />}
+              />
+
+              {/* pets */}
               <Route path="/pets" element={<PetListPage />} />
               <Route path="/pets/:petId" element={<PetDetailPage />} />
               <Route path="/pets/create" element={<PetCreatePage />} />
 
+              {/* appointments */}
               <Route path="/appointments" element={<AppointmentListPage />} />
               <Route
                 path="/appointments/:appointmentId"
@@ -79,9 +96,16 @@ export default function App() {
                 path="/appointments/create"
                 element={<AppointmentCreatePage />}
               />
+
+              {/* adoptions */}
+              <Route
+                path="/adoptions/create"
+                element={<AdoptionCreatePage />}
+              />
             </>
           ) : null}
 
+          {/* Public routes */}
           {true ? (
             <>
               <Route path="/adoptions" element={<AdoptionListPage />} />
