@@ -52,7 +52,7 @@ export default function AdoptionCreateForm({ onSubmit, errors }) {
           <p style={{ color: "red" }}>{errors.pet_gender[0]}</p>
         ) : null}
 
-        <label htmlFor="petSizeField">Sexo</label>
+        <label htmlFor="petSizeField">Tamaño</label>
         <select name="pet_size" id="petSizeField">
           {sizes.map((size, i) => (
             <option value={size.id} key={i}>

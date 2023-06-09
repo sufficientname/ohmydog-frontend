@@ -2,7 +2,7 @@ import axios from "axios";
 import { createContext, useState } from "react";
 import { getBasicAuth, setBasicAuth, removeBasicAuth } from "../utils/auth";
 
-const baseUrl = "http://localhost:8000";
+const baseUrl = "http://localhost:8000/users-api";
 
 const AuthContext = createContext({
   usersLoading: true,
@@ -22,7 +22,7 @@ export const AuthContextProvider = (props) => {
   const retrieveUserHandler = async () => {
     setIsLoading(true);
     await axios
-      .get(`${baseUrl}/users-api/users/me/`, getBasicAuth())
+      .get(`${baseUrl}/users/me/`, { auth: getBasicAuth() })
       .then((res) => {
         setUserDetail(res.data);
       })
@@ -37,7 +37,7 @@ export const AuthContextProvider = (props) => {
     setIsLoading(true);
     const basicauth = { auth: { username: username, password: password } };
     await axios
-      .get(`${baseUrl}/users-api/users/me/`, basicauth)
+      .get(`${baseUrl}/users/me/`, basicauth)
       .then((res) => {
         setBasicAuth(username, password);
         setUserDetail(res.data);
@@ -64,7 +64,7 @@ export const AuthContextProvider = (props) => {
   const setPasswordHandler = async (data, onSuccess) => {
     setIsLoading(true);
     await axios
-      .post(`${baseUrl}/users-api/users/me/password/`, data, getBasicAuth())
+      .post(`${baseUrl}/users/me/password/`, data, { auth: getBasicAuth() })
       .then((res) => {
         console.log(res.data);
         setBasicAuth(res.data.email, data.password);

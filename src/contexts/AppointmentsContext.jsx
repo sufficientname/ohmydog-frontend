@@ -2,7 +2,7 @@ import axios from "axios";
 import { createContext, useState } from "react";
 import { getBasicAuth } from "../utils/auth";
 
-const baseUrl = "http://localhost:8000";
+const baseUrl = "http://localhost:8000/users-api";
 
 const AppointmentsContext = createContext({
   appointmentsLoading: true,
@@ -21,10 +21,10 @@ export const AppointmentsContextProvider = (props) => {
   const [appointmentDetail, setAppointmentDetail] = useState({});
   const [createAppointmentError, setCreateAppointmentError] = useState({});
 
-  const listAppointmentsHandler = async () => {
+  const listAppointmentsHandler = async (params = {}) => {
     setIsLoading(true);
     await axios
-      .get(`${baseUrl}/users-api/appointments/`, getBasicAuth())
+      .get(`${baseUrl}/appointments/`, { auth: getBasicAuth(), params: params })
       .then((res) => {
         setAppointmentList(res.data);
       })
@@ -38,7 +38,7 @@ export const AppointmentsContextProvider = (props) => {
   const retrieveAppointmentHandler = async (appointmentId) => {
     setIsLoading(true);
     await axios
-      .get(`${baseUrl}/users-api/appointments/${appointmentId}`, getBasicAuth())
+      .get(`${baseUrl}/appointments/${appointmentId}`, { auth: getBasicAuth() })
       .then((res) => {
         setAppointmentDetail(res.data);
       })
@@ -51,11 +51,9 @@ export const AppointmentsContextProvider = (props) => {
 
   const createAppointmentHandler = async (appointmentData, onCreate) => {
     await axios
-      .post(
-        `${baseUrl}/users-api/appointments/`,
-        appointmentData,
-        getBasicAuth()
-      )
+      .post(`${baseUrl}/appointments/`, appointmentData, {
+        auth: getBasicAuth(),
+      })
       .then((res) => {
         setAppointmentDetail(res.data);
         setCreateAppointmentError({});
@@ -73,9 +71,9 @@ export const AppointmentsContextProvider = (props) => {
     setIsLoading(true);
     await axios
       .post(
-        `${baseUrl}/users-api/appointments/${appointmentData.id}/cancel/`,
+        `${baseUrl}/appointments/${appointmentData.id}/cancel/`,
         {},
-        getBasicAuth()
+        { auth: getBasicAuth() }
       )
       .then((res) => {
         setAppointmentDetail(res.data);

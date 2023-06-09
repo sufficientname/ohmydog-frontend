@@ -2,7 +2,7 @@ function TR({ headers, data }) {
   return (
     <tr>
       {headers.map((header, i) => {
-        let value = data[header.key || header.name];
+        let value = data[header.key || header.label];
         if (header.wrapper) {
           value = header.wrapper(value, data);
         }
@@ -12,13 +12,15 @@ function TR({ headers, data }) {
   );
 }
 
-function TBody({ headers, data }) {
-  return (
+function TBody({ headers, data, loading }) {
+  return !loading ? (
     <tbody>
       {data.map((item, i) => (
         <TR headers={headers} data={item} key={i} />
       ))}
     </tbody>
+  ) : (
+    <tbody></tbody>
   );
 }
 
@@ -27,18 +29,21 @@ function THead({ headers }) {
     <thead>
       <tr>
         {headers.map((header, i) => (
-          <th key={i}>{header.name}</th>
+          <th key={i}>{header.label}</th>
         ))}
       </tr>
     </thead>
   );
 }
 
-export default function Table({ headers, data }) {
+export default function Table({ headers, data, loading }) {
   return (
-    <table>
-      <THead headers={headers} />
-      <TBody headers={headers} data={data} />
-    </table>
+    <>
+      <table>
+        <THead headers={headers} />
+        <TBody headers={headers} data={data} loading={loading} />
+      </table>
+      {loading ? <p>cargando...</p> : null}
+    </>
   );
 }

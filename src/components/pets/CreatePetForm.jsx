@@ -1,3 +1,5 @@
+import { breeds } from "./constants";
+
 export default function CreatePetForm({ onSubmit, errors }) {
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -22,7 +24,13 @@ export default function CreatePetForm({ onSubmit, errors }) {
         {errors.name ? <p style={{ color: "red" }}>{errors.name[0]}</p> : null}
 
         <label htmlFor="breedField">Raza</label>
-        <input type="text" name="breed" id="breedField" />
+        <select name="breed" id="breedField">
+          {breeds.map((breed, i) => (
+            <option value={breed} key={i}>
+              {breed}
+            </option>
+          ))}
+        </select>
         {errors.breed ? (
           <p style={{ color: "red" }}>{errors.breed[0]}</p>
         ) : null}

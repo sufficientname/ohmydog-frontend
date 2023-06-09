@@ -2,7 +2,7 @@ import axios from "axios";
 import { createContext, useState } from "react";
 import { getBasicAuth } from "../utils/auth";
 
-const baseUrl = "http://localhost:8000";
+const baseUrl = "http://localhost:8000/users-api";
 
 const AdoptionsContext = createContext({
   adoptionsLoading: true,
@@ -23,7 +23,7 @@ export const AdoptionsContextProvider = (props) => {
   const listAdoptionsHandler = async () => {
     setIsLoading(true);
     await axios
-      .get(`${baseUrl}/users-api/adoptions/`)
+      .get(`${baseUrl}/adoptions/`)
       .then((res) => {
         setAdoptionList(res.data);
       })
@@ -37,7 +37,7 @@ export const AdoptionsContextProvider = (props) => {
   const retrieveAdoptionHandler = async (adoptionId) => {
     setIsLoading(true);
     await axios
-      .get(`${baseUrl}/users-api/adoptions/${adoptionId}`, getBasicAuth())
+      .get(`${baseUrl}/adoptions/${adoptionId}`, { auth: getBasicAuth() })
       .then((res) => {
         setAdoptionDetail(res.data);
       })
@@ -50,7 +50,7 @@ export const AdoptionsContextProvider = (props) => {
 
   const createAdoptionHandler = async (adoptionData, onCreate) => {
     await axios
-      .post(`${baseUrl}/users-api/adoptions/`, adoptionData, getBasicAuth())
+      .post(`${baseUrl}/adoptions/`, adoptionData, { auth: getBasicAuth() })
       .then((res) => {
         setAdoptionDetail(res.data);
         setCreateAdoptionError({});

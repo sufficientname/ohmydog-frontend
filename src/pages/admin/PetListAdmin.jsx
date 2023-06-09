@@ -1,8 +1,8 @@
 import { useContext, useEffect } from "react";
-import PetsAdminContext from "../contexts/PetsAdminContext";
 import { useNavigate, Link } from "react-router-dom";
-import Loader from "../components/loader";
-import Table from "../components/table";
+import Loader from "../../components/loader";
+import Table from "../../components/table";
+import PetsAdminContext from "../../contexts/PetsAdminContext";
 
 export default function PetListPage() {
   const navigate = useNavigate();
@@ -18,7 +18,9 @@ export default function PetListPage() {
   }
 
   return (
-    <Loader loading={petsLoading}>
+    <>
+      <h1>Mascotas</h1>
+
       <div className="float-right">
         <button className="button" onClick={onClick} disabled>
           Agregar mascota
@@ -27,16 +29,17 @@ export default function PetListPage() {
 
       <Table
         headers={[
-          { key: "user_fullname", name: "Cliente" },
-          { key: "name", name: "Nombre" },
-          { key: "breed", name: "Raza" },
-          { key: "color", name: "Color" },
-          { key: "birthdate", name: "Fecha de nacimiento" },
+          { key: "user_fullname", label: "Cliente" },
+          { key: "name", label: "Nombre" },
+          { key: "breed", label: "Raza" },
+          { key: "color", label: "Color" },
+          { key: "birthdate", label: "Fecha de nacimiento" },
           { wrapper: seeDetailWrapper },
         ]}
         data={petList}
+        loading={petsLoading}
       />
-    </Loader>
+    </>
   );
 }
 

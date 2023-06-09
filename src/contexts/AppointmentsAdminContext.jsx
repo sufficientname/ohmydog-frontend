@@ -2,7 +2,7 @@ import axios from "axios";
 import { createContext, useState } from "react";
 import { getBasicAuth } from "../utils/auth";
 
-const baseUrl = "http://localhost:8000";
+const baseUrl = "http://localhost:8000/admin-api";
 
 const AppointmentsAdminContext = createContext({
   appointmentsLoading: true,
@@ -23,10 +23,10 @@ export const AppointmentsAdminContextProvider = (props) => {
   const [acceptAppointmentError, setAcceptAppointmentError] = useState({});
   const [rejectAppointmentError, setRejectAppointmentError] = useState({});
 
-  const listAppointmentsHandler = async () => {
+  const listAppointmentsHandler = async (params = {}) => {
     setIsLoading(true);
     await axios
-      .get(`${baseUrl}/admin-api/appointments/`, getBasicAuth())
+      .get(`${baseUrl}/appointments/`, { auth: getBasicAuth(), params: params })
       .then((res) => {
         setAppointmentList(res.data);
       })
@@ -40,7 +40,7 @@ export const AppointmentsAdminContextProvider = (props) => {
   const retrieveAppointmentHandler = async (appointmentId) => {
     setIsLoading(true);
     await axios
-      .get(`${baseUrl}/admin-api/appointments/${appointmentId}`, getBasicAuth())
+      .get(`${baseUrl}/appointments/${appointmentId}`, { auth: getBasicAuth() })
       .then((res) => {
         setAppointmentDetail(res.data);
       })
@@ -54,11 +54,9 @@ export const AppointmentsAdminContextProvider = (props) => {
   const acceptAppointmentHandler = async (appointmentData, data) => {
     setIsLoading(true);
     await axios
-      .post(
-        `${baseUrl}/admin-api/appointments/${appointmentData.id}/accept/`,
-        data,
-        getBasicAuth()
-      )
+      .post(`${baseUrl}/appointments/${appointmentData.id}/accept/`, data, {
+        auth: getBasicAuth(),
+      })
       .then((res) => {
         setAppointmentDetail(res.data);
       })
@@ -72,11 +70,9 @@ export const AppointmentsAdminContextProvider = (props) => {
   const rejectAppointmentHandler = async (appointmentData, data) => {
     setIsLoading(true);
     await axios
-      .post(
-        `${baseUrl}/admin-api/appointments/${appointmentData.id}/reject/`,
-        data,
-        getBasicAuth()
-      )
+      .post(`${baseUrl}/appointments/${appointmentData.id}/reject/`, data, {
+        auth: getBasicAuth(),
+      })
       .then((res) => {
         setAppointmentDetail(res.data);
       })

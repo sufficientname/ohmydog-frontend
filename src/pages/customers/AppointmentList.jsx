@@ -1,8 +1,8 @@
 import { useContext, useEffect } from "react";
-import AppointmentsContext from "../contexts/AppointmentsContext";
 import { useNavigate, Link } from "react-router-dom";
-import Loader from "../components/loader";
-import Table from "../components/table";
+import Loader from "../../components/loader";
+import Table from "../../components/table";
+import AppointmentsContext from "../../contexts/AppointmentsContext";
 
 export default function AppointmentListPage() {
   const { appointmentsLoading, listAppointments, appointmentList } =
@@ -18,7 +18,9 @@ export default function AppointmentListPage() {
   }
 
   return (
-    <Loader loading={appointmentsLoading}>
+    <>
+      <h1>Turnos</h1>
+
       <div className="float-right">
         <button className="button" onClick={onClick}>
           Solicitar turno
@@ -27,15 +29,17 @@ export default function AppointmentListPage() {
 
       <Table
         headers={[
-          { key: "pet_name", name: "Mascota", wrapper: petNameWrapper },
-          { key: "reason", name: "Motivo" },
-          { key: "date", name: "Fecha" },
-          { key: "hour", name: "Hora", wrapper: hourWrapper },
+          { key: "pet_name", label: "Mascota", wrapper: petNameWrapper },
+          { key: "reason", label: "Motivo" },
+          { key: "status", label: "Estado" },
+          { key: "date", label: "Fecha" },
+          { key: "hour", label: "Hora", wrapper: hourWrapper },
           { wrapper: seeDetailWrapper },
         ]}
         data={appointmentList}
+        loading={appointmentsLoading}
       />
-    </Loader>
+    </>
   );
 }
 

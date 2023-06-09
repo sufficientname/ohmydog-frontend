@@ -2,7 +2,7 @@ import axios from "axios";
 import { createContext, useState } from "react";
 import { getBasicAuth } from "../utils/auth";
 
-const baseUrl = "http://localhost:8000";
+const baseUrl = "http://localhost:8000/admin-api";
 
 const UsersContext = createContext({
   usersLoading: true,
@@ -20,10 +20,10 @@ export const UsersContextProvider = (props) => {
   const [userDetail, setUserDetail] = useState({});
   const [createUserError, setCreateUserError] = useState({});
 
-  const listUsersHandler = async () => {
+  const listUsersHandler = async (params = {}) => {
     setIsLoading(true);
     await axios
-      .get(`${baseUrl}/admin-api/users/`, getBasicAuth())
+      .get(`${baseUrl}/users/`, { auth: getBasicAuth(), params: params })
       .then((res) => {
         setUserList(res.data);
       })
@@ -37,7 +37,7 @@ export const UsersContextProvider = (props) => {
   const retrieveUserHandler = async (userId) => {
     setIsLoading(true);
     await axios
-      .get(`${baseUrl}/admin-api/users/${userId}/`, getBasicAuth())
+      .get(`${baseUrl}/users/${userId}/`, { auth: getBasicAuth() })
       .then((res) => {
         setUserDetail(res.data);
       })
@@ -50,7 +50,7 @@ export const UsersContextProvider = (props) => {
 
   const createUserHandler = async (userData, onCreate) => {
     await axios
-      .post(`${baseUrl}/admin-api/users/`, userData, getBasicAuth())
+      .post(`${baseUrl}/users/`, userData, { auth: getBasicAuth() })
       .then((res) => {
         setUserDetail(res.data);
         setCreateUserError({});

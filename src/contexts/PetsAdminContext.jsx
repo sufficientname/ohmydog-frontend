@@ -2,7 +2,7 @@ import axios from "axios";
 import { createContext, useState } from "react";
 import { getBasicAuth } from "../utils/auth";
 
-const baseUrl = "http://localhost:8000";
+const baseUrl = "http://localhost:8000/admin-api";
 
 const PetsAdminContext = createContext({
   petsLoading: true,
@@ -20,10 +20,10 @@ export const PetsAdminContextProvider = (props) => {
   const [petDetail, setPetDetail] = useState({});
   const [createPetError, setCreatePetError] = useState({});
 
-  const listPetsHandler = async () => {
+  const listPetsHandler = async (params = {}) => {
     setIsLoading(true);
     await axios
-      .get(`${baseUrl}/admin-api/pets/`, getBasicAuth())
+      .get(`${baseUrl}/pets/`, { auth: getBasicAuth(), params: params })
       .then((res) => {
         setPetList(res.data);
       })
@@ -37,7 +37,7 @@ export const PetsAdminContextProvider = (props) => {
   const retrievePetHandler = async (petId) => {
     setIsLoading(true);
     await axios
-      .get(`${baseUrl}/admin-api/pets/${petId}`, getBasicAuth())
+      .get(`${baseUrl}/pets/${petId}`, { auth: getBasicAuth() })
       .then((res) => {
         setPetDetail(res.data);
       })
@@ -50,7 +50,7 @@ export const PetsAdminContextProvider = (props) => {
 
   const createPetHandler = async (petData, onCreate) => {
     await axios
-      .post(`${baseUrl}/admin-api/pets/`, petData, getBasicAuth())
+      .post(`${baseUrl}/pets/`, petData, { auth: getBasicAuth() })
       .then((res) => {
         setPetDetail(res.data);
         setCreatePetError({});

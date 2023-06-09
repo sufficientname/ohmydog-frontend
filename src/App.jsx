@@ -1,25 +1,35 @@
 import { useContext, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
+import AuthContext from "./contexts/AuthContext";
 import Navbar from "./components/navbar/Navbar";
-import PetListPage from "./pages/PetList";
-import PetListAdminPage from "./pages/PetListAdmin";
-import PetDetailPage from "./pages/PetDetail";
-import PetDetailAdminPage from "./pages/PetDetailAdmin";
-import PetCreatePage from "./pages/PetCreate";
-import UserListAdminPage from "./pages/UserListAdmin";
-import UserDetailAdminPage from "./pages/UserDetailAdmin";
-import UserCreateAdminPage from "./pages/UserCreateAdmin";
-import AppointmentListPage from "./pages/AppointmentList";
-import AppointmentListAdminPage from "./pages/AppointmentListAdmin";
-import AppointmentDetailPage from "./pages/AppointmentDetail";
-import AppointmentDetailAdminPage from "./pages/AppointmentDetailAdmin";
-import AppointmentCreatePage from "./pages/AppointmentCreate";
-import AdoptionListPage from "./pages/AdoptionList";
-import AdoptionCreatePage from "./pages/AdoptionCreate";
+
+// auth pages
 import LoginPage from "./pages/Login";
 import LoginSetPasswordPage from "./pages/LoginSetPassword";
-import HomePage from "./pages/Home";
-import AuthContext from "./contexts/AuthContext";
+
+// public pages
+import HomePage from "./pages/public/Home";
+import AdoptionListPublicPage from "./pages/public/AdoptionListPublic";
+
+// customer pages
+import PetListPage from "./pages/customers/PetList";
+import PetDetailPage from "./pages/customers/PetDetail";
+import PetCreatePage from "./pages/customers/PetCreate";
+import AppointmentListPage from "./pages/customers/AppointmentList";
+import AppointmentDetailPage from "./pages/customers/AppointmentDetail";
+import AppointmentCreatePage from "./pages/customers/AppointmentCreate";
+import AdoptionListPage from "./pages/customers/AdoptionList";
+import AdoptionDetailPage from "./pages/customers/AdoptionDetail";
+import AdoptionCreatePage from "./pages/customers/AdoptionCreate";
+
+// admin pages
+import PetListAdminPage from "./pages/admin/PetListAdmin";
+import PetDetailAdminPage from "./pages/admin/PetDetailAdmin";
+import UserListAdminPage from "./pages/admin/UserListAdmin";
+import UserDetailAdminPage from "./pages/admin/UserDetailAdmin";
+import UserCreateAdminPage from "./pages/admin/UserCreateAdmin";
+import AppointmentListAdminPage from "./pages/admin/AppointmentListAdmin";
+import AppointmentDetailAdminPage from "./pages/admin/AppointmentDetailAdmin";
 
 export default function App() {
   const { userDetail, logout, retrieveUser } = useContext(AuthContext);
@@ -55,7 +65,7 @@ export default function App() {
               />
 
               {/* pets */}
-              <Route path="admin/pets" element={<PetListAdminPage />} />
+              {/* <Route path="admin/pets" element={<PetListAdminPage />} /> */}
               <Route
                 path="admin/pets/:petId"
                 element={<PetDetailAdminPage />}
@@ -70,6 +80,8 @@ export default function App() {
                 path="admin/appointments/:appointmentId"
                 element={<AppointmentDetailAdminPage />}
               />
+
+              {/* adoptions */}
             </>
           ) : null}
 
@@ -98,6 +110,11 @@ export default function App() {
               />
 
               {/* adoptions */}
+              <Route path="/adoptions" element={<AdoptionListPage />} />
+              <Route
+                path="/adoptions/:adoptionId"
+                element={<AdoptionDetailPage />}
+              />
               <Route
                 path="/adoptions/create"
                 element={<AdoptionCreatePage />}
@@ -106,9 +123,9 @@ export default function App() {
           ) : null}
 
           {/* Public routes */}
-          {true ? (
+          {!isLogged ? (
             <>
-              <Route path="/adoptions" element={<AdoptionListPage />} />
+              <Route path="/adoptions" element={<AdoptionListPublicPage />} />
             </>
           ) : null}
 

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import AdoptionsContext from "../contexts/AdoptionsContext";
-import AdoptionCreateForm from "../components/adoptions/AdoptionCreateForm";
+import AdoptionsContext from "../../contexts/AdoptionsContext";
+import AdoptionCreateForm from "../../components/adoptions/AdoptionCreateForm";
 
 export default function AdoptionCreatePage() {
   const navigate = useNavigate();
@@ -17,6 +17,8 @@ export default function AdoptionCreatePage() {
 
   return (
     <>
+      <h1>Publicar anuncio de adopcion</h1>
+
       <AdoptionCreateForm onSubmit={onSubmit} errors={createAdoptionError} />
     </>
   );

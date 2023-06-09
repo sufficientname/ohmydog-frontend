@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import PetsContext from "../contexts/PetsContext";
-import CreatePetForm from "../components/pets/CreatePetForm";
+import PetsContext from "../../contexts/PetsContext";
+import CreatePetForm from "../../components/pets/CreatePetForm";
 
 export default function PetCreatePage() {
   const navigate = useNavigate();
@@ -17,6 +17,7 @@ export default function PetCreatePage() {
 
   return (
     <>
+      <h1>Agregar mascota</h1>
       <CreatePetForm onSubmit={onSubmit} errors={createPetError} />
     </>
   );

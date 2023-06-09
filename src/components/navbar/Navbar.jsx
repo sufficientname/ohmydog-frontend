@@ -18,9 +18,9 @@ export default function Navbar({ logout, userDetail }) {
             <li>
               <Link to="/admin/users">Clientes</Link>
             </li>
-            <li>
+            {/* <li>
               <Link to="/admin/pets">Mascotas</Link>
-            </li>
+            </li> */}
             <li>
               <Link to="/admin/appointments">Turnos</Link>
             </li>

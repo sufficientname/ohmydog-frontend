@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import AuthContext from "../contexts/AuthContext";
 import SetPasswordForm from "../components/auth/SetPasswordForm";
+import AuthContext from "../contexts/AuthContext";
 
 export default function LoginSetPasswordPage() {
   const navigate = useNavigate();

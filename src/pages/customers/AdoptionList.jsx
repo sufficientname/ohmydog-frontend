@@ -1,8 +1,8 @@
 import { useContext, useEffect } from "react";
-import AdoptionsContext from "../contexts/AdoptionsContext";
 import { useNavigate, Link } from "react-router-dom";
-import Loader from "../components/loader";
-import Table from "../components/table";
+import Loader from "../../components/loader";
+import Table from "../../components/table";
+import AdoptionsContext from "../../contexts/AdoptionsContext";
 
 export default function AdoptionListPage() {
   const { adoptionsLoading, listAdoptions, adoptionList } =
@@ -18,7 +18,9 @@ export default function AdoptionListPage() {
   }
 
   return (
-    <Loader loading={adoptionsLoading}>
+    <>
+      <h1>Anuncios de adopcion</h1>
+
       <div className="float-right">
         <button className="button" onClick={onClick}>
           Crear anuncio
@@ -27,21 +29,22 @@ export default function AdoptionListPage() {
 
       <Table
         headers={[
-          { key: "pet_name", name: "Nombre" },
-          { key: "pet_age", name: "Edad" },
-          { key: "pet_size", name: "Tamaño" },
-          { key: "pet_gender", name: "Sexo" },
-          { key: "status", name: "Estado" },
+          { key: "pet_name", label: "Nombre" },
+          { key: "pet_age", label: "Edad" },
+          { key: "pet_size", label: "Tamaño" },
+          { key: "pet_gender", label: "Sexo" },
+          { key: "status", label: "Estado" },
           {
             key: "date_created",
-            name: "fecha publicacion",
+            label: "Fecha publicacion",
             wrapper: dateCreatedWrapper,
           },
           { wrapper: seeDetailWrapper },
         ]}
         data={adoptionList}
+        loading={adoptionsLoading}
       />
-    </Loader>
+    </>
   );
 }
 
