@@ -14,6 +14,8 @@ const AppointmentsAdminContext = createContext({
   acceptAppointmentError: {},
   rejectAppointment: () => {},
   rejectAppointmentError: {},
+  completeAppointment: () => {},
+  completeAppointmentError: {},
 });
 
 export const AppointmentsAdminContextProvider = (props) => {
@@ -22,6 +24,7 @@ export const AppointmentsAdminContextProvider = (props) => {
   const [appointmentDetail, setAppointmentDetail] = useState({});
   const [acceptAppointmentError, setAcceptAppointmentError] = useState({});
   const [rejectAppointmentError, setRejectAppointmentError] = useState({});
+  const [completeAppointmentError, setCompleteAppointmentError] = useState({});
 
   const listAppointmentsHandler = async (params = {}) => {
     setIsLoading(true);
@@ -83,6 +86,22 @@ export const AppointmentsAdminContextProvider = (props) => {
     setIsLoading(false);
   };
 
+  const completeAppointmentHandler = async (appointmentData, data) => {
+    setIsLoading(true);
+    await axios
+      .post(`${baseUrl}/appointments/${appointmentData.id}/complete/`, data, {
+        auth: getBasicAuth(),
+      })
+      .then((res) => {
+        setAppointmentDetail(res.data);
+      })
+      .catch((err) => {
+        setCompleteAppointmentError(err.response.data);
+        console.log("error completing appointment", err.response);
+      });
+    setIsLoading(false);
+  };
+
   return (
     <AppointmentsAdminContext.Provider
       value={{
@@ -95,6 +114,8 @@ export const AppointmentsAdminContextProvider = (props) => {
         acceptAppointmentError: acceptAppointmentError,
         rejectAppointment: rejectAppointmentHandler,
         rejectAppointmentError: rejectAppointmentError,
+        completeAppointment: completeAppointmentHandler,
+        completeAppointmentError: completeAppointmentError,
       }}
     >
       {props.children}

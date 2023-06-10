@@ -40,6 +40,8 @@ export default function AppointmentDetailPage() {
           <p>Hora fijada: {appointmentDetail.hour}</p>
           <p>Fecha sugerida: {appointmentDetail.suggestion_date}</p>
           <p>Estado: {appointmentDetail.status}</p>
+          <p>Observaciones: {appointmentDetail.observations}</p>
+          <p>Precio: {appointmentDetail.price}</p>
         </div>
 
         <div className="row">

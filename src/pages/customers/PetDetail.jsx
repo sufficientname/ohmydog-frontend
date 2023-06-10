@@ -44,9 +44,7 @@ export default function PetDetailPage() {
           },
           {
             wrapper: (value, appointment) => (
-              <Link to={`/admin/appointments/${appointment.id}`}>
-                Ver detalle
-              </Link>
+              <Link to={`/appointments/${appointment.id}`}>Ver detalle</Link>
             ),
           },
         ]}

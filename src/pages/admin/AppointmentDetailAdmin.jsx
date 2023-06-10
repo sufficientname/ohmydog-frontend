@@ -4,6 +4,7 @@ import Loader from "../../components/loader";
 import AppointmentAcceptForm from "../../components/appointments/AppointmentAcceptForm";
 import AppointmentRejectForm from "../../components/appointments/AppointmentRejectForm";
 import AppointmentsAdminContext from "../../contexts/AppointmentsAdminContext";
+import AppointmentCompleteForm from "../../components/appointments/AppointmentCompleteForm";
 
 export default function AppointmentDetailAdminPage() {
   const params = useParams();
@@ -15,6 +16,8 @@ export default function AppointmentDetailAdminPage() {
     acceptAppointmentError,
     rejectAppointment,
     rejectAppointmentError,
+    completeAppointment,
+    completeAppointmentError,
   } = useContext(AppointmentsAdminContext);
 
   useEffect(() => {
@@ -27,6 +30,10 @@ export default function AppointmentDetailAdminPage() {
 
   function onSubmitRejectAppointment(data) {
     rejectAppointment(appointmentDetail, data);
+  }
+
+  function onSubmitCompleteAppointment(data) {
+    completeAppointment(appointmentDetail, data);
   }
 
   return (
@@ -44,6 +51,8 @@ export default function AppointmentDetailAdminPage() {
           <p>Hora fijada: {appointmentDetail.hour}</p>
           <p>Fecha sugerida: {appointmentDetail.suggestion_date}</p>
           <p>Estado: {appointmentDetail.status}</p>
+          <p>Observaciones: {appointmentDetail.observations}</p>
+          <p>Precio: {appointmentDetail.price}</p>
         </div>
 
         <div className="row">
@@ -63,6 +72,12 @@ export default function AppointmentDetailAdminPage() {
             />
           </div>
         </div>
+
+        <AppointmentCompleteForm
+          appointment={appointmentDetail}
+          onSubmit={onSubmitCompleteAppointment}
+          errors={completeAppointmentError}
+        />
       </Loader>
     </>
   );
