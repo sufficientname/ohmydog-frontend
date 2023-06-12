@@ -38,47 +38,53 @@ export default function AppointmentDetailAdminPage() {
 
   return (
     <>
-      <h1>Turno</h1>
+      <div className="row">
+        <div class="column">
+          <h1>Turno</h1>
 
-      <Loader loading={appointmentsLoading}>
-        <div>
-          <p>Cliente: {appointmentDetail.user_fullname}</p>
-          <p>Mascota: {appointmentDetail.pet_name}</p>
-          <p>Motivo: {appointmentDetail.reason}</p>
-          <p>Fecha solicitada: {appointmentDetail.date}</p>
-          <p>Franja horaria solicitada: {appointmentDetail.timeslot}</p>
-          <p>Fecha fijada: {appointmentDetail.date}</p>
-          <p>Hora fijada: {appointmentDetail.hour}</p>
-          <p>Fecha sugerida: {appointmentDetail.suggestion_date}</p>
-          <p>Estado: {appointmentDetail.status}</p>
-          <p>Observaciones: {appointmentDetail.observations}</p>
-          <p>Precio: {appointmentDetail.price}</p>
+          <Loader loading={appointmentsLoading}>
+            <div>
+              <p>Cliente: {appointmentDetail.user_fullname}</p>
+              <p>Mascota: {appointmentDetail.pet_name}</p>
+              <p>Motivo: {appointmentDetail.reason}</p>
+              <p>Fecha solicitada: {appointmentDetail.date}</p>
+              <p>Franja horaria solicitada: {appointmentDetail.timeslot}</p>
+              <p>Fecha fijada: {appointmentDetail.date}</p>
+              <p>Hora fijada: {appointmentDetail.hour}</p>
+              <p>Fecha sugerida: {appointmentDetail.suggestion_date}</p>
+              <p>Estado: {appointmentDetail.status}</p>
+              <p>Observaciones: {appointmentDetail.observations}</p>
+              <p>Precio: {appointmentDetail.price}</p>
+            </div>
+          </Loader>
         </div>
 
-        <div className="row">
-          <div className="column">
+        <div className="column">
+          {appointmentDetail.can_accept ? (
             <AppointmentAcceptForm
               appointment={appointmentDetail}
               onSubmit={onSubmitAcceptAppointment}
               errors={acceptAppointmentError}
             />
-          </div>
+          ) : null}
 
-          <div className="column">
+          {appointmentDetail.can_reject ? (
             <AppointmentRejectForm
               appointment={appointmentDetail}
               onSubmit={onSubmitRejectAppointment}
               errors={rejectAppointmentError}
             />
-          </div>
-        </div>
+          ) : null}
 
-        <AppointmentCompleteForm
-          appointment={appointmentDetail}
-          onSubmit={onSubmitCompleteAppointment}
-          errors={completeAppointmentError}
-        />
-      </Loader>
+          {appointmentDetail.can_complete ? (
+            <AppointmentCompleteForm
+              appointment={appointmentDetail}
+              onSubmit={onSubmitCompleteAppointment}
+              errors={completeAppointmentError}
+            />
+          ) : null}
+        </div>
+      </div>
     </>
   );
 }

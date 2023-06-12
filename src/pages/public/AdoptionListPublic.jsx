@@ -24,20 +24,16 @@ export default function AdoptionListPublicPage() {
           {
             key: "date_created",
             label: "fecha publicacion",
-            wrapper: dateCreatedWrapper,
+            wrapper: (value, adoption) => value.split("T")[0],
           },
-          { wrapper: seeDetailWrapper },
+          {
+            wrapper: (value, adoption) => (
+              <Link to={`/adoptions/${adoption.id}`}>Ver detalle</Link>
+            ),
+          },
         ]}
         data={adoptionList}
       />
     </Loader>
   );
-}
-
-function dateCreatedWrapper(value, adoption) {
-  return value.split("T")[0];
-}
-
-function seeDetailWrapper(value, adoption) {
-  return <Link to={`/adoptions/${adoption.id}`}>Ver detalle</Link>;
 }

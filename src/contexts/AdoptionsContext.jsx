@@ -11,6 +11,8 @@ const AdoptionsContext = createContext({
   listAdoptions: () => {},
   retrieveAdoption: () => {},
   createAdoption: () => {},
+  cancelAdoption: () => {},
+  completeAdoption: () => {},
   createAdoptionError: {},
 });
 
@@ -23,7 +25,7 @@ export const AdoptionsContextProvider = (props) => {
   const listAdoptionsHandler = async () => {
     setIsLoading(true);
     await axios
-      .get(`${baseUrl}/adoptions/`)
+      .get(`${baseUrl}/adoptions/`, { auth: getBasicAuth() })
       .then((res) => {
         setAdoptionList(res.data);
       })
@@ -64,6 +66,40 @@ export const AdoptionsContextProvider = (props) => {
       });
   };
 
+  const cancelAdoptionHandler = async (adoptionData) => {
+    setIsLoading(true);
+    await axios
+      .post(
+        `${baseUrl}/adoptions/${adoptionData.id}/cancel/`,
+        {},
+        { auth: getBasicAuth() }
+      )
+      .then((res) => {
+        setAdoptionDetail(res.data);
+      })
+      .catch((err) => {
+        console.log("error canceling adoption", err.response);
+      });
+    setIsLoading(false);
+  };
+
+  const completeAdoptionHandler = async (adoptionData) => {
+    setIsLoading(true);
+    await axios
+      .post(
+        `${baseUrl}/adoptions/${adoptionData.id}/complete/`,
+        {},
+        { auth: getBasicAuth() }
+      )
+      .then((res) => {
+        setAdoptionDetail(res.data);
+      })
+      .catch((err) => {
+        console.log("error completing adoption", err.response);
+      });
+    setIsLoading(false);
+  };
+
   return (
     <AdoptionsContext.Provider
       value={{
@@ -73,6 +109,8 @@ export const AdoptionsContextProvider = (props) => {
         listAdoptions: listAdoptionsHandler,
         retrieveAdoption: retrieveAdoptionHandler,
         createAdoption: createAdoptionHandler,
+        cancelAdoption: cancelAdoptionHandler,
+        completeAdoption: completeAdoptionHandler,
         createAdoptionError: createAdoptionError,
       }}
     >

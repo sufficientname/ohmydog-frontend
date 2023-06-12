@@ -37,21 +37,17 @@ export default function AdoptionListPage() {
           {
             key: "date_created",
             label: "Fecha publicacion",
-            wrapper: dateCreatedWrapper,
+            wrapper: (value, adoption) => value.split("T")[0],
           },
-          { wrapper: seeDetailWrapper },
+          {
+            wrapper: (value, adoption) => (
+              <Link to={`/adoptions/${adoption.id}`}>Ver detalle</Link>
+            ),
+          },
         ]}
         data={adoptionList}
         loading={adoptionsLoading}
       />
     </>
   );
-}
-
-function dateCreatedWrapper(value, adoption) {
-  return value.split("T")[0];
-}
-
-function seeDetailWrapper(value, adoption) {
-  return <Link to={`/adoptions/${adoption.id}`}>Ver detalle</Link>;
 }

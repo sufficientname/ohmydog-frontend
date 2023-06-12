@@ -45,7 +45,11 @@ export default function UserListAdminPage() {
           { key: "email", label: "Email" },
           { key: "phone_number", label: "Telefono" },
           { key: "birthdate", label: "Fecha de nacimiento" },
-          { wrapper: seeDetailWrapper },
+          {
+            wrapper: (value, user) => (
+              <Link to={`/admin/users/${user.id}`}>Ver detalle</Link>
+            ),
+          },
         ]}
         data={userList}
         loading={usersLoading}
@@ -53,8 +57,4 @@ export default function UserListAdminPage() {
       {/* </Loader> */}
     </>
   );
-}
-
-function seeDetailWrapper(value, user) {
-  return <Link to={`/admin/users/${user.id}`}>Ver detalle</Link>;
 }

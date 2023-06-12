@@ -34,15 +34,15 @@ export default function PetListPage() {
           { key: "breed", label: "Raza" },
           { key: "color", label: "Color" },
           { key: "birthdate", label: "Fecha de nacimiento" },
-          { wrapper: seeDetailWrapper },
+          {
+            wrapper: (value, pet) => (
+              <Link to={`/admin/pets/${pet.id}`}>Ver detalle</Link>
+            ),
+          },
         ]}
         data={petList}
         loading={petsLoading}
       />
     </>
   );
-}
-
-function seeDetailWrapper(value, pet) {
-  return <Link to={`/admin/pets/${pet.id}`}>Ver detalle</Link>;
 }

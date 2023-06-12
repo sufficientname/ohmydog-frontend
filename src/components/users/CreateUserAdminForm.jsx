@@ -48,7 +48,7 @@ export default function CreateUserAdminForm({ onSubmit, errors }) {
         ) : null}
 
         <label htmlFor="phoneNumberField">Telefono</label>
-        <input type="text" name="phone_number" id="phoneNumberField" />
+        <input type="tel" name="phone_number" id="phoneNumberField" />
         {errors.phone_number ? (
           <p style={{ color: "red" }}>{errors.phone_number[0]}</p>
         ) : null}

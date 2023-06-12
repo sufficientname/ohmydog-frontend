@@ -5,12 +5,25 @@ import AdoptionsContext from "../../contexts/AdoptionsContext";
 
 export default function AdoptionDetailPage() {
   const params = useParams();
-  const { adoptionsLoading, retrieveAdoption, adoptionDetail } =
-    useContext(AdoptionsContext);
+  const {
+    adoptionsLoading,
+    retrieveAdoption,
+    adoptionDetail,
+    cancelAdoption,
+    completeAdoption,
+  } = useContext(AdoptionsContext);
 
   useEffect(() => {
     retrieveAdoption(params.adoptionId);
   }, []);
+
+  function onClickCancelAdoption(event) {
+    cancelAdoption(adoptionDetail);
+  }
+
+  function onClickCompleteAdoption(event) {
+    completeAdoption(adoptionDetail);
+  }
 
   return (
     <>
@@ -26,6 +39,31 @@ export default function AdoptionDetailPage() {
           <p>Fecha de creación: {adoptionDetail.date_created}</p>
         </div>
       </Loader>
+
+      <div className="row">
+        {adoptionDetail.can_cancel ? (
+          <div className="column">
+            <button
+              className="button"
+              onClick={onClickCancelAdoption}
+              disabled={!adoptionDetail.can_cancel}
+            >
+              Cancelar
+            </button>
+          </div>
+        ) : null}
+        {adoptionDetail.can_complete ? (
+          <div className="column">
+            <button
+              className="button"
+              onClick={onClickCompleteAdoption}
+              disabled={!adoptionDetail.can_complete}
+            >
+              Completar
+            </button>
+          </div>
+        ) : null}
+      </div>
     </>
   );
 }

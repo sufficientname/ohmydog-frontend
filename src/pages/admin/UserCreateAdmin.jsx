@@ -26,13 +26,17 @@ export default function AppointmentCreatePage() {
 
   if (step == 0) {
     return (
-      <CreateUserAdminForm onSubmit={onSubmitUser} errors={createUserError} />
+      <>
+        <h1>Agregar Cliente</h1>
+        <CreateUserAdminForm onSubmit={onSubmitUser} errors={createUserError} />
+      </>
     );
   }
 
   if (step == 1) {
     return (
       <>
+        <h1>Agregar Mascota</h1>
         <CreatePetAdminForm
           users={[userDetail]}
           onSubmit={onSubmitPet}

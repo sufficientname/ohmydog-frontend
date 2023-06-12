@@ -29,28 +29,31 @@ export default function AppointmentListPage() {
 
       <Table
         headers={[
-          { key: "pet_name", label: "Mascota", wrapper: petNameWrapper },
+          {
+            key: "pet_name",
+            label: "Mascota",
+            wrapper: (value, appointment) => (
+              <Link to={`/pets/${appointment.pet_id}`}>{value}</Link>
+            ),
+          },
           { key: "reason", label: "Motivo" },
           { key: "status", label: "Estado" },
           { key: "date", label: "Fecha" },
-          { key: "hour", label: "Hora", wrapper: hourWrapper },
-          { wrapper: seeDetailWrapper },
+          {
+            key: "hour",
+            label: "Hora",
+            wrapper: (value, appointment) =>
+              appointment.hour || appointment.timeslot,
+          },
+          {
+            wrapper: (value, appointment) => (
+              <Link to={`/appointments/${appointment.id}`}>Ver detalle</Link>
+            ),
+          },
         ]}
         data={appointmentList}
         loading={appointmentsLoading}
       />
     </>
   );
-}
-
-function petNameWrapper(value, appointment) {
-  return <Link to={`/pets/${appointment.pet_id}`}>{value}</Link>;
-}
-
-function hourWrapper(value, appointment) {
-  return appointment.hour || appointment.timeslot;
-}
-
-function seeDetailWrapper(value, appointment) {
-  return <Link to={`/appointments/${appointment.id}`}>Ver detalle</Link>;
 }

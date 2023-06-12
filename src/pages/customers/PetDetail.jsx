@@ -13,7 +13,7 @@ export default function PetDetailPage() {
 
   useEffect(() => {
     retrievePet(params.petId);
-    listAppointments({ pet: params.petId });
+    listAppointments({ pet: params.petId, status: "COM" });
   }, []);
 
   return (

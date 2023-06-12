@@ -16,7 +16,7 @@ export default function AppointmentDetailPage() {
     retrieveAppointment(params.appointmentId);
   }, []);
 
-  function OnClickCancelAppointment() {
+  function onClickCancelAppointment(event) {
     cancelAppointment(appointmentDetail);
   }
 
@@ -48,7 +48,7 @@ export default function AppointmentDetailPage() {
           <div className="column">
             <button
               className="button"
-              onClick={OnClickCancelAppointment}
+              onClick={onClickCancelAppointment}
               disabled={!appointmentDetail.can_cancel}
             >
               Cancelar turno
