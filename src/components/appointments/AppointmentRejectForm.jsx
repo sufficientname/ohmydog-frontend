@@ -36,7 +36,6 @@ export default function AppointmentRejectForm({
           className="button-primary"
           type="submit"
           value="Rechazar turno"
-          disabled={!appointment.can_accept}
         />
       </fieldset>
     </form>

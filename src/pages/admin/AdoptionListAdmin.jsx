@@ -1,30 +1,20 @@
 import { useContext, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Table from "../../components/table";
-import AdoptionsContext from "../../contexts/AdoptionsContext";
+import AdoptionsAdminContext from "../../contexts/AdoptionsAdminContext";
 
-export default function AdoptionListPage() {
-  const { adoptionsLoading, listAdoptions, adoptionList } =
-    useContext(AdoptionsContext);
-  const navigate = useNavigate();
+export default function AdoptionListAdmin() {
+  const { adoptionsLoading, listAdoptions, adoptionList } = useContext(
+    AdoptionsAdminContext
+  );
 
   useEffect(() => {
     listAdoptions();
   }, []);
 
-  function onClick(event) {
-    navigate("/adoptions/create");
-  }
-
   return (
     <>
       <h1>Anuncios de adopcion</h1>
-
-      <div className="float-right">
-        <button className="button" onClick={onClick}>
-          Crear anuncio
-        </button>
-      </div>
 
       <Table
         headers={[
@@ -40,7 +30,7 @@ export default function AdoptionListPage() {
           },
           {
             wrapper: (value, adoption) => (
-              <Link to={`/adoptions/${adoption.id}`}>Ver detalle</Link>
+              <Link to={`/admin/adoptions/${adoption.id}`}>Ver detalle</Link>
             ),
           },
         ]}

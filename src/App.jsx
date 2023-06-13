@@ -10,6 +10,7 @@ import LoginSetPasswordPage from "./pages/LoginSetPassword";
 // public pages
 import HomePage from "./pages/public/Home";
 import AdoptionListPublicPage from "./pages/public/AdoptionListPublic";
+import AdoptionDetailPublicPage from "./pages/public/AdoptionDetailPublic";
 
 // customer pages
 import PetListPage from "./pages/customers/PetList";
@@ -30,6 +31,8 @@ import UserDetailAdminPage from "./pages/admin/UserDetailAdmin";
 import UserCreateAdminPage from "./pages/admin/UserCreateAdmin";
 import AppointmentListAdminPage from "./pages/admin/AppointmentListAdmin";
 import AppointmentDetailAdminPage from "./pages/admin/AppointmentDetailAdmin";
+import AdoptionListAdminPage from "./pages/admin/AdoptionListAdmin";
+import AdoptionDetailAdminPage from "./pages/admin/AdoptionDetailAdmin";
 
 export default function App() {
   const { userDetail, logout, retrieveUser } = useContext(AuthContext);
@@ -82,6 +85,14 @@ export default function App() {
               />
 
               {/* adoptions */}
+              <Route
+                path="admin/adoptions"
+                element={<AdoptionListAdminPage />}
+              />
+              <Route
+                path="admin/adoptions/:adoptionId"
+                element={<AdoptionDetailAdminPage />}
+              />
             </>
           ) : null}
 
@@ -126,6 +137,10 @@ export default function App() {
           {!isLogged ? (
             <>
               <Route path="/adoptions" element={<AdoptionListPublicPage />} />
+              <Route
+                path="/adoptions/:adoptionId"
+                element={<AdoptionDetailPublicPage />}
+              />
             </>
           ) : null}
 

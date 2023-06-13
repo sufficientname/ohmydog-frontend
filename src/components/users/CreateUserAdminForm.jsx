@@ -42,7 +42,7 @@ export default function CreateUserAdminForm({ onSubmit, errors }) {
         ) : null}
 
         <label htmlFor="emailField">Email</label>
-        <input type="email" name="email" id="emailField" />
+        <input type="text" name="email" id="emailField" />
         {errors.email ? (
           <p style={{ color: "red" }}>{errors.email[0]}</p>
         ) : null}

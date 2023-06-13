@@ -1,6 +1,5 @@
 import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Loader from "../../components/loader";
 import Table from "../../components/table";
 import AdoptionsContext from "../../contexts/AdoptionsContext";
 
@@ -13,7 +12,8 @@ export default function AdoptionListPublicPage() {
   }, []);
 
   return (
-    <Loader loading={adoptionsLoading}>
+    <>
+      <h1>Anuncios de adopcion</h1>
       <Table
         headers={[
           { key: "pet_name", label: "Nombre" },
@@ -33,7 +33,8 @@ export default function AdoptionListPublicPage() {
           },
         ]}
         data={adoptionList}
+        loading={adoptionsLoading}
       />
-    </Loader>
+    </>
   );
 }

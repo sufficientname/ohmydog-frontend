@@ -44,17 +44,15 @@ export default function AppointmentDetailPage() {
           <p>Precio: {appointmentDetail.price}</p>
         </div>
 
-        <div className="row">
-          <div className="column">
-            <button
-              className="button"
-              onClick={onClickCancelAppointment}
-              disabled={!appointmentDetail.can_cancel}
-            >
-              Cancelar turno
-            </button>
+        {appointmentDetail.can_cancel ? (
+          <div className="row">
+            <div className="column">
+              <button className="button" onClick={onClickCancelAppointment}>
+                Cancelar turno
+              </button>
+            </div>
           </div>
-        </div>
+        ) : null}
       </Loader>
     </>
   );

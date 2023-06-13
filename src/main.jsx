@@ -9,6 +9,7 @@ import { AppointmentsAdminContextProvider } from "./contexts/AppointmentsAdminCo
 import { AuthContextProvider } from "./contexts/AuthContext";
 import { UsersContextProvider } from "./contexts/UsersAdminContext";
 import { AdoptionsContextProvider } from "./contexts/AdoptionsContext";
+import { AdoptionsAdminContextProvider } from "./contexts/AdoptionsAdminContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   // <React.StrictMode>
@@ -20,7 +21,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <AppointmentsContextProvider>
               <AppointmentsAdminContextProvider>
                 <AdoptionsContextProvider>
-                  <App />
+                  <AdoptionsAdminContextProvider>
+                    <App />
+                  </AdoptionsAdminContextProvider>
                 </AdoptionsContextProvider>
               </AppointmentsAdminContextProvider>
             </AppointmentsContextProvider>

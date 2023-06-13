@@ -1,6 +1,5 @@
 import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Loader from "../../components/loader";
 import Table from "../../components/table";
 import AppointmentsAdminContext from "../../contexts/AppointmentsAdminContext";
 

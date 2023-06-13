@@ -40,30 +40,24 @@ export default function AdoptionDetailPage() {
         </div>
       </Loader>
 
-      <div className="row">
-        {adoptionDetail.can_cancel ? (
-          <div className="column">
-            <button
-              className="button"
-              onClick={onClickCancelAdoption}
-              disabled={!adoptionDetail.can_cancel}
-            >
-              Cancelar
-            </button>
-          </div>
-        ) : null}
-        {adoptionDetail.can_complete ? (
-          <div className="column">
-            <button
-              className="button"
-              onClick={onClickCompleteAdoption}
-              disabled={!adoptionDetail.can_complete}
-            >
-              Completar
-            </button>
-          </div>
-        ) : null}
-      </div>
+      {adoptionDetail.is_mine ? (
+        <div className="row">
+          {adoptionDetail.can_cancel ? (
+            <div className="column">
+              <button className="button" onClick={onClickCancelAdoption}>
+                Cancelar
+              </button>
+            </div>
+          ) : null}
+          {adoptionDetail.can_complete ? (
+            <div className="column">
+              <button className="button" onClick={onClickCompleteAdoption}>
+                Completar
+              </button>
+            </div>
+          ) : null}
+        </div>
+      ) : null}
     </>
   );
 }

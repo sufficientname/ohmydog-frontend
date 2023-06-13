@@ -37,7 +37,6 @@ export default function AppointmentCompleteForm({
           className="button-primary"
           type="submit"
           value="Completar turno"
-          disabled={!appointment.can_complete}
         />
       </fieldset>
     </form>

@@ -1,6 +1,9 @@
 export function getBasicAuth() {
   const username = localStorage.getItem("basicauth-username") || "";
   const password = localStorage.getItem("basicauth-password") || "";
+  if (!username && !password) {
+    return null;
+  }
   return { username: username, password: password };
 }
 

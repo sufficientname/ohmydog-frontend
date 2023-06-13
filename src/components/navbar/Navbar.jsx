@@ -24,6 +24,9 @@ export default function Navbar({ logout, userDetail }) {
             <li>
               <Link to="/admin/appointments">Turnos</Link>
             </li>
+            <li>
+              <Link to="/admin/adoptions">Adopciones</Link>
+            </li>
           </>
         ) : null}
 
@@ -35,10 +38,13 @@ export default function Navbar({ logout, userDetail }) {
             <li>
               <Link to="/appointments">Turnos</Link>
             </li>
+            <li>
+              <Link to="/adoptions">Adopciones</Link>
+            </li>
           </>
         ) : null}
 
-        {true ? (
+        {!isLogged ? (
           <>
             <li>
               <Link to="/adoptions">Adopciones</Link>
