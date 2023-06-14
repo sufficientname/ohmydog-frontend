@@ -24,6 +24,9 @@ export default function LoginPage() {
   return (
     <>
       <h1>Iniciar sesión</h1>
+
+      <hr></hr>
+
       <LoginForm onSubmit={onSubmit} errors={loginError} />
     </>
   );

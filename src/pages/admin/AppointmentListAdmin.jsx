@@ -1,20 +1,78 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Table from "../../components/table";
 import AppointmentsAdminContext from "../../contexts/AppointmentsAdminContext";
+import SearchAppointmentAdminForm from "../../components/appointments/SearchAppointmentAdminForm";
+import { Today } from "../../utils/datetime";
 
 export default function AppointmentListAdminPage() {
   const { appointmentsLoading, listAppointments, appointmentList } = useContext(
     AppointmentsAdminContext
   );
 
+  const [step, setStep] = useState(0);
+
   useEffect(() => {
-    listAppointments();
+    const today = Today().toISOString().split("T")[0];
+    listAppointments({ date_after: today, date_before: today, status: "APR" });
   }, []);
+
+  function onSubmitSearch(data) {
+    listAppointments(data);
+  }
+
+  function onClickTodayAppointments(event) {
+    setStep(0);
+    const today = Today().toISOString().split("T")[0];
+    listAppointments({ date_after: today, date_before: today, status: "APR" });
+  }
+
+  function onClickAppointmentsRequests(event) {
+    setStep(1);
+    const today = Today().toISOString().split("T")[0];
+    listAppointments({ date_after: today, status: "PEN" });
+  }
+
+  function onClickAllAppointments(event) {
+    setStep(2);
+    listAppointments();
+  }
 
   return (
     <>
       <h1>Turnos</h1>
+
+      <div className="row">
+        <div className="column">
+          <button
+            className="button container"
+            onClick={onClickTodayAppointments}
+          >
+            Turnos de hoy
+          </button>
+        </div>
+
+        <div className="column">
+          <button
+            className="button container"
+            onClick={onClickAppointmentsRequests}
+          >
+            Solicitudes pendientes
+          </button>
+        </div>
+
+        <div className="column">
+          <button className="button container" onClick={onClickAllAppointments}>
+            Todos los turnos
+          </button>
+        </div>
+      </div>
+
+      <hr></hr>
+
+      {step == 2 ? (
+        <SearchAppointmentAdminForm onSubmit={onSubmitSearch} />
+      ) : null}
 
       <Table
         headers={[

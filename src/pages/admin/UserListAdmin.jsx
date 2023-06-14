@@ -18,23 +18,28 @@ export default function UserListAdminPage() {
     navigate("/admin/users/create");
   }
 
+  function onSubmitSearch(data) {
+    listUsers(data);
+  }
+
   return (
     <>
       <h1>Clientes</h1>
 
       <div className="row">
-        <div className="column">
-          <SearchUserAdminForm
-            onSubmit={(data) => listUsers({ id_number: data.id_number })}
-          />
-        </div>
+        <div className="column"></div>
+        <div className="column"></div>
 
         <div className="column">
-          <button className="button float-right" onClick={onClick}>
+          <button className="button container" onClick={onClick}>
             Agregar cliente
           </button>
         </div>
       </div>
+
+      <hr></hr>
+
+      <SearchUserAdminForm onSubmit={onSubmitSearch} />
 
       {/* <Loader loading={usersLoading}> */}
       <Table
@@ -54,7 +59,6 @@ export default function UserListAdminPage() {
         data={userList}
         loading={usersLoading}
       />
-      {/* </Loader> */}
     </>
   );
 }

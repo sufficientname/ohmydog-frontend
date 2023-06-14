@@ -21,6 +21,9 @@ export default function PetDetailAdminPage() {
   return (
     <>
       <h1>Mascota</h1>
+
+      <hr></hr>
+
       <Loader loading={petsLoading}>
         <div>
           <p>Cliente: {petDetail.user_fullname}</p>

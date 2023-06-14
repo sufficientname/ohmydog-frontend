@@ -19,6 +19,7 @@ export default function SearchUserAdminForm({ onSubmit }) {
       <fieldset>
         <div className="row">
           <div className="column">
+            <label htmlFor="idNumberSearchField">DNI</label>
             <input
               type="text"
               name="id_number"

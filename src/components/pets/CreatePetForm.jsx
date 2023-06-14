@@ -1,3 +1,4 @@
+import { Today } from "../../utils/datetime";
 import { breeds } from "./constants";
 
 export default function CreatePetForm({ onSubmit, errors }) {
@@ -46,7 +47,7 @@ export default function CreatePetForm({ onSubmit, errors }) {
           type="date"
           name="birthdate"
           id="birthdateField"
-          max={new Date().toISOString().split("T")[0]}
+          max={Today().toISOString().split("T")[0]}
         />
         {errors.birthdate ? (
           <p style={{ color: "red" }}>{errors.birthdate[0]}</p>

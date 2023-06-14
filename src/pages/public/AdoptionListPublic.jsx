@@ -14,6 +14,9 @@ export default function AdoptionListPublicPage() {
   return (
     <>
       <h1>Anuncios de adopcion</h1>
+
+      <hr></hr>
+
       <Table
         headers={[
           { key: "pet_name", label: "Nombre" },

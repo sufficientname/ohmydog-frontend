@@ -18,6 +18,9 @@ export default function PetCreatePage() {
   return (
     <>
       <h1>Agregar mascota</h1>
+
+      <hr></hr>
+
       <CreatePetForm onSubmit={onSubmit} errors={createPetError} />
     </>
   );

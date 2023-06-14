@@ -20,11 +20,17 @@ export default function AdoptionListPage() {
     <>
       <h1>Anuncios de adopcion</h1>
 
-      <div className="float-right">
-        <button className="button" onClick={onClick}>
-          Crear anuncio
-        </button>
+      <div className="row">
+        <div className="column"></div>
+        <div className="column"></div>
+        <div className="column">
+          <button className="button container" onClick={onClick}>
+            Crear anuncio
+          </button>
+        </div>
       </div>
+
+      <hr></hr>
 
       <Table
         headers={[

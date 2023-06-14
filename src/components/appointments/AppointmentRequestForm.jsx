@@ -1,16 +1,5 @@
-const reasons = [
-  { id: "CONSULTA_GENERAL", name: "Consulta general" },
-  { id: "VACUNACION_A", name: "Vacunacion A" },
-  { id: "VACUNACION_B", name: "Vacunacion B" },
-  { id: "DESPARASITACION", name: "Desparasitacion" },
-  { id: "CASTRACION", name: "Castracion" },
-  { id: "URGENCIA", name: "Urgencia" },
-];
-
-const timeslots = [
-  { id: "MANANA", name: "Mañana" },
-  { id: "TARDE", name: "Tarde" },
-];
+import { Today } from "../../utils/datetime";
+import { reasons, timeslots } from "./constants";
 
 export default function AppointmentRequestForm({ onSubmit, errors, pets }) {
   const handleSubmit = (event) => {
@@ -58,7 +47,7 @@ export default function AppointmentRequestForm({ onSubmit, errors, pets }) {
           type="date"
           name="date"
           id="dateField"
-          min={new Date().toISOString().split("T")[0]}
+          min={Today().toISOString().split("T")[0]}
         />
         {errors.date ? <p style={{ color: "red" }}>{errors.date[0]}</p> : null}
 

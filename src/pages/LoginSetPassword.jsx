@@ -19,6 +19,9 @@ export default function LoginSetPasswordPage() {
   return (
     <>
       <h1>Cambiar contraseña</h1>
+
+      <hr></hr>
+
       <SetPasswordForm onSubmit={onSubmit} errors={loginError} />
     </>
   );

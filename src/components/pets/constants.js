@@ -188,6 +188,7 @@ export const breeds = [
   "Nova Scotia duck tolling retriever",
   "Ovejero alemán",
   "Otterhound",
+  "Pequines",
   "Rafeiro do Alentejo",
   "Ratonero Bodeguero Andaluz",
   "Retriever de Nueva Escocia",

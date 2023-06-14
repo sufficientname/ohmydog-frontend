@@ -21,3 +21,8 @@ export function getHoursAndMinutes(date) {
   }
   return padTo2Digits(date.getHours()) + ":" + padTo2Digits(date.getMinutes());
 }
+
+export function Today() {
+  const d = new Date();
+  return new Date(d.getTime() - d.getTimezoneOffset() * 60000);
+}

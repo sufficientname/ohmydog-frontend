@@ -20,6 +20,9 @@ export default function UserDetailAdminPage() {
   return (
     <>
       <h1>Cliente</h1>
+
+      <hr></hr>
+
       <Loader loading={usersLoading}>
         <div>
           <p>DNI: {userDetail.id_number}</p>

@@ -24,6 +24,8 @@ export default function AppointmentDetailPage() {
     <>
       <h1>Turno</h1>
 
+      <hr></hr>
+
       <Loader loading={appointmentsLoading}>
         {appointmentDetail.booster_date ? (
           <pre>

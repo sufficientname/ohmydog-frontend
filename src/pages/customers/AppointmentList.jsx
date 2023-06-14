@@ -21,11 +21,17 @@ export default function AppointmentListPage() {
     <>
       <h1>Turnos</h1>
 
-      <div className="float-right">
-        <button className="button" onClick={onClick}>
-          Solicitar turno
-        </button>
+      <div className="row">
+        <div className="column"></div>
+        <div className="column"></div>
+        <div className="column">
+          <button className="button container" onClick={onClick}>
+            Solicitar turno
+          </button>
+        </div>
       </div>
+
+      <hr></hr>
 
       <Table
         headers={[

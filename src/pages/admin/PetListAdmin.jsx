@@ -21,11 +21,18 @@ export default function PetListPage() {
     <>
       <h1>Mascotas</h1>
 
-      <div className="float-right">
-        <button className="button" onClick={onClick} disabled>
-          Agregar mascota
-        </button>
+      <div className="row">
+        <div className="column"></div>
+        <div className="column"></div>
+
+        <div className="column">
+          <button className="button container" onClick={onClick} disabled>
+            Agregar mascota
+          </button>
+        </div>
       </div>
+
+      <hr></hr>
 
       <Table
         headers={[

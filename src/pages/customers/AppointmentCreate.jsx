@@ -25,6 +25,9 @@ export default function AppointmentCreatePage() {
   return (
     <>
       <h1>solicitar turno</h1>
+
+      <hr></hr>
+
       <AppointmentRequestForm
         onSubmit={onSubmit}
         errors={createAppointmentError}

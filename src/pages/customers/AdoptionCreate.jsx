@@ -19,6 +19,8 @@ export default function AdoptionCreatePage() {
     <>
       <h1>Publicar anuncio de adopcion</h1>
 
+      <hr></hr>
+
       <AdoptionCreateForm onSubmit={onSubmit} errors={createAdoptionError} />
     </>
   );

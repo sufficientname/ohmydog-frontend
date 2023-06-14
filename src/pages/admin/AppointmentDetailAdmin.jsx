@@ -38,10 +38,12 @@ export default function AppointmentDetailAdminPage() {
 
   return (
     <>
-      <div className="row">
-        <div class="column">
-          <h1>Turno</h1>
+      <h1>Turno</h1>
 
+      <hr></hr>
+
+      <div className="row">
+        <div className="column">
           <Loader loading={appointmentsLoading}>
             <div>
               <p>Cliente: {appointmentDetail.user_fullname}</p>

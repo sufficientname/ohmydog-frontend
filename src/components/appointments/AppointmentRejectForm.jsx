@@ -1,3 +1,5 @@
+import { Today } from "../../utils/datetime";
+
 export default function AppointmentRejectForm({
   appointment,
   onSubmit,
@@ -26,7 +28,7 @@ export default function AppointmentRejectForm({
           type="date"
           name="suggestion_date"
           id="suggestionDateField"
-          min={new Date().toISOString()}
+          min={Today().toISOString()}
         />
         {errors.suggestion_date ? (
           <p style={{ color: "red" }}>{errors.suggestion_date[0]}</p>

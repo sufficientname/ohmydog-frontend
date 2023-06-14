@@ -16,6 +16,8 @@ export default function AdoptionDetailPublicPage() {
     <>
       <h1>Anuncio de adopcion</h1>
 
+      <hr></hr>
+
       <Loader loading={adoptionsLoading}>
         <div>
           <p>Nombre: {adoptionDetail.pet_name}</p>

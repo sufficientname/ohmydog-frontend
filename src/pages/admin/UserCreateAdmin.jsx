@@ -37,6 +37,9 @@ export default function AppointmentCreatePage() {
     return (
       <>
         <h1>Agregar Mascota</h1>
+
+        <hr></hr>
+
         <CreatePetAdminForm
           users={[userDetail]}
           onSubmit={onSubmitPet}
