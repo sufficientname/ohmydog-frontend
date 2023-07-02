@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Table from "../../components/table";
 import AdoptionsContext from "../../contexts/AdoptionsContext";
@@ -8,6 +8,8 @@ export default function AdoptionListPage() {
     useContext(AdoptionsContext);
   const navigate = useNavigate();
 
+  const [step, setStep] = useState(0);
+
   useEffect(() => {
     listAdoptions();
   }, []);
@@ -16,13 +18,54 @@ export default function AdoptionListPage() {
     navigate("/adoptions/create");
   }
 
+  const onClickPublishedAdoption = (e) => {
+    setStep(0);
+  }
+
+  const onClickAdoptedAdoption = (e) => {
+    setStep(1);
+  }
+
+  const onClickMyAdoptions = (e) => {
+    setStep(2);
+    listAdoptions();
+  }
+
   return (
     <>
       <h1>Anuncios de adopcion</h1>
 
       <div className="row">
-        <div className="column"></div>
-        <div className="column"></div>
+
+        {/* pub */}
+        <div className="column">
+          <button
+            className="button container"
+            onClick={onClickPublishedAdoption}
+          >
+            Publicados
+          </button>
+        </div>
+
+        {/* com */}
+        <div className="column">
+          <button
+            className="button container"
+            onClick={onClickAdoptedAdoption}
+          >
+            Adoptados
+          </button>
+        </div>
+
+        {/* all */}
+        <div className="column">
+          <button
+            className="button container"
+            onClick={onClickMyAdoptions}
+          >
+            Mis Anuncios
+          </button>
+        </div>
         <div className="column">
           <button className="button container" onClick={onClick}>
             Crear anuncio
