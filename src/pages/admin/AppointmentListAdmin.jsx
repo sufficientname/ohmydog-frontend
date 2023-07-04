@@ -42,6 +42,8 @@ export default function AppointmentListAdminPage() {
     <>
       <h1>Turnos</h1>
 
+      <hr></hr>
+
       <div className="row">
         <div className="column">
           <button
@@ -67,8 +69,6 @@ export default function AppointmentListAdminPage() {
           </button>
         </div>
       </div>
-
-      <hr></hr>
 
       {step == 2 ? (
         <SearchAppointmentAdminForm onSubmit={onSubmitSearch} />

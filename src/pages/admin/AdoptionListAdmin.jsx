@@ -17,25 +17,25 @@ export default function AdoptionListAdmin() {
   const onClickPublishedAdoption = (e) => {
     setStep(0);
     listAdoptions({ status: "PUB" });
-  }
+  };
 
   const onClickAdoptedAdoption = (e) => {
     setStep(1);
     listAdoptions({ status: "COM" });
-  }
+  };
 
   const onClickAllAdoptions = (e) => {
     setStep(2);
     listAdoptions();
-  }
+  };
 
   return (
     <>
       <h1>Anuncios de adopcion</h1>
 
-      <div className="row">
+      <hr></hr>
 
-        {/* pub */}
+      <div className="row">
         <div className="column">
           <button
             className="button container"
@@ -45,29 +45,18 @@ export default function AdoptionListAdmin() {
           </button>
         </div>
 
-        {/* com */}
         <div className="column">
-          <button
-            className="button container"
-            onClick={onClickAdoptedAdoption}
-          >
+          <button className="button container" onClick={onClickAdoptedAdoption}>
             Adoptados
           </button>
         </div>
 
-        {/* all */}
         <div className="column">
-          <button
-            className="button container"
-            onClick={onClickAllAdoptions}
-          >
+          <button className="button container" onClick={onClickAllAdoptions}>
             Todos
           </button>
         </div>
-        
       </div>
-
-      <hr></hr>
 
       <Table
         headers={[

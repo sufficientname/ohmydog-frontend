@@ -23,25 +23,36 @@ export default function AdoptionListPage() {
   const onClickPublishedAdoption = (e) => {
     setStep(0);
     listAdoptions({ status: "PUB" });
-  }
+  };
 
   const onClickAdoptedAdoption = (e) => {
     setStep(1);
     listAdoptions({ status: "COM" });
-  }
+  };
 
   const onClickMyAdoptions = (e) => {
     setStep(2);
     listAdoptions({ user: userDetail.id });
-  }
+  };
 
   return (
     <>
       <h1>Anuncios de adopcion</h1>
 
       <div className="row">
+        <div className="column"></div>
+        <div className="column"></div>
 
-        {/* pub */}
+        <div className="column">
+          <button className="button container" onClick={onClick}>
+            Crear anuncio
+          </button>
+        </div>
+      </div>
+
+      <hr></hr>
+
+      <div className="row">
         <div className="column">
           <button
             className="button container"
@@ -51,33 +62,18 @@ export default function AdoptionListPage() {
           </button>
         </div>
 
-        {/* com */}
         <div className="column">
-          <button
-            className="button container"
-            onClick={onClickAdoptedAdoption}
-          >
+          <button className="button container" onClick={onClickAdoptedAdoption}>
             Adoptados
           </button>
         </div>
 
-        {/* all */}
         <div className="column">
-          <button
-            className="button container"
-            onClick={onClickMyAdoptions}
-          >
+          <button className="button container" onClick={onClickMyAdoptions}>
             Mis Anuncios
           </button>
         </div>
-        <div className="column">
-          <button className="button container" onClick={onClick}>
-            Crear anuncio
-          </button>
-        </div>
       </div>
-
-      <hr></hr>
 
       <Table
         headers={[

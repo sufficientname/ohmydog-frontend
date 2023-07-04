@@ -6,7 +6,7 @@ import AdoptionsContext from "../../contexts/AdoptionsContext";
 export default function AdoptionListPublicPage() {
   const { adoptionsLoading, listAdoptions, adoptionList } =
     useContext(AdoptionsContext);
-  
+
   const [step, setStep] = useState(0);
 
   useEffect(() => {
@@ -16,20 +16,20 @@ export default function AdoptionListPublicPage() {
   const onClickPublishedAdoption = (e) => {
     setStep(0);
     listAdoptions({ status: "PUB" });
-  }
+  };
 
   const onClickAdoptedAdoption = (e) => {
     setStep(1);
     listAdoptions({ status: "COM" });
-  }
+  };
 
   return (
     <>
       <h1>Anuncios de adopcion</h1>
 
-      <div className="row">
+      <hr></hr>
 
-        {/* pub */}
+      <div className="row">
         <div className="column">
           <button
             className="button container"
@@ -39,20 +39,12 @@ export default function AdoptionListPublicPage() {
           </button>
         </div>
 
-        {/* com */}
         <div className="column">
-          <button
-            className="button container"
-            onClick={onClickAdoptedAdoption}
-          >
+          <button className="button container" onClick={onClickAdoptedAdoption}>
             Adoptados
           </button>
         </div>
-
       </div>
-
-
-      <hr></hr>
 
       <Table
         headers={[
