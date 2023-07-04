@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Table from "../../components/table";
 import AdoptionsContext from "../../contexts/AdoptionsContext";
@@ -6,14 +6,49 @@ import AdoptionsContext from "../../contexts/AdoptionsContext";
 export default function AdoptionListPublicPage() {
   const { adoptionsLoading, listAdoptions, adoptionList } =
     useContext(AdoptionsContext);
+  
+  const [step, setStep] = useState(0);
 
   useEffect(() => {
     listAdoptions();
   }, []);
 
+  const onClickPublishedAdoption = (e) => {
+    setStep(0);
+  }
+
+  const onClickAdoptedAdoption = (e) => {
+    setStep(1);
+  }
+
   return (
     <>
       <h1>Anuncios de adopcion</h1>
+
+      <div className="row">
+
+        {/* pub */}
+        <div className="column">
+          <button
+            className="button container"
+            onClick={onClickPublishedAdoption}
+          >
+            Publicados
+          </button>
+        </div>
+
+        {/* com */}
+        <div className="column">
+          <button
+            className="button container"
+            onClick={onClickAdoptedAdoption}
+          >
+            Adoptados
+          </button>
+        </div>
+
+      </div>
+
 
       <hr></hr>
 
