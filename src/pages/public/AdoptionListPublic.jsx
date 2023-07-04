@@ -10,15 +10,17 @@ export default function AdoptionListPublicPage() {
   const [step, setStep] = useState(0);
 
   useEffect(() => {
-    listAdoptions();
+    listAdoptions({ status: "PUB" });
   }, []);
 
   const onClickPublishedAdoption = (e) => {
     setStep(0);
+    listAdoptions({ status: "PUB" });
   }
 
   const onClickAdoptedAdoption = (e) => {
     setStep(1);
+    listAdoptions({ status: "COM" });
   }
 
   return (
