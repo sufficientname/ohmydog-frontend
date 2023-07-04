@@ -2,16 +2,18 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Table from "../../components/table";
 import AdoptionsContext from "../../contexts/AdoptionsContext";
+import AuthContext from "../../contexts/AuthContext";
 
 export default function AdoptionListPage() {
   const { adoptionsLoading, listAdoptions, adoptionList } =
     useContext(AdoptionsContext);
+  const { userDetail } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const [step, setStep] = useState(0);
 
   useEffect(() => {
-    listAdoptions();
+    listAdoptions({ status: "PUB" });
   }, []);
 
   function onClick(event) {
@@ -20,15 +22,17 @@ export default function AdoptionListPage() {
 
   const onClickPublishedAdoption = (e) => {
     setStep(0);
+    listAdoptions({ status: "PUB" });
   }
 
   const onClickAdoptedAdoption = (e) => {
     setStep(1);
+    listAdoptions({ status: "COM" });
   }
 
   const onClickMyAdoptions = (e) => {
     setStep(2);
-    listAdoptions();
+    listAdoptions({ user: userDetail.id });
   }
 
   return (
