@@ -27,11 +27,11 @@ export default function AppointmentDetailPage() {
       <hr></hr>
 
       <Loader loading={appointmentsLoading}>
-        {appointmentDetail.booster_date ? (
+        {/* {appointmentDetail.booster_date ? (
           <pre>
             <code>{`Fecha para el refuerzo: ${appointmentDetail.booster_date}`}</code>
           </pre>
-        ) : null}
+        ) : null} */}
 
         <div>
           <p>Mascota: {appointmentDetail.pet_name}</p>

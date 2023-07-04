@@ -24,7 +24,10 @@ export const AppointmentsContextProvider = (props) => {
   const listAppointmentsHandler = async (params = {}) => {
     setIsLoading(true);
     await axios
-      .get(`${baseUrl}/appointments/`, { auth: getBasicAuth(), params: params })
+      .get(`${baseUrl}/appointments/`, {
+        auth: getBasicAuth(),
+        params: params,
+      })
       .then((res) => {
         setAppointmentList(res.data);
       })

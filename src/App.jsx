@@ -146,7 +146,7 @@ export default function App() {
 
           {!isLogged ? <Route path="/login" element={<LoginPage />} /> : null}
 
-          <Route path="*" element={<p>no se encontro</p>} />
+          <Route path="*" element={<HomePage />} />
         </Routes>
       </div>
     </>

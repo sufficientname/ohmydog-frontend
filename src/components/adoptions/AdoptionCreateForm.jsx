@@ -1,12 +1,12 @@
 const sizes = [
-  { id: "SMALL", name: "Pequeño" },
-  { id: "MEDIUM", name: "Mediano" },
-  { id: "BIG", name: "Grande" },
+  { id: "PEQUENO", name: "Pequeño" },
+  { id: "MEDIANO", name: "Mediano" },
+  { id: "GRANDE", name: "Grande" },
 ];
 
 const genders = [
-  { id: "MALE", name: "Macho" },
-  { id: "FEMALE", name: "Hembra" },
+  { id: "MACHO", name: "Macho" },
+  { id: "HEMBRA", name: "Hembra" },
 ];
 
 export default function AdoptionCreateForm({ onSubmit, errors }) {

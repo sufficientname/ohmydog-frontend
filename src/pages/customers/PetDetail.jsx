@@ -55,9 +55,9 @@ export default function PetDetailPage() {
         loading={appointmentsLoading}
       />
 
-      <hr></hr>
+      {/* <hr></hr>
 
-      <h2>Libreta sanitaria</h2>
+      <h2>Libreta sanitaria</h2> */}
     </>
   );
 }
