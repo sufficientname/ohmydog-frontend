@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import Loader from "../../components/loader";
 import Table from "../../components/table";
 import UsersAdminContext from "../../contexts/UsersAdminContext";
@@ -7,8 +7,14 @@ import PetsAdminContext from "../../contexts/PetsAdminContext";
 
 export default function UserDetailAdminPage() {
   const params = useParams();
-  const { usersLoading, retrieveUser, userDetail } =
-    useContext(UsersAdminContext);
+  const navigate = useNavigate();
+  const {
+    usersLoading,
+    retrieveUser,
+    userDetail,
+    setUserIsActive,
+    deactivateUser,
+  } = useContext(UsersAdminContext);
 
   const { petsLoading, petList, listPets } = useContext(PetsAdminContext);
 
@@ -17,9 +23,40 @@ export default function UserDetailAdminPage() {
     listPets({ user: params.userId });
   }, []);
 
+  function onClickReactivateUser(event) {
+    setUserIsActive(userDetail, true);
+  }
+
+  function onClickDeactivateUser(event) {
+    setUserIsActive(userDetail, false);
+  }
+
   return (
     <>
       <h1>Cliente</h1>
+
+      <div className="row">
+        <div className="column"></div>
+        <div className="column"></div>
+
+        <div className="column">
+          {userDetail.is_active ? (
+            <button
+              className="button container"
+              onClick={onClickDeactivateUser}
+            >
+              Desactivar cliente
+            </button>
+          ) : (
+            <button
+              className="button container"
+              onClick={onClickReactivateUser}
+            >
+              Reactivar cliente
+            </button>
+          )}
+        </div>
+      </div>
 
       <hr></hr>
 

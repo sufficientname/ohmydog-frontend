@@ -11,6 +11,7 @@ const UsersContext = createContext({
   listUsers: () => {},
   retrieveUser: () => {},
   createUser: () => {},
+  setUserIsActive: () => {},
   createUserError: {},
 });
 
@@ -63,6 +64,26 @@ export const UsersContextProvider = (props) => {
       });
   };
 
+  const setUserIsActiveHandler = async (userData, value, onSuccess) => {
+    setIsLoading(true);
+    try {
+      const res = await axios.patch(
+        `${baseUrl}/users/${userData.id}/`,
+        { is_active: value },
+        {
+          auth: getBasicAuth(),
+        }
+      );
+      setUserDetail(res.data);
+      if (onSuccess) {
+        onSuccess(res.data);
+      }
+    } catch (err) {
+      console.log("error deleting user", err);
+    }
+    setIsLoading(false);
+  };
+
   return (
     <UsersContext.Provider
       value={{
@@ -72,6 +93,7 @@ export const UsersContextProvider = (props) => {
         listUsers: listUsersHandler,
         retrieveUser: retrieveUserHandler,
         createUser: createUserHandler,
+        setUserIsActive: setUserIsActiveHandler,
         createUserError: createUserError,
       }}
     >

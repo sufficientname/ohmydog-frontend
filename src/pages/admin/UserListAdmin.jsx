@@ -1,6 +1,5 @@
 import { useContext, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import Loader from "../../components/loader";
 import Table from "../../components/table";
 import UsersAdminContext from "../../contexts/UsersAdminContext";
 import SearchUserAdminForm from "../../components/users/SearchUserAdminForm";
