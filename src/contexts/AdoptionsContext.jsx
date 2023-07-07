@@ -13,6 +13,7 @@ const AdoptionsContext = createContext({
   createAdoption: () => {},
   cancelAdoption: () => {},
   completeAdoption: () => {},
+  contactAdoption: () => {},
   createAdoptionError: {},
 });
 
@@ -100,6 +101,24 @@ export const AdoptionsContextProvider = (props) => {
     setIsLoading(false);
   };
 
+  const contactAdoptionHandler = async (adoptionData, contactData) => {
+    setIsLoading(true);
+    await axios
+      .post(
+        `${baseUrl}/adoptions/${adoptionData.id}/contact/`,
+        contactData,
+        { auth: getBasicAuth() }
+      )
+      .then((res) => {
+        setAdoptionDetail(res.data);
+      })
+      .catch((err) => {
+        setCreateAdoptionError(err.response.data);
+        console.log("error contacting adoption", err.response);
+      });
+    setIsLoading(false);
+  };
+
   return (
     <AdoptionsContext.Provider
       value={{
@@ -111,6 +130,7 @@ export const AdoptionsContextProvider = (props) => {
         createAdoption: createAdoptionHandler,
         cancelAdoption: cancelAdoptionHandler,
         completeAdoption: completeAdoptionHandler,
+        contactAdoption: contactAdoptionHandler,
         createAdoptionError: createAdoptionError,
       }}
     >

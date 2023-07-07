@@ -2,6 +2,8 @@ import { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Loader from "../../components/loader";
 import AdoptionsContext from "../../contexts/AdoptionsContext";
+import AuthContext from "../../contexts/AuthContext";
+import ContactForm from "../../components/contact/ContactForm";
 
 export default function AdoptionDetailPage() {
   const params = useParams();
@@ -11,7 +13,13 @@ export default function AdoptionDetailPage() {
     adoptionDetail,
     cancelAdoption,
     completeAdoption,
+    contactAdoption,
+    createAdoptionError,
   } = useContext(AdoptionsContext);
+
+  const {
+    userDetail,
+  } = useContext(AuthContext);
 
   useEffect(() => {
     retrieveAdoption(params.adoptionId);
@@ -25,6 +33,10 @@ export default function AdoptionDetailPage() {
     completeAdoption(adoptionDetail);
   }
 
+  const onSubmitContactAdoption = data => {
+    contactAdoption(adoptionDetail, data)
+  }
+  
   return (
     <>
       <h1>Anuncio de adopcion</h1>
@@ -60,6 +72,18 @@ export default function AdoptionDetailPage() {
           ) : null}
         </div>
       ) : null}
+
+      {adoptionDetail.can_contact && !adoptionDetail.is_mine ? (
+        <>
+            <hr />
+            <h2>Contactar</h2>
+            <ContactForm 
+                onSubmit={onSubmitContactAdoption}
+                errors={createAdoptionError}
+                customer={userDetail}
+              />
+        </>
+          ) : null}
     </>
   );
 }
