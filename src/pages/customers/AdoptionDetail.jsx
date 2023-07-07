@@ -50,38 +50,38 @@ export default function AdoptionDetailPage() {
           <p>Estado: {adoptionDetail.status}</p>
           <p>Fecha de creación: {adoptionDetail.date_created}</p>
         </div>
+
+        {adoptionDetail.is_mine ? (
+          <div className="row">
+            {adoptionDetail.can_cancel ? (
+              <div className="column">
+                <button className="button" onClick={onClickCancelAdoption}>
+                  Cancelar
+                </button>
+              </div>
+            ) : null}
+            {adoptionDetail.can_complete ? (
+              <div className="column">
+                <button className="button" onClick={onClickCompleteAdoption}>
+                  Completar
+                </button>
+              </div>
+            ) : null}
+          </div>
+        ) : null}
+
+        {adoptionDetail.can_contact && !adoptionDetail.is_mine ? (
+          <>
+            <hr></hr>
+            <h2>Contactar</h2>
+            <ContactForm
+              onSubmit={onSubmitContactAdoption}
+              errors={createAdoptionError}
+              customer={userDetail}
+            />
+          </>
+        ) : null}
       </Loader>
-
-      {adoptionDetail.is_mine ? (
-        <div className="row">
-          {adoptionDetail.can_cancel ? (
-            <div className="column">
-              <button className="button" onClick={onClickCancelAdoption}>
-                Cancelar
-              </button>
-            </div>
-          ) : null}
-          {adoptionDetail.can_complete ? (
-            <div className="column">
-              <button className="button" onClick={onClickCompleteAdoption}>
-                Completar
-              </button>
-            </div>
-          ) : null}
-        </div>
-      ) : null}
-
-      {adoptionDetail.can_contact && !adoptionDetail.is_mine ? (
-        <>
-          <hr></hr>
-          <h2>Contactar</h2>
-          <ContactForm
-            onSubmit={onSubmitContactAdoption}
-            errors={createAdoptionError}
-            customer={userDetail}
-          />
-        </>
-      ) : null}
     </>
   );
 }

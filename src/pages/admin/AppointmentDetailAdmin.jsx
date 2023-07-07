@@ -42,9 +42,9 @@ export default function AppointmentDetailAdminPage() {
 
       <hr></hr>
 
-      <div className="row">
-        <div className="column">
-          <Loader loading={appointmentsLoading}>
+      <Loader loading={appointmentsLoading}>
+        <div className="row">
+          <div className="column">
             <div>
               <p>Cliente: {appointmentDetail.user_fullname}</p>
               <p>Mascota: {appointmentDetail.pet_name}</p>
@@ -58,35 +58,35 @@ export default function AppointmentDetailAdminPage() {
               <p>Observaciones: {appointmentDetail.observations}</p>
               <p>Precio: {appointmentDetail.price}</p>
             </div>
-          </Loader>
+          </div>
+
+          <div className="column">
+            {appointmentDetail.can_accept ? (
+              <AppointmentAcceptForm
+                appointment={appointmentDetail}
+                onSubmit={onSubmitAcceptAppointment}
+                errors={acceptAppointmentError}
+              />
+            ) : null}
+
+            {appointmentDetail.can_reject ? (
+              <AppointmentRejectForm
+                appointment={appointmentDetail}
+                onSubmit={onSubmitRejectAppointment}
+                errors={rejectAppointmentError}
+              />
+            ) : null}
+
+            {appointmentDetail.can_complete ? (
+              <AppointmentCompleteForm
+                appointment={appointmentDetail}
+                onSubmit={onSubmitCompleteAppointment}
+                errors={completeAppointmentError}
+              />
+            ) : null}
+          </div>
         </div>
-
-        <div className="column">
-          {appointmentDetail.can_accept ? (
-            <AppointmentAcceptForm
-              appointment={appointmentDetail}
-              onSubmit={onSubmitAcceptAppointment}
-              errors={acceptAppointmentError}
-            />
-          ) : null}
-
-          {appointmentDetail.can_reject ? (
-            <AppointmentRejectForm
-              appointment={appointmentDetail}
-              onSubmit={onSubmitRejectAppointment}
-              errors={rejectAppointmentError}
-            />
-          ) : null}
-
-          {appointmentDetail.can_complete ? (
-            <AppointmentCompleteForm
-              appointment={appointmentDetail}
-              onSubmit={onSubmitCompleteAppointment}
-              errors={completeAppointmentError}
-            />
-          ) : null}
-        </div>
-      </div>
+      </Loader>
     </>
   );
 }

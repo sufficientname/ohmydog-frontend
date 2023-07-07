@@ -8,6 +8,11 @@ export default function AppointmentCompleteForm({
 
     const data = new FormData(event.currentTarget);
     const values = Object.fromEntries(data.entries());
+    if (!values.update_health_record) {
+      values.update_health_record = false;
+    } else {
+      values.update_health_record = true;
+    }
 
     console.log("submitting", values);
 
@@ -48,9 +53,10 @@ export default function AppointmentCompleteForm({
         <input
           type="checkbox"
           name="update_health_record"
-          id="update_health_recordField"
+          id="updateHealthRecordField"
+          defaultChecked={true}
         />
-        <label className="label-inline" htmlFor="update_health_recordField">
+        <label className="label-inline" htmlFor="updateHealthRecordField">
           Actualizar libreta sanitaria?
         </label>
 
