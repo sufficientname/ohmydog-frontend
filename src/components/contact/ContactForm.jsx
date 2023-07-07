@@ -22,7 +22,7 @@ export default function ContactForm({ onSubmit, errors, customer }) {
           type="text"
           name="first_name"
           id="firstnameField"
-          value={customer.first_name}
+          defaultValue={customer.first_name}
         />
         {errors.first_name ? (
           <p style={{ color: "red" }}>{errors.first_name[0]}</p>
@@ -33,7 +33,7 @@ export default function ContactForm({ onSubmit, errors, customer }) {
           type="text"
           name="last_name"
           id="lastnameField"
-          value={customer.last_name}
+          defaultValue={customer.last_name}
         />
         {errors.last_name ? (
           <p style={{ color: "red" }}>{errors.last_name[0]}</p>
@@ -44,7 +44,7 @@ export default function ContactForm({ onSubmit, errors, customer }) {
           type="text"
           name="email"
           id="emailField"
-          value={customer.email}
+          defaultValue={customer.email}
         />
         {errors.email ? (
           <p style={{ color: "red" }}>{errors.email[0]}</p>
@@ -55,7 +55,7 @@ export default function ContactForm({ onSubmit, errors, customer }) {
           type="tel"
           name="phone_number"
           id="phoneNumberField"
-          value={customer.phone_number}
+          defaultValue={customer.phone_number}
         />
         {errors.phone_number ? (
           <p style={{ color: "red" }}>{errors.phone_number[0]}</p>
