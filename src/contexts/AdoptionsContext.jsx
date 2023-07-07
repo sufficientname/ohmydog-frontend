@@ -104,11 +104,9 @@ export const AdoptionsContextProvider = (props) => {
   const contactAdoptionHandler = async (adoptionData, contactData) => {
     setIsLoading(true);
     await axios
-      .post(
-        `${baseUrl}/adoptions/${adoptionData.id}/contact/`,
-        contactData,
-        { auth: getBasicAuth() }
-      )
+      .post(`${baseUrl}/adoptions/${adoptionData.id}/contact/`, contactData, {
+        auth: getBasicAuth(),
+      })
       .then((res) => {
         setAdoptionDetail(res.data);
       })

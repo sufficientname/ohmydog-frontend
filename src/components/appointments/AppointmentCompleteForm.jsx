@@ -34,22 +34,33 @@ export default function AppointmentCompleteForm({
         ) : null}
 
         <label htmlFor="weightField">Peso</label>
-        <input type="number" name="weight" step=".01" min="0" id="weightField" />
+        <input
+          type="number"
+          name="weight"
+          step=".01"
+          min="0"
+          id="weightField"
+        />
         {errors.price ? (
           <p style={{ color: "red" }}>{errors.weight[0]}</p>
         ) : null}
-        
-        <input type="checkbox" name="update_health_record" id="update_health_recordField" />
-        <label className="label-inline" htmlFor="update_health_recordField">Actualizar libreta sanitaria?</label>
+
+        <input
+          type="checkbox"
+          name="update_health_record"
+          id="update_health_recordField"
+        />
+        <label className="label-inline" htmlFor="update_health_recordField">
+          Actualizar libreta sanitaria?
+        </label>
 
         <br></br>
-        
+
         <input
           className="button-primary"
           type="submit"
           value="Completar turno"
-        /> 
-
+        />
       </fieldset>
     </form>
   );

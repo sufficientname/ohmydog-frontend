@@ -7,19 +7,22 @@ import AuthContext from "../../contexts/AuthContext";
 
 export default function AdoptionDetailPublicPage() {
   const params = useParams();
-  const { adoptionsLoading, retrieveAdoption, adoptionDetail, contactAdoption, createAdoptionError } =
-    useContext(AdoptionsContext);
-
   const {
-      userDetail,
-    } = useContext(AuthContext);
+    adoptionsLoading,
+    retrieveAdoption,
+    adoptionDetail,
+    contactAdoption,
+    createAdoptionError,
+  } = useContext(AdoptionsContext);
+
+  const { userDetail } = useContext(AuthContext);
 
   useEffect(() => {
     retrieveAdoption(params.adoptionId);
   }, []);
 
-  const onSubmitContactAdoption = data => {
-    contactAdoption(adoptionDetail, data)
+  function onSubmitContactAdoption(contactData) {
+    contactAdoption(adoptionDetail, contactData);
   }
 
   return (
@@ -39,16 +42,16 @@ export default function AdoptionDetailPublicPage() {
         </div>
 
         {adoptionDetail.can_contact ? (
-        <>
-            <hr />
+          <>
+            <hr></hr>
             <h2>Contactar</h2>
-              <ContactForm 
-                onSubmit={onSubmitContactAdoption}
-                errors={createAdoptionError}
-                customer={userDetail}
-              />
-        </>
-          ) : null}
+            <ContactForm
+              onSubmit={onSubmitContactAdoption}
+              errors={createAdoptionError}
+              customer={userDetail}
+            />
+          </>
+        ) : null}
       </Loader>
     </>
   );

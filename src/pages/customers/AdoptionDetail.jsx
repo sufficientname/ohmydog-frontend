@@ -17,9 +17,7 @@ export default function AdoptionDetailPage() {
     createAdoptionError,
   } = useContext(AdoptionsContext);
 
-  const {
-    userDetail,
-  } = useContext(AuthContext);
+  const { userDetail } = useContext(AuthContext);
 
   useEffect(() => {
     retrieveAdoption(params.adoptionId);
@@ -33,10 +31,10 @@ export default function AdoptionDetailPage() {
     completeAdoption(adoptionDetail);
   }
 
-  const onSubmitContactAdoption = data => {
-    contactAdoption(adoptionDetail, data)
+  function onSubmitContactAdoption(contactData) {
+    contactAdoption(adoptionDetail, contactData);
   }
-  
+
   return (
     <>
       <h1>Anuncio de adopcion</h1>
@@ -75,15 +73,15 @@ export default function AdoptionDetailPage() {
 
       {adoptionDetail.can_contact && !adoptionDetail.is_mine ? (
         <>
-            <hr />
-            <h2>Contactar</h2>
-            <ContactForm 
-                onSubmit={onSubmitContactAdoption}
-                errors={createAdoptionError}
-                customer={userDetail}
-              />
+          <hr></hr>
+          <h2>Contactar</h2>
+          <ContactForm
+            onSubmit={onSubmitContactAdoption}
+            errors={createAdoptionError}
+            customer={userDetail}
+          />
         </>
-          ) : null}
+      ) : null}
     </>
   );
 }
