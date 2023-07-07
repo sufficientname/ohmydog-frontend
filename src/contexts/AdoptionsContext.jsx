@@ -108,6 +108,7 @@ export const AdoptionsContextProvider = (props) => {
         auth: getBasicAuth(),
       })
       .then((res) => {
+        setCreateAdoptionError({});
         setAdoptionDetail(res.data);
       })
       .catch((err) => {
