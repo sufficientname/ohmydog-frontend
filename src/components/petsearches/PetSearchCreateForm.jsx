@@ -1,3 +1,5 @@
+import { breeds } from "../../utils/breeds";
+
 const sizes = [
   { id: "PEQUENO", name: "Pequeño" },
   { id: "MEDIANO", name: "Mediano" },
@@ -9,7 +11,7 @@ const genders = [
   { id: "HEMBRA", name: "Hembra" },
 ];
 
-export default function AdoptionCreateForm({ onSubmit, errors }) {
+export default function PetSearchCreateForm({ onSubmit, errors }) {
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -52,6 +54,18 @@ export default function AdoptionCreateForm({ onSubmit, errors }) {
           <p style={{ color: "red" }}>{errors.pet_gender[0]}</p>
         ) : null}
 
+        <label htmlFor="petBreedField">Raza</label>
+        <select name="pet_breed" id="petBreedField">
+          {breeds.map((breed, i) => (
+            <option value={breed} key={i}>
+              {breed}
+            </option>
+          ))}
+        </select>
+        {errors.pet_breed ? (
+          <p style={{ color: "red" }}>{errors.breed[0]}</p>
+        ) : null}
+
         <label htmlFor="petSizeField">Tamaño</label>
         <select name="pet_size" id="petSizeField">
           {sizes.map((size, i) => (
@@ -63,6 +77,23 @@ export default function AdoptionCreateForm({ onSubmit, errors }) {
         {errors.pet_size ? (
           <p style={{ color: "red" }}>{errors.pet_size[0]}</p>
         ) : null}
+
+        <label htmlFor="petColorField">Color</label>
+        <input type="text" name="pet_color" id="petColorField" />
+        {errors.pet_color ? (
+          <p style={{ color: "red" }}>{errors.pet_color[0]}</p>
+        ) : null}
+
+        <label htmlFor="lastSeenAreaField">Zona</label>
+        <input type="text" name="last_seen_area" id="lastSeenAreaField" />
+        {errors.last_seen_area ? (
+          <p style={{ color: "red" }}>{errors.last_seen_area[0]}</p>
+        ) : null}
+
+        <label htmlFor="petPhotoField">Foto</label>
+        <input type="file" name="pet_photo" id="petPhotoField" />
+
+        <br></br>
 
         <input className="button-primary" type="submit" value="Publicar" />
       </fieldset>

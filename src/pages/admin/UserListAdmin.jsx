@@ -13,7 +13,7 @@ export default function UserListAdminPage() {
     listUsers();
   }, []);
 
-  function onClick(event) {
+  function onClickCreateUser(event) {
     navigate("/admin/users/create");
   }
 
@@ -30,7 +30,7 @@ export default function UserListAdminPage() {
         <div className="column"></div>
 
         <div className="column">
-          <button className="button container" onClick={onClick}>
+          <button className="button container" onClick={onClickCreateUser}>
             Agregar cliente
           </button>
         </div>
@@ -40,7 +40,6 @@ export default function UserListAdminPage() {
 
       <SearchUserAdminForm onSubmit={onSubmitSearch} />
 
-      {/* <Loader loading={usersLoading}> */}
       <Table
         headers={[
           { key: "id_number", label: "DNI" },

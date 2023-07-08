@@ -23,7 +23,7 @@ export default function LoginPage() {
 
   return (
     <>
-      <h1>Iniciar sesión</h1>
+      <h1>Iniciar sesion</h1>
 
       <hr></hr>
 

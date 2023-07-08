@@ -53,6 +53,7 @@ export const AppointmentsContextProvider = (props) => {
   };
 
   const createAppointmentHandler = async (appointmentData, onCreate) => {
+    setIsLoading(true);
     await axios
       .post(`${baseUrl}/appointments/`, appointmentData, {
         auth: getBasicAuth(),
@@ -68,6 +69,7 @@ export const AppointmentsContextProvider = (props) => {
         setCreateAppointmentError(err.response.data);
         console.log("error creating appointment", err.response);
       });
+    setIsLoading(false);
   };
 
   const cancelAppointmentHandler = async (appointmentData) => {

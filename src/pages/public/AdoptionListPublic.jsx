@@ -13,15 +13,15 @@ export default function AdoptionListPublicPage() {
     listAdoptions({ status: "PUB" });
   }, []);
 
-  const onClickPublishedAdoption = (e) => {
+  function onClickPublishedAdoptions(event) {
     setStep(0);
     listAdoptions({ status: "PUB" });
-  };
+  }
 
-  const onClickAdoptedAdoption = (e) => {
+  function onClickCompletedAdoptions(event) {
     setStep(1);
     listAdoptions({ status: "COM" });
-  };
+  }
 
   return (
     <>
@@ -33,14 +33,17 @@ export default function AdoptionListPublicPage() {
         <div className="column">
           <button
             className="button container"
-            onClick={onClickPublishedAdoption}
+            onClick={onClickPublishedAdoptions}
           >
             Publicados
           </button>
         </div>
 
         <div className="column">
-          <button className="button container" onClick={onClickAdoptedAdoption}>
+          <button
+            className="button container"
+            onClick={onClickCompletedAdoptions}
+          >
             Adoptados
           </button>
         </div>

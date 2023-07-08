@@ -13,7 +13,7 @@ export default function PetListPage() {
     listPets();
   }, []);
 
-  function onClick(event) {
+  function onClickCreatePet(event) {
     navigate("/pets/create");
   }
 
@@ -25,7 +25,7 @@ export default function PetListPage() {
         <div className="column"></div>
         <div className="column"></div>
         <div className="column">
-          <button className="button container" onClick={onClick}>
+          <button className="button container" onClick={onClickCreatePet}>
             Agregar mascota
           </button>
         </div>

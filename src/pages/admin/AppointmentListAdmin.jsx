@@ -87,7 +87,7 @@ export default function AppointmentListAdminPage() {
             key: "pet_name",
             label: "Mascota",
             wrapper: (value, appointment) => (
-              <Link to={`/admin/pets/${appointment.pet_id}`}>{value}</Link>
+              <Link to={`/admin/pets/${appointment.pet}`}>{value}</Link>
             ),
           },
           { key: "reason", label: "Motivo" },

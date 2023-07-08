@@ -11,6 +11,10 @@ import LoginSetPasswordPage from "./pages/LoginSetPassword";
 import HomePage from "./pages/public/Home";
 import AdoptionListPublicPage from "./pages/public/AdoptionListPublic";
 import AdoptionDetailPublicPage from "./pages/public/AdoptionDetailPublic";
+import PetSearchListPublicPage from "./pages/public/PetSearchListPublic";
+import PetSearchDetailPublicPage from "./pages/public/PetSearchDetailPublic";
+import PetSitterListPublicPage from "./pages/public/PetSitterListPublic";
+import PetSitterDetailPublicPage from "./pages/public/PetSitterDetailPublic";
 
 // customer pages
 import PetListPage from "./pages/customers/PetList";
@@ -22,6 +26,11 @@ import AppointmentCreatePage from "./pages/customers/AppointmentCreate";
 import AdoptionListPage from "./pages/customers/AdoptionList";
 import AdoptionDetailPage from "./pages/customers/AdoptionDetail";
 import AdoptionCreatePage from "./pages/customers/AdoptionCreate";
+import PetSearchListPage from "./pages/customers/PetSearchList";
+import PetSearchDetailPage from "./pages/customers/PetSearchDetail";
+import PetSearchCreatePage from "./pages/customers/PetSearchCreate";
+import PetSitterListPage from "./pages/customers/PetSitterList";
+import PetSitterDetailPage from "./pages/customers/PetSitterDetail";
 
 // admin pages
 import PetListAdminPage from "./pages/admin/PetListAdmin";
@@ -33,6 +42,11 @@ import AppointmentListAdminPage from "./pages/admin/AppointmentListAdmin";
 import AppointmentDetailAdminPage from "./pages/admin/AppointmentDetailAdmin";
 import AdoptionListAdminPage from "./pages/admin/AdoptionListAdmin";
 import AdoptionDetailAdminPage from "./pages/admin/AdoptionDetailAdmin";
+import PetSearchListAdminPage from "./pages/admin/PetSearchListAdmin";
+import PetSearchDetailAdminPage from "./pages/admin/PetSearchDetailAdmin";
+import PetSitterListAdminPage from "./pages/admin/PetSitterListAdmin";
+import PetSitterDetailAdminPage from "./pages/admin/PetSitterDetailAdmin";
+import PetSitterCreateAdminPage from "./pages/admin/PetSitterCreateAdmin";
 
 export default function App() {
   const { userDetail, logout, retrieveUser } = useContext(AuthContext);
@@ -57,41 +71,65 @@ export default function App() {
           {isStaff ? (
             <>
               {/* users */}
-              <Route path="admin/users" element={<UserListAdminPage />} />
+              <Route path="/admin/users" element={<UserListAdminPage />} />
               <Route
-                path="admin/users/:userId"
+                path="/admin/users/:userId"
                 element={<UserDetailAdminPage />}
               />
               <Route
-                path="admin/users/create"
+                path="/admin/users/create"
                 element={<UserCreateAdminPage />}
               />
 
               {/* pets */}
-              {/* <Route path="admin/pets" element={<PetListAdminPage />} /> */}
+              {/* <Route path="/admin/pets" element={<PetListAdminPage />} /> */}
               <Route
-                path="admin/pets/:petId"
+                path="/admin/pets/:petId"
                 element={<PetDetailAdminPage />}
               />
 
               {/* appointments */}
               <Route
-                path="admin/appointments"
+                path="/admin/appointments"
                 element={<AppointmentListAdminPage />}
               />
               <Route
-                path="admin/appointments/:appointmentId"
+                path="/admin/appointments/:appointmentId"
                 element={<AppointmentDetailAdminPage />}
               />
 
               {/* adoptions */}
               <Route
-                path="admin/adoptions"
+                path="/admin/adoptions"
                 element={<AdoptionListAdminPage />}
               />
               <Route
-                path="admin/adoptions/:adoptionId"
+                path="/admin/adoptions/:adoptionId"
                 element={<AdoptionDetailAdminPage />}
+              />
+
+              {/* petsearches */}
+              <Route
+                path="/admin/petsearches"
+                element={<PetSearchListAdminPage />}
+              />
+              <Route
+                path="/admin/petsearches/:petSearchId"
+                element={<PetSearchDetailAdminPage />}
+              />
+
+              {/* petsitters */}
+              <Route
+                path="/admin/petsitters"
+                element={<PetSitterListAdminPage />}
+              />
+              <Route
+                path="/admin/petsitters/:petSitterId"
+                element={<PetSitterDetailAdminPage />}
+              />
+              <Route
+                path="/admin/petsitters/create"
+                element={<PetSitterCreateAdminPage />}
               />
             </>
           ) : null}
@@ -130,16 +168,52 @@ export default function App() {
                 path="/adoptions/create"
                 element={<AdoptionCreatePage />}
               />
+
+              {/* petsearches */}
+              <Route path="/petsearches" element={<PetSearchListPage />} />
+              <Route
+                path="/petsearches/:petSearchId"
+                element={<PetSearchDetailPage />}
+              />
+              <Route
+                path="/petsearches/create"
+                element={<PetSearchCreatePage />}
+              />
+
+              {/* petsitters */}
+              <Route path="/petsitters" element={<PetSitterListPage />} />
+              <Route
+                path="/petsitters/:petSitterId"
+                element={<PetSitterDetailPage />}
+              />
             </>
           ) : null}
 
           {/* Public routes */}
           {!isLogged ? (
             <>
+              {/* adoptions */}
               <Route path="/adoptions" element={<AdoptionListPublicPage />} />
               <Route
                 path="/adoptions/:adoptionId"
                 element={<AdoptionDetailPublicPage />}
+              />
+
+              {/* petsearches */}
+              <Route
+                path="/petsearches"
+                element={<PetSearchListPublicPage />}
+              />
+              <Route
+                path="/petsearches/:petSearchId"
+                element={<PetSearchDetailPublicPage />}
+              />
+
+              {/* petsitters */}
+              <Route path="/petsitters" element={<PetSitterListPublicPage />} />
+              <Route
+                path="/petsitters/:petSitterId"
+                element={<PetSitterDetailPublicPage />}
               />
             </>
           ) : null}

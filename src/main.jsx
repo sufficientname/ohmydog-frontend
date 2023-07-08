@@ -10,6 +10,10 @@ import { AuthContextProvider } from "./contexts/AuthContext";
 import { UsersContextProvider } from "./contexts/UsersAdminContext";
 import { AdoptionsContextProvider } from "./contexts/AdoptionsContext";
 import { AdoptionsAdminContextProvider } from "./contexts/AdoptionsAdminContext";
+import { PetSearchesContextProvider } from "./contexts/PetSearchesContext";
+import { PetSearchesAdminContextProvider } from "./contexts/PetSearchesAdminContext";
+import { PetSittersContextProvider } from "./contexts/PetSittersContext";
+import { PetSittersAdminContextProvider } from "./contexts/PetSittersAdminContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   // <React.StrictMode>
@@ -22,7 +26,15 @@ ReactDOM.createRoot(document.getElementById("root")).render(
               <AppointmentsAdminContextProvider>
                 <AdoptionsContextProvider>
                   <AdoptionsAdminContextProvider>
-                    <App />
+                    <PetSearchesContextProvider>
+                      <PetSearchesAdminContextProvider>
+                        <PetSittersContextProvider>
+                          <PetSittersAdminContextProvider>
+                            <App />
+                          </PetSittersAdminContextProvider>
+                        </PetSittersContextProvider>
+                      </PetSearchesAdminContextProvider>
+                    </PetSearchesContextProvider>
                   </AdoptionsAdminContextProvider>
                 </AdoptionsContextProvider>
               </AppointmentsAdminContextProvider>

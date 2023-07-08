@@ -27,6 +27,12 @@ export default function Navbar({ logout, userDetail }) {
             <li>
               <Link to="/admin/adoptions">Adopciones</Link>
             </li>
+            <li>
+              <Link to="/admin/petsearches">Busquedas</Link>
+            </li>
+            <li>
+              <Link to="/admin/petsitters">Paseadores y cuidadores</Link>
+            </li>
           </>
         ) : null}
 
@@ -41,6 +47,12 @@ export default function Navbar({ logout, userDetail }) {
             <li>
               <Link to="/adoptions">Adopciones</Link>
             </li>
+            <li>
+              <Link to="/petsearches">Busquedas</Link>
+            </li>
+            <li>
+              <Link to="/petsitters">Paseadores y cuidadores</Link>
+            </li>
           </>
         ) : null}
 
@@ -48,6 +60,12 @@ export default function Navbar({ logout, userDetail }) {
           <>
             <li>
               <Link to="/adoptions">Adopciones</Link>
+            </li>
+            <li>
+              <Link to="/petsearches">Busquedas</Link>
+            </li>
+            <li>
+              <Link to="/petsitters">Paseadores y cuidadores</Link>
             </li>
           </>
         ) : null}

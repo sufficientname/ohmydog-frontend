@@ -13,7 +13,7 @@ export default function AppointmentListPage() {
     listAppointments();
   }, []);
 
-  function onClick(event) {
+  function onClickCreateAppointment(event) {
     navigate("/appointments/create");
   }
 
@@ -25,7 +25,10 @@ export default function AppointmentListPage() {
         <div className="column"></div>
         <div className="column"></div>
         <div className="column">
-          <button className="button container" onClick={onClick}>
+          <button
+            className="button container"
+            onClick={onClickCreateAppointment}
+          >
             Solicitar turno
           </button>
         </div>
@@ -39,7 +42,7 @@ export default function AppointmentListPage() {
             key: "pet_name",
             label: "Mascota",
             wrapper: (value, appointment) => (
-              <Link to={`/pets/${appointment.pet_id}`}>{value}</Link>
+              <Link to={`/pets/${appointment.pet}`}>{value}</Link>
             ),
           },
           { key: "reason", label: "Motivo" },

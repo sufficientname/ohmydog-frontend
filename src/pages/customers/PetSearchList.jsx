@@ -1,50 +1,50 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Table from "../../components/table";
-import AdoptionsContext from "../../contexts/AdoptionsContext";
+import PetSearchesContext from "../../contexts/PetSearchesContext";
 import AuthContext from "../../contexts/AuthContext";
 
-export default function AdoptionListPage() {
-  const { adoptionsLoading, listAdoptions, adoptionList } =
-    useContext(AdoptionsContext);
+export default function PetSearchListPage() {
+  const { petSearchesLoading, listPetSearches, petSearchList } =
+    useContext(PetSearchesContext);
   const { userDetail } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const [step, setStep] = useState(0);
 
   useEffect(() => {
-    listAdoptions({ status: "PUB" });
+    listPetSearches({ status: "PUB" });
   }, []);
 
-  function onClickCreateAdoption(event) {
-    navigate("/adoptions/create");
+  function onClickCreatePetSearch(event) {
+    navigate("/petsearches/create");
   }
 
-  function onClickPublishedAdoptions(event) {
+  function onClickPublishedPetSearches(event) {
     setStep(0);
-    listAdoptions({ status: "PUB" });
+    listPetSearches({ status: "PUB" });
   }
 
-  function onClickCompletedAdoptions(event) {
+  function onClickCompletedPetSearches(event) {
     setStep(1);
-    listAdoptions({ status: "COM" });
+    listPetSearches({ status: "COM" });
   }
 
-  function onClickMyAdoptions(event) {
+  function onClickMyPetSearches(event) {
     setStep(2);
-    listAdoptions({ user: userDetail.id });
+    listPetSearches({ user: userDetail.id });
   }
 
   return (
     <>
-      <h1>Anuncios de adopcion</h1>
+      <h1>Anuncios de busqueda</h1>
 
       <div className="row">
         <div className="column"></div>
         <div className="column"></div>
 
         <div className="column">
-          <button className="button container" onClick={onClickCreateAdoption}>
+          <button className="button container" onClick={onClickCreatePetSearch}>
             Publicar anuncio
           </button>
         </div>
@@ -56,7 +56,7 @@ export default function AdoptionListPage() {
         <div className="column">
           <button
             className="button container"
-            onClick={onClickPublishedAdoptions}
+            onClick={onClickPublishedPetSearches}
           >
             Publicados
           </button>
@@ -65,14 +65,14 @@ export default function AdoptionListPage() {
         <div className="column">
           <button
             className="button container"
-            onClick={onClickCompletedAdoptions}
+            onClick={onClickCompletedPetSearches}
           >
-            Adoptados
+            Encontrados
           </button>
         </div>
 
         <div className="column">
-          <button className="button container" onClick={onClickMyAdoptions}>
+          <button className="button container" onClick={onClickMyPetSearches}>
             Mis Anuncios
           </button>
         </div>
@@ -82,22 +82,25 @@ export default function AdoptionListPage() {
         headers={[
           { key: "pet_name", label: "Nombre" },
           { key: "pet_age", label: "Edad" },
-          { key: "pet_size", label: "Tamaño" },
           { key: "pet_gender", label: "Sexo" },
+          { key: "pet_breed", label: "Raza" },
+          { key: "pet_size", label: "Tamaño" },
+          { key: "pet_color", label: "Color" },
+          { key: "last_seen_area", label: "Zona" },
           { key: "status", label: "Estado" },
           {
             key: "date_created",
             label: "Fecha publicacion",
-            wrapper: (value, adoption) => value.split("T")[0],
+            wrapper: (value, petSearch) => value.split("T")[0],
           },
           {
-            wrapper: (value, adoption) => (
-              <Link to={`/adoptions/${adoption.id}`}>Ver detalle</Link>
+            wrapper: (value, petSearch) => (
+              <Link to={`/petsearches/${petSearch.id}`}>Ver detalle</Link>
             ),
           },
         ]}
-        data={adoptionList}
-        loading={adoptionsLoading}
+        data={petSearchList}
+        loading={petSearchesLoading}
       />
     </>
   );

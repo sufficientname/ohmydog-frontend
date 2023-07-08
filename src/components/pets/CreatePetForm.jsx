@@ -1,5 +1,5 @@
 import { Today } from "../../utils/datetime";
-import { breeds } from "./constants";
+import { breeds } from "../../utils/breeds";
 
 export default function CreatePetForm({ onSubmit, errors }) {
   const handleSubmit = (event) => {

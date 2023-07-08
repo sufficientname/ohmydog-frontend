@@ -52,6 +52,7 @@ export const AdoptionsContextProvider = (props) => {
   };
 
   const createAdoptionHandler = async (adoptionData, onCreate) => {
+    setIsLoading(true);
     await axios
       .post(`${baseUrl}/adoptions/`, adoptionData, { auth: getBasicAuth() })
       .then((res) => {
@@ -65,6 +66,7 @@ export const AdoptionsContextProvider = (props) => {
         setCreateAdoptionError(err.response.data);
         console.log("error creating adoption", err.response);
       });
+    setIsLoading(false);
   };
 
   const cancelAdoptionHandler = async (adoptionData) => {

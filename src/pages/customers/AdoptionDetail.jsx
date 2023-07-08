@@ -48,7 +48,7 @@ export default function AdoptionDetailPage() {
           <p>Tamaño: {adoptionDetail.pet_size}</p>
           <p>Sexo: {adoptionDetail.pet_gender}</p>
           <p>Estado: {adoptionDetail.status}</p>
-          <p>Fecha de creación: {adoptionDetail.date_created}</p>
+          <p>Fecha de creacion: {adoptionDetail.date_created}</p>
         </div>
 
         {adoptionDetail.is_mine ? (

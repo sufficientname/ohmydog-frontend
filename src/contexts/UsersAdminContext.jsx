@@ -50,6 +50,7 @@ export const UsersContextProvider = (props) => {
   };
 
   const createUserHandler = async (userData, onCreate) => {
+    setIsLoading(true);
     await axios
       .post(`${baseUrl}/users/`, userData, { auth: getBasicAuth() })
       .then((res) => {
@@ -62,25 +63,25 @@ export const UsersContextProvider = (props) => {
         setCreateUserError(err.response.data);
         console.log("error creating user", err.response);
       });
+    setIsLoading(false);
   };
 
   const setUserIsActiveHandler = async (userData, value, onSuccess) => {
     setIsLoading(true);
-    try {
-      const res = await axios.patch(
-        `${baseUrl}/users/${userData.id}/`,
-        { is_active: value },
-        {
-          auth: getBasicAuth(),
+    const data = { is_active: value };
+    await axios
+      .patch(`${baseUrl}/users/${userData.id}/`, data, {
+        auth: getBasicAuth(),
+      })
+      .then((res) => {
+        setUserDetail(res.data);
+        if (onSuccess) {
+          onSuccess(res.data);
         }
-      );
-      setUserDetail(res.data);
-      if (onSuccess) {
-        onSuccess(res.data);
-      }
-    } catch (err) {
-      console.log("error deleting user", err);
-    }
+      })
+      .catch((err) => {
+        console.log("error deleting user", err);
+      });
     setIsLoading(false);
   };
 
