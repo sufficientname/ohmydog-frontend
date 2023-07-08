@@ -26,11 +26,7 @@ export const PetSearchesContextProvider = (props) => {
   const listPetSearchesHandler = async (params = {}) => {
     setIsLoading(true);
     await axios
-      .get(`${baseUrl}/petsearches/`, {
-        auth: getBasicAuth(),
-        params: params,
-        headers: { "Content-Type": "multipart/form-data" },
-      })
+      .get(`${baseUrl}/petsearches/`, { auth: getBasicAuth(), params: params })
       .then((res) => {
         setPetSearchList(res.data);
       })
