@@ -26,7 +26,11 @@ export const AdoptionsContextProvider = (props) => {
   const listAdoptionsHandler = async (params = {}) => {
     setIsLoading(true);
     await axios
-      .get(`${baseUrl}/adoptions/`, { auth: getBasicAuth(), params: params })
+      .get(`${baseUrl}/adoptions/`, {
+        auth: getBasicAuth(),
+        params: params,
+        paramsSerializer: { indexes: null },
+      })
       .then((res) => {
         setAdoptionList(res.data);
       })

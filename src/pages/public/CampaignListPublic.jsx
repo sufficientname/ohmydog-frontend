@@ -23,11 +23,6 @@ export default function CampaignListPublicPage() {
     listCampaigns({ status: "COM" });
   }
 
-  function onClickAllCampaigns(event) {
-    setStep(2);
-    listCampaigns();
-  }
-
   return (
     <>
       <h1>Campañas de recaudacion</h1>
@@ -40,7 +35,7 @@ export default function CampaignListPublicPage() {
             className="button container"
             onClick={onClickPublishedCampaigns}
           >
-            Publicados
+            En curso
           </button>
         </div>
 
@@ -49,13 +44,7 @@ export default function CampaignListPublicPage() {
             className="button container"
             onClick={onClickCompletedCampaigns}
           >
-            Encontrados
-          </button>
-        </div>
-
-        <div className="column">
-          <button className="button container" onClick={onClickAllCampaigns}>
-            Todos
+            Finalizadas
           </button>
         </div>
       </div>

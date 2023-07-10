@@ -23,7 +23,11 @@ export const CampaignsContextProvider = (props) => {
   const listCampaignsHandler = async (params = {}) => {
     setIsLoading(true);
     await axios
-      .get(`${baseUrl}/campaigns/`, { auth: getBasicAuth(), params: params })
+      .get(`${baseUrl}/campaigns/`, {
+        auth: getBasicAuth(),
+        params: params,
+        paramsSerializer: { indexes: null },
+      })
       .then((res) => {
         setCampaignList(res.data);
       })

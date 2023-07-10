@@ -23,7 +23,11 @@ export const PetsAdminContextProvider = (props) => {
   const listPetsHandler = async (params = {}) => {
     setIsLoading(true);
     await axios
-      .get(`${baseUrl}/pets/`, { auth: getBasicAuth(), params: params })
+      .get(`${baseUrl}/pets/`, {
+        auth: getBasicAuth(),
+        params: params,
+        paramsSerializer: { indexes: null },
+      })
       .then((res) => {
         setPetList(res.data);
       })

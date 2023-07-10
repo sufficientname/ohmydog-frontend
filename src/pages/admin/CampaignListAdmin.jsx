@@ -58,7 +58,7 @@ export default function CampaignListAdminPage() {
             className="button container"
             onClick={onClickPublishedCampaigns}
           >
-            Publicados
+            En curso
           </button>
         </div>
 
@@ -67,13 +67,13 @@ export default function CampaignListAdminPage() {
             className="button container"
             onClick={onClickCompletedCampaigns}
           >
-            Encontrados
+            Finalizadas
           </button>
         </div>
 
         <div className="column">
           <button className="button container" onClick={onClickAllCampaigns}>
-            Todos
+            Todas
           </button>
         </div>
       </div>

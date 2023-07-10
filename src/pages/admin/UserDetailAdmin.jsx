@@ -35,32 +35,32 @@ export default function UserDetailAdminPage() {
     <>
       <h1>Cliente</h1>
 
-      <div className="row">
-        <div className="column"></div>
-        <div className="column"></div>
-
-        <div className="column">
-          {userDetail.is_active ? (
-            <button
-              className="button container"
-              onClick={onClickDeactivateUser}
-            >
-              Desactivar cliente
-            </button>
-          ) : (
-            <button
-              className="button container"
-              onClick={onClickReactivateUser}
-            >
-              Reactivar cliente
-            </button>
-          )}
-        </div>
-      </div>
-
-      <hr></hr>
-
       <Loader loading={usersLoading}>
+        <div className="row">
+          <div className="column"></div>
+          <div className="column"></div>
+
+          <div className="column">
+            {userDetail.is_active ? (
+              <button
+                className="button container"
+                onClick={onClickDeactivateUser}
+              >
+                Desactivar cliente
+              </button>
+            ) : (
+              <button
+                className="button container"
+                onClick={onClickReactivateUser}
+              >
+                Reactivar cliente
+              </button>
+            )}
+          </div>
+        </div>
+
+        <hr></hr>
+
         <div>
           <p>DNI: {userDetail.id_number}</p>
           <p>Nombre: {userDetail.first_name}</p>
@@ -69,12 +69,10 @@ export default function UserDetailAdminPage() {
           <p>Telefono: {userDetail.phone_number}</p>
           <p>Fecha de nacimiento: {userDetail.birthdate}</p>
         </div>
-      </Loader>
 
-      <hr></hr>
+        <hr></hr>
 
-      <h2>Mascotas</h2>
-      <Loader loading={petsLoading}>
+        <h2>Mascotas</h2>
         <Table
           headers={[
             { key: "name", label: "Nombre" },
@@ -88,6 +86,7 @@ export default function UserDetailAdminPage() {
             },
           ]}
           data={petList}
+          loading={petsLoading}
         />
       </Loader>
     </>

@@ -24,7 +24,11 @@ export const UsersContextProvider = (props) => {
   const listUsersHandler = async (params = {}) => {
     setIsLoading(true);
     await axios
-      .get(`${baseUrl}/users/`, { auth: getBasicAuth(), params: params })
+      .get(`${baseUrl}/users/`, {
+        auth: getBasicAuth(),
+        params: params,
+        paramsSerializer: { indexes: null },
+      })
       .then((res) => {
         setUserList(res.data);
       })

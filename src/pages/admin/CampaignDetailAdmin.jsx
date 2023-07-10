@@ -76,7 +76,7 @@ export default function CampaignDetailAdminPage() {
             { key: "donor_email", label: "Email" },
             { key: "donor_phone_number", label: "Telefono" },
             { key: "amount", label: "Monto" },
-            { key: "date", label: "Fecha" },
+            { key: "created_at", label: "Fecha" },
           ]}
           data={campaignDetail.donations}
         />

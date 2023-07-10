@@ -20,10 +20,14 @@ export const PetsContextProvider = (props) => {
   const [petDetail, setPetDetail] = useState({});
   const [createPetError, setCreatePetError] = useState({});
 
-  const listPetsHandler = async () => {
+  const listPetsHandler = async (params = {}) => {
     setIsLoading(true);
     await axios
-      .get(`${baseUrl}/pets/`, { auth: getBasicAuth() })
+      .get(`${baseUrl}/pets/`, {
+        auth: getBasicAuth(),
+        params: params,
+        paramsSerializer: { indexes: null },
+      })
       .then((res) => {
         setPetList(res.data);
       })
