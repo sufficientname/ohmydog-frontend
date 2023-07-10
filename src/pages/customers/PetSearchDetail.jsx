@@ -76,7 +76,7 @@ export default function PetSearchDetailPage() {
           <p>Color: {petSearchDetail.pet_color}</p>
           <p>Zona: {petSearchDetail.last_seen_area}</p>
           <p>Estado: {petSearchDetail.status}</p>
-          <p>Fecha de creacion: {petSearchDetail.date_created}</p>
+          <p>Fecha de creacion: {petSearchDetail.created_at}</p>
         </div>
 
         {petSearchDetail.can_contact && !petSearchDetail.is_mine ? (

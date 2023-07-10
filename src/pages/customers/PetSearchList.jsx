@@ -89,7 +89,7 @@ export default function PetSearchListPage() {
           { key: "last_seen_area", label: "Zona" },
           { key: "status", label: "Estado" },
           {
-            key: "date_created",
+            key: "created_at",
             label: "Fecha publicacion",
             wrapper: (value, petSearch) => value.split("T")[0],
           },

@@ -28,7 +28,7 @@ export default function ContactForm({ onSubmit, errors }) {
         ) : null}
         <label htmlFor="endDateField">Fecha de fin</label>
         <input
-          type="datetime-local"
+          type="date"
           name="end_date"
           id="endDateField"
           min={Today().toISOString()}

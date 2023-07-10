@@ -38,7 +38,7 @@ export default function AdoptionDetailPublicPage() {
           <p>Tamaño: {adoptionDetail.pet_size}</p>
           <p>Sexo: {adoptionDetail.pet_gender}</p>
           <p>Estado: {adoptionDetail.status}</p>
-          <p>Fecha de creacion: {adoptionDetail.date_created}</p>
+          <p>Fecha de creacion: {adoptionDetail.created_at}</p>
         </div>
 
         {adoptionDetail.can_contact ? (

@@ -86,7 +86,7 @@ export default function AdoptionListPage() {
           { key: "pet_gender", label: "Sexo" },
           { key: "status", label: "Estado" },
           {
-            key: "date_created",
+            key: "created_at",
             label: "Fecha publicacion",
             wrapper: (value, adoption) => value.split("T")[0],
           },

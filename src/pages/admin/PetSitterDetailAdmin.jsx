@@ -63,7 +63,7 @@ export default function PetSitterDetailAdminPage() {
           <p>Servicio: {petSitterDetail.service_type}</p>
           <p>Zona: {petSitterDetail.service_area}</p>
           <p>Estado: {petSitterDetail.status}</p>
-          <p>Fecha de creacion: {petSitterDetail.date_created}</p>
+          <p>Fecha de creacion: {petSitterDetail.created_at}</p>
         </div>
       </Loader>
     </>

@@ -70,7 +70,7 @@ export default function PetSitterListPublicPage() {
           { key: "service_area", label: "Zona" },
           { key: "status", label: "Estado" },
           {
-            key: "date_created",
+            key: "created_at",
             label: "Fecha publicacion",
             wrapper: (value, petSitter) => value.split("T")[0],
           },
