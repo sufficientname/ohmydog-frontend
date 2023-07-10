@@ -34,7 +34,7 @@ export default function ContactForm({ onSubmit, errors }) {
           type="date"
           name="end_date"
           id="endDateField"
-          min={Today().toISOString()}
+          min={Today().toISOString().split("T")[0]}
         />
         {errors.end_date ? (
           <p style={{ color: "red" }}>{errors.end_date[0]}</p>

@@ -56,6 +56,12 @@ export default function AppointmentCompleteForm({
 
         <br></br>
 
+        {appointment.user_discount_amount ? (
+          <p>Se aplicara un descuento de ${appointment.user_discount_amount}</p>
+        ) : (
+          <p>Este cliente no tiene descuentos disponibles</p>
+        )}
+
         <input
           className="button-primary container"
           type="submit"

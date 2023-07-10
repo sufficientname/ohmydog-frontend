@@ -57,6 +57,8 @@ export default function AppointmentDetailAdminPage() {
               <p>Estado: {appointmentDetail.status}</p>
               <p>Observaciones: {appointmentDetail.observations}</p>
               <p>Precio: {appointmentDetail.price}</p>
+              <p>Monto descontado: {appointmentDetail.discount_amount}</p>
+              <p>Monto abonado: {appointmentDetail.paid_amount}</p>
             </div>
           </div>
 

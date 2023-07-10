@@ -68,6 +68,7 @@ export default function UserDetailAdminPage() {
           <p>Email: {userDetail.email}</p>
           <p>Telefono: {userDetail.phone_number}</p>
           <p>Fecha de nacimiento: {userDetail.birthdate}</p>
+          <p>Decuento acumulado: {userDetail.discount_amount}</p>
         </div>
 
         <hr></hr>
