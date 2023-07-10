@@ -10,7 +10,7 @@ export default function CampaignDonateForm({ onSubmit, errors, customer }) {
     onSubmit(values);
   };
 
-  const creditCardErrors = errors.credit_card || {};
+  const errorsCreditCard = errors.credit_card || {};
 
   return (
     <form onSubmit={handleSubmit}>
@@ -80,6 +80,12 @@ export default function CampaignDonateForm({ onSubmit, errors, customer }) {
           <fieldset>
             <h4>Datos de la tarjeta</h4>
 
+            {errorsCreditCard.non_field_errors ? (
+              <p style={{ color: "red" }}>
+                {errorsCreditCard.non_field_errors[0]}
+              </p>
+            ) : null}
+
             <label htmlFor="creditCardNameOnCardField">
               Nombre en la tarjeta
             </label>
@@ -88,8 +94,8 @@ export default function CampaignDonateForm({ onSubmit, errors, customer }) {
               name="credit_card.name_on_card"
               id="creditCardNameOnCardField"
             />
-            {creditCardErrors.name_on_card ? (
-              <p style={{ color: "red" }}>{creditCardErrors.name_on_card[0]}</p>
+            {errorsCreditCard.name_on_card ? (
+              <p style={{ color: "red" }}>{errorsCreditCard.name_on_card[0]}</p>
             ) : null}
 
             <div className="row">
@@ -102,9 +108,9 @@ export default function CampaignDonateForm({ onSubmit, errors, customer }) {
                   name="credit_card.card_number"
                   id="creditCardCardNumberField"
                 />
-                {creditCardErrors.card_number ? (
+                {errorsCreditCard.card_number ? (
                   <p style={{ color: "red" }}>
-                    {creditCardErrors.card_number[0]}
+                    {errorsCreditCard.card_number[0]}
                   </p>
                 ) : null}
               </div>
@@ -116,8 +122,8 @@ export default function CampaignDonateForm({ onSubmit, errors, customer }) {
                   name="credit_card.cvv"
                   id="creditCardCvvField"
                 />
-                {creditCardErrors.cvv ? (
-                  <p style={{ color: "red" }}>{creditCardErrors.cvv[0]}</p>
+                {errorsCreditCard.cvv ? (
+                  <p style={{ color: "red" }}>{errorsCreditCard.cvv[0]}</p>
                 ) : null}
               </div>
             </div>
@@ -130,9 +136,9 @@ export default function CampaignDonateForm({ onSubmit, errors, customer }) {
               name="credit_card.expiration_date"
               id="creditCardExpirationDateField"
             />
-            {creditCardErrors.expiration_date ? (
+            {errorsCreditCard.expiration_date ? (
               <p style={{ color: "red" }}>
-                {creditCardErrors.expiration_date[0]}
+                {errorsCreditCard.expiration_date[0]}
               </p>
             ) : null}
           </fieldset>
