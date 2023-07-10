@@ -15,6 +15,8 @@ import PetSearchListPublicPage from "./pages/public/PetSearchListPublic";
 import PetSearchDetailPublicPage from "./pages/public/PetSearchDetailPublic";
 import PetSitterListPublicPage from "./pages/public/PetSitterListPublic";
 import PetSitterDetailPublicPage from "./pages/public/PetSitterDetailPublic";
+import CampaignListPublicPage from "./pages/public/CampaignListPublic";
+import CampaignDetailPublicPage from "./pages/public/CampaignDetailPublic";
 
 // customer pages
 import PetListPage from "./pages/customers/PetList";
@@ -31,6 +33,8 @@ import PetSearchDetailPage from "./pages/customers/PetSearchDetail";
 import PetSearchCreatePage from "./pages/customers/PetSearchCreate";
 import PetSitterListPage from "./pages/customers/PetSitterList";
 import PetSitterDetailPage from "./pages/customers/PetSitterDetail";
+import CampaignListPage from "./pages/customers/CampaignList";
+import CampaignDetailPage from "./pages/customers/CampaignDetail";
 
 // admin pages
 import PetListAdminPage from "./pages/admin/PetListAdmin";
@@ -47,6 +51,9 @@ import PetSearchDetailAdminPage from "./pages/admin/PetSearchDetailAdmin";
 import PetSitterListAdminPage from "./pages/admin/PetSitterListAdmin";
 import PetSitterDetailAdminPage from "./pages/admin/PetSitterDetailAdmin";
 import PetSitterCreateAdminPage from "./pages/admin/PetSitterCreateAdmin";
+import CampaignListAdminPage from "./pages/admin/CampaignListAdmin";
+import CampaignDetailAdminPage from "./pages/admin/CampaignDetailAdmin";
+import CampaignCreateAdminPage from "./pages/admin/CampaignCreateAdmin";
 
 export default function App() {
   const { userDetail, logout, retrieveUser } = useContext(AuthContext);
@@ -131,6 +138,20 @@ export default function App() {
                 path="/admin/petsitters/create"
                 element={<PetSitterCreateAdminPage />}
               />
+
+              {/* campaigns */}
+              <Route
+                path="/admin/campaigns"
+                element={<CampaignListAdminPage />}
+              />
+              <Route
+                path="/admin/campaigns/:campaignId"
+                element={<CampaignDetailAdminPage />}
+              />
+              <Route
+                path="/admin/campaigns/create"
+                element={<CampaignCreateAdminPage />}
+              />
             </>
           ) : null}
 
@@ -186,6 +207,13 @@ export default function App() {
                 path="/petsitters/:petSitterId"
                 element={<PetSitterDetailPage />}
               />
+
+              {/* campaigns */}
+              <Route path="/campaigns" element={<CampaignListPage />} />
+              <Route
+                path="/campaigns/:campaignId"
+                element={<CampaignDetailPage />}
+              />
             </>
           ) : null}
 
@@ -214,6 +242,13 @@ export default function App() {
               <Route
                 path="/petsitters/:petSitterId"
                 element={<PetSitterDetailPublicPage />}
+              />
+
+              {/* campaigns */}
+              <Route path="/campaigns" element={<CampaignListPublicPage />} />
+              <Route
+                path="/campaigns/:campaignId"
+                element={<CampaignDetailPublicPage />}
               />
             </>
           ) : null}

@@ -14,6 +14,8 @@ import { PetSearchesContextProvider } from "./contexts/PetSearchesContext";
 import { PetSearchesAdminContextProvider } from "./contexts/PetSearchesAdminContext";
 import { PetSittersContextProvider } from "./contexts/PetSittersContext";
 import { PetSittersAdminContextProvider } from "./contexts/PetSittersAdminContext";
+import { CampaignsContextProvider } from "./contexts/CampaignsContext";
+import { CampaignsAdminContextProvider } from "./contexts/CampaignsAdminContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   // <React.StrictMode>
@@ -30,7 +32,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                       <PetSearchesAdminContextProvider>
                         <PetSittersContextProvider>
                           <PetSittersAdminContextProvider>
-                            <App />
+                            <CampaignsContextProvider>
+                              <CampaignsAdminContextProvider>
+                                <App />
+                              </CampaignsAdminContextProvider>
+                            </CampaignsContextProvider>
                           </PetSittersAdminContextProvider>
                         </PetSittersContextProvider>
                       </PetSearchesAdminContextProvider>
