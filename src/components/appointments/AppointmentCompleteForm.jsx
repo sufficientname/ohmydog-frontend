@@ -33,19 +33,13 @@ export default function AppointmentCompleteForm({
         ) : null}
 
         <label htmlFor="priceField">Precio</label>
-        <input type="number" name="price" step=".01" min="0" id="priceField" />
+        <input type="number" name="price" step=".01" id="priceField" />
         {errors.price ? (
           <p style={{ color: "red" }}>{errors.price[0]}</p>
         ) : null}
 
         <label htmlFor="weightField">Peso</label>
-        <input
-          type="number"
-          name="weight"
-          step=".01"
-          min="0"
-          id="weightField"
-        />
+        <input type="number" name="weight" step=".01" id="weightField" />
         {errors.price ? (
           <p style={{ color: "red" }}>{errors.weight[0]}</p>
         ) : null}

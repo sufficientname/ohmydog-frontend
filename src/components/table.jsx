@@ -37,6 +37,9 @@ function THead({ headers }) {
 }
 
 export default function Table({ headers, data, loading }) {
+  headers = headers || {};
+  data = data || [];
+
   return (
     <>
       <table>
