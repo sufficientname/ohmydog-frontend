@@ -45,7 +45,7 @@ export default function AppointmentCreatePage() {
           onSubmit={onSubmitPet}
           errors={createPetError}
         />
-        <button className="button" onClick={onClickSkip}>
+        <button className="button container" onClick={onClickSkip}>
           Omitir
         </button>
       </>

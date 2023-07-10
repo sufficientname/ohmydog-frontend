@@ -27,11 +27,18 @@ export default function AppointmentDetailPage() {
       <hr></hr>
 
       <Loader loading={appointmentsLoading}>
-        {/* {appointmentDetail.booster_date ? (
-          <pre>
-            <code>{`Fecha para el refuerzo: ${appointmentDetail.booster_date}`}</code>
-          </pre>
-        ) : null} */}
+        {appointmentDetail.can_cancel ? (
+          <div className="row">
+            <div className="column">
+              <button
+                className="button container"
+                onClick={onClickCancelAppointment}
+              >
+                Cancelar turno
+              </button>
+            </div>
+          </div>
+        ) : null}
 
         <div>
           <p>Mascota: {appointmentDetail.pet_name}</p>
@@ -45,16 +52,6 @@ export default function AppointmentDetailPage() {
           <p>Observaciones: {appointmentDetail.observations}</p>
           <p>Precio: {appointmentDetail.price}</p>
         </div>
-
-        {appointmentDetail.can_cancel ? (
-          <div className="row">
-            <div className="column">
-              <button className="button" onClick={onClickCancelAppointment}>
-                Cancelar turno
-              </button>
-            </div>
-          </div>
-        ) : null}
       </Loader>
     </>
   );

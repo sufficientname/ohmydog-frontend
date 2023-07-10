@@ -42,6 +42,31 @@ export default function AdoptionDetailPage() {
       <hr></hr>
 
       <Loader loading={adoptionsLoading}>
+        {adoptionDetail.is_mine ? (
+          <div className="row">
+            {adoptionDetail.can_cancel ? (
+              <div className="column">
+                <button
+                  className="button container"
+                  onClick={onClickCancelAdoption}
+                >
+                  Cancelar
+                </button>
+              </div>
+            ) : null}
+            {adoptionDetail.can_complete ? (
+              <div className="column">
+                <button
+                  className="button container"
+                  onClick={onClickCompleteAdoption}
+                >
+                  Completar
+                </button>
+              </div>
+            ) : null}
+          </div>
+        ) : null}
+
         <div>
           <p>Nombre: {adoptionDetail.pet_name}</p>
           <p>Edad: {adoptionDetail.pet_age}</p>
@@ -50,25 +75,6 @@ export default function AdoptionDetailPage() {
           <p>Estado: {adoptionDetail.status}</p>
           <p>Fecha de creacion: {adoptionDetail.date_created}</p>
         </div>
-
-        {adoptionDetail.is_mine ? (
-          <div className="row">
-            {adoptionDetail.can_cancel ? (
-              <div className="column">
-                <button className="button" onClick={onClickCancelAdoption}>
-                  Cancelar
-                </button>
-              </div>
-            ) : null}
-            {adoptionDetail.can_complete ? (
-              <div className="column">
-                <button className="button" onClick={onClickCompleteAdoption}>
-                  Completar
-                </button>
-              </div>
-            ) : null}
-          </div>
-        ) : null}
 
         {adoptionDetail.can_contact && !adoptionDetail.is_mine ? (
           <>

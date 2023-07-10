@@ -53,7 +53,11 @@ export default function CreateUserAdminForm({ onSubmit, errors }) {
           <p style={{ color: "red" }}>{errors.phone_number[0]}</p>
         ) : null}
 
-        <input className="button-primary" type="submit" value="Agregar" />
+        <input
+          className="button-primary container"
+          type="submit"
+          value="Agregar"
+        />
       </fieldset>
     </form>
   );

@@ -67,7 +67,11 @@ export default function ContactForm({ onSubmit, errors, customer }) {
           <p style={{ color: "red" }}>{errors.reason[0]}</p>
         ) : null}
 
-        <input className="button-primary" type="submit" value="Contactar" />
+        <input
+          className="button-primary container"
+          type="submit"
+          value="Contactar"
+        />
       </fieldset>
     </form>
   );

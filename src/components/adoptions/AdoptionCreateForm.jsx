@@ -64,7 +64,11 @@ export default function AdoptionCreateForm({ onSubmit, errors }) {
           <p style={{ color: "red" }}>{errors.pet_size[0]}</p>
         ) : null}
 
-        <input className="button-primary" type="submit" value="Publicar" />
+        <input
+          className="button-primary container"
+          type="submit"
+          value="Publicar"
+        />
       </fieldset>
     </form>
   );

@@ -42,6 +42,31 @@ export default function PetSearchDetailPage() {
       <hr></hr>
 
       <Loader loading={petSearchesLoading}>
+        {petSearchDetail.is_mine ? (
+          <div className="row">
+            {petSearchDetail.can_cancel ? (
+              <div className="column">
+                <button
+                  className="button container"
+                  onClick={onClickCancelPetSearch}
+                >
+                  Cancelar
+                </button>
+              </div>
+            ) : null}
+            {petSearchDetail.can_complete ? (
+              <div className="column">
+                <button
+                  className="button container"
+                  onClick={onClickCompletePetSearch}
+                >
+                  Completar
+                </button>
+              </div>
+            ) : null}
+          </div>
+        ) : null}
+
         <div>
           <p>Nombre: {petSearchDetail.pet_name}</p>
           <p>Edad: {petSearchDetail.pet_age}</p>
@@ -53,25 +78,6 @@ export default function PetSearchDetailPage() {
           <p>Estado: {petSearchDetail.status}</p>
           <p>Fecha de creacion: {petSearchDetail.date_created}</p>
         </div>
-
-        {petSearchDetail.is_mine ? (
-          <div className="row">
-            {petSearchDetail.can_cancel ? (
-              <div className="column">
-                <button className="button" onClick={onClickCancelPetSearch}>
-                  Cancelar
-                </button>
-              </div>
-            ) : null}
-            {petSearchDetail.can_complete ? (
-              <div className="column">
-                <button className="button" onClick={onClickCompletePetSearch}>
-                  Completar
-                </button>
-              </div>
-            ) : null}
-          </div>
-        ) : null}
 
         {petSearchDetail.can_contact && !petSearchDetail.is_mine ? (
           <>

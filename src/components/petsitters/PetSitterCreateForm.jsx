@@ -100,7 +100,11 @@ export default function PetSitterCreateForm({ onSubmit, errors }) {
           <p style={{ color: "red" }}>{errors.service_area[0]}</p>
         ) : null}
 
-        <input className="button-primary" type="submit" value="Publicar" />
+        <input
+          className="button-primary container"
+          type="submit"
+          value="Publicar"
+        />
       </fieldset>
     </form>
   );

@@ -28,11 +28,34 @@ export default function CampaignDetailAdminPage() {
 
   return (
     <>
-      <h1>Campañas de recaudacion</h1>
+      <h1>Campaña de recaudacion</h1>
 
       <hr></hr>
 
       <Loader loading={campaignsLoading}>
+        <div className="row">
+          {campaignDetail.can_cancel ? (
+            <div className="column">
+              <button
+                className="button container"
+                onClick={onClickCancelCampaign}
+              >
+                Cancelar
+              </button>
+            </div>
+          ) : null}
+          {campaignDetail.can_complete ? (
+            <div className="column">
+              <button
+                className="button container"
+                onClick={onClickCompleteCampaign}
+              >
+                Completar
+              </button>
+            </div>
+          ) : null}
+        </div>
+
         <div>
           <p>Nombre: {campaignDetail.name}</p>
           <p>Descripcion: {campaignDetail.description}</p>
@@ -41,22 +64,6 @@ export default function CampaignDetailAdminPage() {
           <p>Monto objetivo: {campaignDetail.goal_amount}</p>
           <p>Monto recaudado: {campaignDetail.current_amount}</p>
           <p>Estado: {campaignDetail.status}</p>
-        </div>
-        <div className="row">
-          {campaignDetail.can_cancel ? (
-            <div className="column">
-              <button className="button" onClick={onClickCancelCampaign}>
-                Cancelar
-              </button>
-            </div>
-          ) : null}
-          {campaignDetail.can_complete ? (
-            <div className="column">
-              <button className="button" onClick={onClickCompleteCampaign}>
-                Completar
-              </button>
-            </div>
-          ) : null}
         </div>
 
         <hr></hr>

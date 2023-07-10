@@ -26,7 +26,11 @@ export default function AppointmentAcceptForm({
         <br></br>
         {errors.hour ? <p style={{ color: "red" }}>{errors.hour[0]}</p> : null}
 
-        <input className="button-primary" type="submit" value="Aceptar turno" />
+        <input
+          className="button-primary container"
+          type="submit"
+          value="Aceptar turno"
+        />
       </fieldset>
     </form>
   );

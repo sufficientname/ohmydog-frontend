@@ -18,7 +18,7 @@ export default function SetPasswordForm({ onSubmit, errors }) {
         {errors.detail ? <p style={{ color: "red" }}>{errors.detail}</p> : null}
 
         <input
-          className="button-primary"
+          className="button-primary container"
           type="submit"
           value="Cambiar contraseña"
         />

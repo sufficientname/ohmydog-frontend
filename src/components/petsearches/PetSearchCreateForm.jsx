@@ -95,7 +95,11 @@ export default function PetSearchCreateForm({ onSubmit, errors }) {
 
         <br></br>
 
-        <input className="button-primary" type="submit" value="Publicar" />
+        <input
+          className="button-primary container"
+          type="submit"
+          value="Publicar"
+        />
       </fieldset>
     </form>
   );

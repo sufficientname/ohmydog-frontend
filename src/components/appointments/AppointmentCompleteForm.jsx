@@ -57,7 +57,7 @@ export default function AppointmentCompleteForm({
         <br></br>
 
         <input
-          className="button-primary"
+          className="button-primary container"
           type="submit"
           value="Completar turno"
         />

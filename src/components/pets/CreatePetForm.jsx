@@ -53,7 +53,11 @@ export default function CreatePetForm({ onSubmit, errors }) {
           <p style={{ color: "red" }}>{errors.birthdate[0]}</p>
         ) : null}
 
-        <input className="button-primary" type="submit" value="Agregar" />
+        <input
+          className="button-primary container"
+          type="submit"
+          value="Agregar"
+        />
       </fieldset>
     </form>
   );

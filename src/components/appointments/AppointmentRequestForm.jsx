@@ -63,7 +63,11 @@ export default function AppointmentRequestForm({ onSubmit, errors, pets }) {
           <p style={{ color: "red" }}>{errors.timeslot[0]}</p>
         ) : null}
 
-        <input className="button-primary" type="submit" value="Solicitar" />
+        <input
+          className="button-primary container"
+          type="submit"
+          value="Solicitar"
+        />
       </fieldset>
     </form>
   );

@@ -32,6 +32,29 @@ export default function PetSitterDetailAdminPage() {
       <hr></hr>
 
       <Loader loading={petSittersLoading}>
+        <div className="row">
+          {petSitterDetail.can_cancel ? (
+            <div className="column">
+              <button
+                className="button container"
+                onClick={onClickCancelPetSitter}
+              >
+                Cancelar
+              </button>
+            </div>
+          ) : null}
+          {petSitterDetail.can_complete ? (
+            <div className="column">
+              <button
+                className="button container"
+                onClick={onClickCompletePetSitter}
+              >
+                Completar
+              </button>
+            </div>
+          ) : null}
+        </div>
+
         <div>
           <p>Nombre: {petSitterDetail.sitter_first_name}</p>
           <p>Apellido: {petSitterDetail.sitter_last_name}</p>
@@ -41,22 +64,6 @@ export default function PetSitterDetailAdminPage() {
           <p>Zona: {petSitterDetail.service_area}</p>
           <p>Estado: {petSitterDetail.status}</p>
           <p>Fecha de creacion: {petSitterDetail.date_created}</p>
-        </div>
-        <div className="row">
-          {petSitterDetail.can_cancel ? (
-            <div className="column">
-              <button className="button" onClick={onClickCancelPetSitter}>
-                Cancelar
-              </button>
-            </div>
-          ) : null}
-          {petSitterDetail.can_complete ? (
-            <div className="column">
-              <button className="button" onClick={onClickCompletePetSitter}>
-                Completar
-              </button>
-            </div>
-          ) : null}
         </div>
       </Loader>
     </>

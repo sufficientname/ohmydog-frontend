@@ -35,7 +35,7 @@ export default function AppointmentRejectForm({
         ) : null}
 
         <input
-          className="button-primary"
+          className="button-primary container"
           type="submit"
           value="Rechazar turno"
         />
