@@ -45,7 +45,7 @@ export default function CampaignListAdminPage() {
 
         <div className="column">
           <button className="button container" onClick={onClickCreateCampaign}>
-            Publicar anuncio
+            Publicar campaña
           </button>
         </div>
       </div>

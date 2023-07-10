@@ -17,7 +17,7 @@ export default function LoginPage() {
     navigate(`/home`);
   }
 
-  function onSubmit(data) {
+  function onSubmitLogin(data) {
     login(data, onSuccess);
   }
 
@@ -27,7 +27,7 @@ export default function LoginPage() {
 
       <hr></hr>
 
-      <LoginForm onSubmit={onSubmit} errors={loginError} />
+      <LoginForm onSubmit={onSubmitLogin} errors={loginError} />
     </>
   );
 }

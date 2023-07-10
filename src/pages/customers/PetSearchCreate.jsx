@@ -12,7 +12,7 @@ export default function PetSearchCreatePage() {
     navigate(`/petsearches/${data.id}`);
   }
 
-  function onSubmit(data) {
+  function onSubmitCreatePetSearch(data) {
     createPetSearch(data, onCreate);
   }
 
@@ -22,7 +22,10 @@ export default function PetSearchCreatePage() {
 
       <hr></hr>
 
-      <PetSearchCreateForm onSubmit={onSubmit} errors={createPetSearchError} />
+      <PetSearchCreateForm
+        onSubmit={onSubmitCreatePetSearch}
+        errors={createPetSearchError}
+      />
     </>
   );
 }

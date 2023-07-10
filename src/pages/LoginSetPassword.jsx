@@ -12,7 +12,7 @@ export default function LoginSetPasswordPage() {
     navigate(`/home`);
   }
 
-  function onSubmit(data) {
+  function onSubmitSetPassword(data) {
     setPassword(data, onSuccess);
   }
 
@@ -22,7 +22,7 @@ export default function LoginSetPasswordPage() {
 
       <hr></hr>
 
-      <SetPasswordForm onSubmit={onSubmit} errors={loginError} />
+      <SetPasswordForm onSubmit={onSubmitSetPassword} errors={loginError} />
     </>
   );
 }

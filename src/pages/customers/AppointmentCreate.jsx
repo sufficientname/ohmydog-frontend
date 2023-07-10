@@ -18,7 +18,7 @@ export default function AppointmentCreatePage() {
     navigate(`/appointments/${data.id}`);
   }
 
-  function onSubmit(data) {
+  function onSubmitCreateAppointment(data) {
     createAppointment(data, onCreate);
   }
 
@@ -29,7 +29,7 @@ export default function AppointmentCreatePage() {
       <hr></hr>
 
       <AppointmentRequestForm
-        onSubmit={onSubmit}
+        onSubmit={onSubmitCreateAppointment}
         errors={createAppointmentError}
         pets={petList}
       />

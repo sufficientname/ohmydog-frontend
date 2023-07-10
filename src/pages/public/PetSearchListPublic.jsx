@@ -1,22 +1,17 @@
 import { useContext, useEffect, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Table from "../../components/table";
 import PetSearchesContext from "../../contexts/PetSearchesContext";
 
 export default function PetSearchListPublicPage() {
   const { petSearchesLoading, listPetSearches, petSearchList } =
     useContext(PetSearchesContext);
-  const navigate = useNavigate();
 
   const [step, setStep] = useState(0);
 
   useEffect(() => {
     listPetSearches({ status: "PUB" });
   }, []);
-
-  function onClick(event) {
-    navigate("/petsearches/create");
-  }
 
   function onClickPublishedPetSearches(event) {
     setStep(0);

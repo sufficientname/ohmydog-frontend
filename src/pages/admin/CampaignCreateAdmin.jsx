@@ -19,7 +19,7 @@ export default function CampaignCreateAdminPage() {
 
   return (
     <>
-      <h1>Publicar una campaña de recaudacion</h1>
+      <h1>Publicar campaña de recaudacion</h1>
 
       <hr></hr>
 

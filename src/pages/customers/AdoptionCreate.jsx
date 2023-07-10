@@ -11,7 +11,7 @@ export default function AdoptionCreatePage() {
     navigate(`/adoptions/${data.id}`);
   }
 
-  function onSubmit(data) {
+  function onSubmitCreateAdoption(data) {
     createAdoption(data, onCreate);
   }
 
@@ -21,7 +21,10 @@ export default function AdoptionCreatePage() {
 
       <hr></hr>
 
-      <AdoptionCreateForm onSubmit={onSubmit} errors={createAdoptionError} />
+      <AdoptionCreateForm
+        onSubmit={onSubmitCreateAdoption}
+        errors={createAdoptionError}
+      />
     </>
   );
 }

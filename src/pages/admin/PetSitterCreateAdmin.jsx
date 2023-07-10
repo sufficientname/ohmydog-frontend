@@ -13,7 +13,7 @@ export default function PetSitterCreateAdminPage() {
     navigate(`/admin/petsitters/${data.id}`);
   }
 
-  function onSubmit(data) {
+  function onSubmitCreatePetSitter(data) {
     createPetSitter(data, onCreate);
   }
 
@@ -23,7 +23,10 @@ export default function PetSitterCreateAdminPage() {
 
       <hr></hr>
 
-      <PetSitterCreateForm onSubmit={onSubmit} errors={createPetSitterError} />
+      <PetSitterCreateForm
+        onSubmit={onSubmitCreatePetSitter}
+        errors={createPetSitterError}
+      />
     </>
   );
 }

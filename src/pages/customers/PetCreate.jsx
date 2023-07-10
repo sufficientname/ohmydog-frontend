@@ -11,7 +11,7 @@ export default function PetCreatePage() {
     navigate(`/pets/${data.id}`);
   }
 
-  function onSubmit(data) {
+  function onSubmitCreatePet(data) {
     createPet(data, onCreate);
   }
 
@@ -21,7 +21,7 @@ export default function PetCreatePage() {
 
       <hr></hr>
 
-      <CreatePetForm onSubmit={onSubmit} errors={createPetError} />
+      <CreatePetForm onSubmit={onSubmitCreatePet} errors={createPetError} />
     </>
   );
 }
