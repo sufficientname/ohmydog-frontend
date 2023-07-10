@@ -13,6 +13,8 @@ const PetSittersAdminContext = createContext({
   createPetSitter: () => {},
   cancelPetSitter: () => {},
   completePetSitter: () => {},
+  pauseRangePetSitter: () => {},
+  unpausePetSitter: () => {},
   createPetSitterError: {},
 });
 
@@ -106,6 +108,42 @@ export const PetSittersAdminContextProvider = (props) => {
     setIsLoading(false);
   };
 
+  const pauseRangePetSitterHandler = async (petSitterData, pauseRangeData) => {
+    setIsLoading(true);
+    await axios
+      .post(
+        `${baseUrl}/petsitters/${petSitterData.id}/pauserange/`,
+        pauseRangeData,
+        { auth: getBasicAuth() }
+      )
+      .then((res) => {
+        setPetSitterDetail(res.data);
+        setCreatePetSitterError({});
+      })
+      .catch((err) => {
+        setCreatePetSitterError(err.response.data);
+        console.log("error completing petSitter", err.response);
+      });
+    setIsLoading(false);
+  };
+
+  const unpausePetSitterHandler = async (petSitterData) => {
+    setIsLoading(true);
+    await axios
+      .post(
+        `${baseUrl}/petsitters/${petSitterData.id}/unpause/`,
+        {},
+        { auth: getBasicAuth() }
+      )
+      .then((res) => {
+        setPetSitterDetail(res.data);
+      })
+      .catch((err) => {
+        console.log("error completing petSitter", err.response);
+      });
+    setIsLoading(false);
+  };
+
   return (
     <PetSittersAdminContext.Provider
       value={{
@@ -117,6 +155,8 @@ export const PetSittersAdminContextProvider = (props) => {
         createPetSitter: createPetSitterHandler,
         cancelPetSitter: cancelPetSitterHandler,
         completePetSitter: completePetSitterHandler,
+        pauseRangePetSitter: pauseRangePetSitterHandler,
+        unpausePetSitter: unpausePetSitterHandler,
         createPetSitterError: createPetSitterError,
       }}
     >

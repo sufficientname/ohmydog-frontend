@@ -40,9 +40,9 @@ export default function AppointmentDetailAdminPage() {
     <>
       <h1>Turno</h1>
 
-      <hr></hr>
-
       <Loader loading={appointmentsLoading}>
+        <hr></hr>
+
         <div className="row">
           <div className="column">
             <div>

@@ -17,9 +17,8 @@ export default function AdoptionDetailAdminPage() {
     <>
       <h1>Anuncio de adopcion</h1>
 
-      <hr></hr>
-
       <Loader loading={adoptionsLoading}>
+        <hr></hr>
         <div>
           <p>Nombre: {adoptionDetail.pet_name}</p>
           <p>Edad: {adoptionDetail.pet_age}</p>

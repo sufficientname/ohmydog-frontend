@@ -24,8 +24,6 @@ export default function AppointmentDetailPage() {
     <>
       <h1>Turno</h1>
 
-      <hr></hr>
-
       <Loader loading={appointmentsLoading}>
         {appointmentDetail.can_cancel ? (
           <div className="row">
@@ -39,6 +37,8 @@ export default function AppointmentDetailPage() {
             </div>
           </div>
         ) : null}
+
+        <hr></hr>
 
         <div>
           <p>Mascota: {appointmentDetail.pet_name}</p>

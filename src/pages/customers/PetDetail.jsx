@@ -20,9 +20,9 @@ export default function PetDetailPage() {
     <>
       <h1>Mascota</h1>
 
-      <hr></hr>
-
       <Loader loading={petsLoading}>
+        <hr></hr>
+
         <div>
           <p>Nombre: {petDetail.name}</p>
           <p>Raza: {petDetail.breed}</p>

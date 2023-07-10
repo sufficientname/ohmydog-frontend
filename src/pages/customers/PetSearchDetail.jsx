@@ -39,8 +39,6 @@ export default function PetSearchDetailPage() {
     <>
       <h1>Anuncio de busqueda</h1>
 
-      <hr></hr>
-
       <Loader loading={petSearchesLoading}>
         {petSearchDetail.is_mine ? (
           <div className="row">
@@ -66,6 +64,8 @@ export default function PetSearchDetailPage() {
             ) : null}
           </div>
         ) : null}
+
+        <hr></hr>
 
         <div>
           <p>Nombre: {petSearchDetail.pet_name}</p>

@@ -29,9 +29,9 @@ export default function PetSearchDetailPublicPage() {
     <>
       <h1>Anuncio de busqueda</h1>
 
-      <hr></hr>
-
       <Loader loading={petSearchesLoading}>
+        <hr></hr>
+
         <div>
           <p>Nombre: {petSearchDetail.pet_name}</p>
           <p>Edad: {petSearchDetail.pet_age}</p>

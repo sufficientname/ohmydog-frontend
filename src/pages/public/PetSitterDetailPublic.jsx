@@ -29,9 +29,9 @@ export default function PetSitterDetailPublicPage() {
     <>
       <h1>Anuncio de paseador o cuidador</h1>
 
-      <hr></hr>
-
       <Loader loading={petSittersLoading}>
+        <hr></hr>
+
         <div>
           <p>Nombre: {petSitterDetail.sitter_first_name}</p>
           <p>Apellido: {petSitterDetail.sitter_last_name}</p>

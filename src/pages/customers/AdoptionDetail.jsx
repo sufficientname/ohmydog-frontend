@@ -39,8 +39,6 @@ export default function AdoptionDetailPage() {
     <>
       <h1>Anuncio de adopcion</h1>
 
-      <hr></hr>
-
       <Loader loading={adoptionsLoading}>
         {adoptionDetail.is_mine ? (
           <div className="row">
@@ -66,6 +64,8 @@ export default function AdoptionDetailPage() {
             ) : null}
           </div>
         ) : null}
+
+        <hr></hr>
 
         <div>
           <p>Nombre: {adoptionDetail.pet_name}</p>

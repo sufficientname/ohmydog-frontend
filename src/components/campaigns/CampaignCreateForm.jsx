@@ -18,14 +18,17 @@ export default function ContactForm({ onSubmit, errors }) {
         {errors.non_field_errors ? (
           <p style={{ color: "red" }}>{errors.non_field_errors[0]}</p>
         ) : null}
+
         <label htmlFor="nameField">Titulo</label>
         <input type="text" name="name" id="nameField" />
         {errors.name ? <p style={{ color: "red" }}>{errors.name[0]}</p> : null}
+
         <label htmlFor="descriptionField">Descripcion</label>
         <textarea name="description" id="descriptionField" />
         {errors.description ? (
           <p style={{ color: "red" }}>{errors.description[0]}</p>
         ) : null}
+
         <label htmlFor="endDateField">Fecha de fin</label>
         <input
           type="date"
@@ -36,6 +39,7 @@ export default function ContactForm({ onSubmit, errors }) {
         {errors.end_date ? (
           <p style={{ color: "red" }}>{errors.end_date[0]}</p>
         ) : null}
+
         <label htmlFor="goalAmountField">Monto a recaudar</label>
         <input
           type="number"
@@ -46,6 +50,7 @@ export default function ContactForm({ onSubmit, errors }) {
         {errors.goal_amount ? (
           <p style={{ color: "red" }}>{errors.goal_amount[0]}</p>
         ) : null}
+
         <input
           className="button-primary container"
           type="submit"

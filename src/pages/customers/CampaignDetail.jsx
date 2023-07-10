@@ -29,9 +29,9 @@ export default function CampaignDetailPage() {
     <>
       <h1>Campaña de recaudacion</h1>
 
-      <hr></hr>
-
       <Loader loading={campaignsLoading}>
+        <hr></hr>
+
         <div>
           <p>Nombre: {campaignDetail.name}</p>
           <p>Descripcion: {campaignDetail.description}</p>

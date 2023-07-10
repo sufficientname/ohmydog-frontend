@@ -29,9 +29,9 @@ export default function CampaignDetailPublicPage() {
     <>
       <h1>Anuncio de paseador o cuidador</h1>
 
-      <hr></hr>
-
       <Loader loading={campaignsLoading}>
+        <hr></hr>
+
         <div>
           <p>Nombre: {campaignDetail.name}</p>
           <p>Descripcion: {campaignDetail.description}</p>

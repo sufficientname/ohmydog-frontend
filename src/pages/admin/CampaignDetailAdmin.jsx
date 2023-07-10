@@ -30,8 +30,6 @@ export default function CampaignDetailAdminPage() {
     <>
       <h1>Campaña de recaudacion</h1>
 
-      <hr></hr>
-
       <Loader loading={campaignsLoading}>
         <div className="row">
           {campaignDetail.can_cancel ? (
@@ -55,6 +53,8 @@ export default function CampaignDetailAdminPage() {
             </div>
           ) : null}
         </div>
+
+        <hr></hr>
 
         <div>
           <p>Nombre: {campaignDetail.name}</p>

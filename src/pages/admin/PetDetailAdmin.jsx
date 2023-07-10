@@ -22,9 +22,9 @@ export default function PetDetailAdminPage() {
     <>
       <h1>Mascota</h1>
 
-      <hr></hr>
-
       <Loader loading={petsLoading}>
+        <hr></hr>
+
         <div>
           <p>Cliente: {petDetail.user_fullname}</p>
           <p>Nombre: {petDetail.name}</p>
