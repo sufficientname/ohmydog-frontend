@@ -1,11 +1,9 @@
 export default function Loader({ loading, children }) {
-  if (loading) {
-    return (
-      <div>
-        <p>Cargando...</p>
-      </div>
-    );
-  }
-
-  return <>{children}</>;
+  return loading ? (
+    <div>
+      <p>Cargando...</p>
+    </div>
+  ) : (
+    <>{children}</>
+  );
 }

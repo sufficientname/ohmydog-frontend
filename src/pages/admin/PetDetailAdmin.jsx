@@ -32,37 +32,46 @@ export default function PetDetailAdminPage() {
           <p>Color: {petDetail.color}</p>
           <p>Fecha de nacimiento: {petDetail.birthdate}</p>
         </div>
+
+        <hr></hr>
+
+        <h2>Historial de atencion</h2>
+        <Table
+          headers={[
+            { key: "reason", label: "Motivo" },
+            { key: "status", label: "Estado" },
+            { key: "date", label: "Fecha" },
+            {
+              key: "hour",
+              label: "Hora",
+              wrapper: (value, appointment) =>
+                appointment.hour || appointment.timeslot,
+            },
+            {
+              wrapper: (value, appointment) => (
+                <Link to={`/admin/appointments/${appointment.id}`}>
+                  Ver detalle
+                </Link>
+              ),
+            },
+          ]}
+          data={appointmentList}
+          loading={appointmentsLoading}
+        />
+
+        <hr></hr>
+
+        <h2>Libreta sanitaria</h2>
+        <Table
+          headers={[
+            { key: "date", label: "Fecha" },
+            { key: "entry_type", label: "Tipo" },
+            { key: "entry_value", label: "Valor" },
+          ]}
+          data={petDetail.health_record}
+          loading={petsLoading}
+        />
       </Loader>
-
-      <hr></hr>
-
-      <h2>Historial de atencion</h2>
-      <Table
-        headers={[
-          { key: "reason", label: "Motivo" },
-          { key: "status", label: "Estado" },
-          { key: "date", label: "Fecha" },
-          {
-            key: "hour",
-            label: "Hora",
-            wrapper: (value, appointment) =>
-              appointment.hour || appointment.timeslot,
-          },
-          {
-            wrapper: (value, appointment) => (
-              <Link to={`/admin/appointments/${appointment.id}`}>
-                Ver detalle
-              </Link>
-            ),
-          },
-        ]}
-        data={appointmentList}
-        loading={appointmentsLoading}
-      />
-
-      {/* <hr></hr>
-
-      <h2>Libreta sanitaria</h2> */}
     </>
   );
 }

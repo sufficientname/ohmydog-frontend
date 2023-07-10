@@ -13,14 +13,14 @@ function TR({ headers, data }) {
 }
 
 function TBody({ headers, data, loading }) {
-  return !loading ? (
+  return loading ? (
+    <tbody></tbody>
+  ) : (
     <tbody>
       {data.map((item, i) => (
         <TR headers={headers} data={item} key={i} />
       ))}
     </tbody>
-  ) : (
-    <tbody></tbody>
   );
 }
 
