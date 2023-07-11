@@ -3,7 +3,21 @@ export default function CampaignDonateForm({ onSubmit, errors, customer }) {
     event.preventDefault();
 
     const data = new FormData(event.currentTarget);
-    const values = Object.fromEntries(data.entries());
+    const formValues = Object.fromEntries(data.entries());
+
+    const values = {
+      amount: formValues.amount,
+      donor_first_name: formValues.donor_first_name,
+      donor_last_name: formValues.donor_last_name,
+      donor_email: formValues.donor_email,
+      donor_phone_number: formValues.donor_phone_number,
+      credit_card: {
+        name_on_card: formValues.credit_card_name_on_card,
+        card_number: formValues.credit_card_card_number,
+        cvv: formValues.credit_card_cvv,
+        expiration_date: formValues.credit_card_expiration_date,
+      },
+    };
 
     console.log("submitting", values);
 
@@ -91,7 +105,7 @@ export default function CampaignDonateForm({ onSubmit, errors, customer }) {
             </label>
             <input
               type="text"
-              name="credit_card.name_on_card"
+              name="credit_card_name_on_card"
               id="creditCardNameOnCardField"
             />
             {errorsCreditCard.name_on_card ? (
@@ -105,7 +119,7 @@ export default function CampaignDonateForm({ onSubmit, errors, customer }) {
                 </label>
                 <input
                   type="text"
-                  name="credit_card.card_number"
+                  name="credit_card_card_number"
                   id="creditCardCardNumberField"
                 />
                 {errorsCreditCard.card_number ? (
@@ -119,7 +133,7 @@ export default function CampaignDonateForm({ onSubmit, errors, customer }) {
                 <label htmlFor="creditCardCvvField">CVV</label>
                 <input
                   type="text"
-                  name="credit_card.cvv"
+                  name="credit_card_cvv"
                   id="creditCardCvvField"
                 />
                 {errorsCreditCard.cvv ? (
@@ -133,7 +147,7 @@ export default function CampaignDonateForm({ onSubmit, errors, customer }) {
             </label>
             <input
               type="date"
-              name="credit_card.expiration_date"
+              name="credit_card_expiration_date"
               id="creditCardExpirationDateField"
             />
             {errorsCreditCard.expiration_date ? (
