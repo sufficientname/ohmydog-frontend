@@ -41,7 +41,12 @@ export default function AppointmentDetailPage() {
         <hr></hr>
 
         <div>
-          <p>Mascota: {appointmentDetail.pet_name}</p>
+          <p>
+            Mascota:{" "}
+            <Link to={`/pets/${appointmentDetail.pet_id}`}>
+              {appointmentDetail.pet_name}
+            </Link>
+          </p>
           <p>Motivo: {appointmentDetail.reason}</p>
           <p>Fecha solicitada: {appointmentDetail.date}</p>
           <p>Franja horaria solicitada: {appointmentDetail.timeslot}</p>

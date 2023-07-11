@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Loader from "../../components/loader";
 import AppointmentAcceptForm from "../../components/appointments/AppointmentAcceptForm";
 import AppointmentRejectForm from "../../components/appointments/AppointmentRejectForm";
@@ -46,8 +46,19 @@ export default function AppointmentDetailAdminPage() {
         <div className="row">
           <div className="column">
             <div>
-              <p>Cliente: {appointmentDetail.user_full_name}</p>
-              <p>Mascota: {appointmentDetail.pet_name}</p>
+              <p>
+                Cliente:{" "}
+                <Link to={`/admin/users/${appointmentDetail.user_id}`}>
+                  {appointmentDetail.user_full_name}
+                </Link>
+              </p>
+              <p>
+                Mascota:{" "}
+                <Link to={`/admin/pets/${appointmentDetail.pet_id}`}>
+                  {appointmentDetail.pet_name}
+                </Link>
+              </p>
+              xw
               <p>Motivo: {appointmentDetail.reason}</p>
               <p>Fecha solicitada: {appointmentDetail.date}</p>
               <p>Franja horaria solicitada: {appointmentDetail.timeslot}</p>
