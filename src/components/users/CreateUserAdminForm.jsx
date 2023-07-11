@@ -1,3 +1,5 @@
+import { Today } from "../../utils/datetime";
+
 export default function CreateUserAdminForm({ onSubmit, errors }) {
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -17,8 +19,8 @@ export default function CreateUserAdminForm({ onSubmit, errors }) {
           <p style={{ color: "red" }}>{errors.non_field_errors[0]}</p>
         ) : null}
 
-        <label htmlFor="firstnameField">Nombre</label>
-        <input type="text" name="first_name" id="firstnameField" />
+        <label htmlFor="firstNameField">Nombre</label>
+        <input type="text" name="first_name" id="firstNameField" />
         {errors.first_name ? (
           <p style={{ color: "red" }}>{errors.first_name[0]}</p>
         ) : null}
@@ -36,7 +38,12 @@ export default function CreateUserAdminForm({ onSubmit, errors }) {
         ) : null}
 
         <label htmlFor="birthdateField">Fecha de nacimiento</label>
-        <input type="date" name="birthdate" id="birthdateField" />
+        <input
+          type="date"
+          name="birthdate"
+          id="birthdateField"
+          max={Today().toISOString().split("T")[0]}
+        />
         {errors.birthdate ? (
           <p style={{ color: "red" }}>{errors.birthdate[0]}</p>
         ) : null}

@@ -1,5 +1,6 @@
 import { Today } from "../../utils/datetime";
 import { breeds } from "../../utils/breeds";
+import { genders } from "./constants";
 
 export default function CreatePetForm({ onSubmit, errors }) {
   const handleSubmit = (event) => {
@@ -40,6 +41,18 @@ export default function CreatePetForm({ onSubmit, errors }) {
         <input type="text" name="color" id="colorField" />
         {errors.color ? (
           <p style={{ color: "red" }}>{errors.color[0]}</p>
+        ) : null}
+
+        <label htmlFor="genderField">Sexo</label>
+        <select name="gender" id="genderField">
+          {genders.map((gender, i) => (
+            <option value={gender.id} key={i}>
+              {gender.name}
+            </option>
+          ))}
+        </select>
+        {errors.gender ? (
+          <p style={{ color: "red" }}>{errors.gender[0]}</p>
         ) : null}
 
         <label htmlFor="birthdateField">Fecha de nacimiento</label>

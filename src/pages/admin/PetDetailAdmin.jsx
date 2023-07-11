@@ -26,10 +26,11 @@ export default function PetDetailAdminPage() {
         <hr></hr>
 
         <div>
-          <p>Cliente: {petDetail.user_fullname}</p>
+          <p>Cliente: {petDetail.user_full_name}</p>
           <p>Nombre: {petDetail.name}</p>
           <p>Raza: {petDetail.breed}</p>
           <p>Color: {petDetail.color}</p>
+          <p>Sexo: {petDetail.gender}</p>
           <p>Fecha de nacimiento: {petDetail.birthdate}</p>
         </div>
 

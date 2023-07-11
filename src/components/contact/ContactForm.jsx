@@ -17,11 +17,11 @@ export default function ContactForm({ onSubmit, errors, customer }) {
           <p style={{ color: "red" }}>{errors.non_field_errors[0]}</p>
         ) : null}
 
-        <label htmlFor="firstnameField">Nombre</label>
+        <label htmlFor="firstNameField">Nombre</label>
         <input
           type="text"
           name="first_name"
-          id="firstnameField"
+          id="firstNameField"
           defaultValue={customer.first_name}
         />
         {errors.first_name ? (

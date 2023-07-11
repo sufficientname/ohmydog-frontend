@@ -14,7 +14,7 @@ export default function AppointmentListAdminPage() {
 
   useEffect(() => {
     const today = Today().toISOString().split("T")[0];
-    listAppointments({ date_after: today, date_before: today, status: "APR" });
+    listAppointments({ date_after: today, date_before: today, status: "ACE" });
   }, []);
 
   function onSubmitSearch(data) {
@@ -24,7 +24,7 @@ export default function AppointmentListAdminPage() {
   function onClickTodayAppointments(event) {
     setStep(0);
     const today = Today().toISOString().split("T")[0];
-    listAppointments({ date_after: today, date_before: today, status: "APR" });
+    listAppointments({ date_after: today, date_before: today, status: "ACE" });
   }
 
   function onClickAppointmentsRequests(event) {
@@ -77,7 +77,7 @@ export default function AppointmentListAdminPage() {
       <Table
         headers={[
           {
-            key: "user_fullname",
+            key: "user_full_name",
             label: "Cliente",
             wrapper: (value, appointment) => (
               <Link to={`/admin/users/${appointment.user}`}>{value}</Link>

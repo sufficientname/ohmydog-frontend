@@ -38,6 +38,7 @@ export default function PetListPage() {
           { key: "name", label: "Nombre" },
           { key: "breed", label: "Raza" },
           { key: "color", label: "Color" },
+          { key: "gender", label: "Sexo" },
           { key: "birthdate", label: "Fecha de nacimiento" },
           {
             wrapper: (value, pet) => (

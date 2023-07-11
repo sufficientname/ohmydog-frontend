@@ -27,6 +27,7 @@ export default function PetDetailPage() {
           <p>Nombre: {petDetail.name}</p>
           <p>Raza: {petDetail.breed}</p>
           <p>Color: {petDetail.color}</p>
+          <p>Sexo: {petDetail.gender}</p>
           <p>Fecha de nacimiento: {petDetail.birthdate}</p>
         </div>
 

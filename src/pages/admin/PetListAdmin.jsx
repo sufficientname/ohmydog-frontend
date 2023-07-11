@@ -40,10 +40,11 @@ export default function PetListPage() {
 
       <Table
         headers={[
-          { key: "user_fullname", label: "Cliente" },
+          { key: "user_full_name", label: "Cliente" },
           { key: "name", label: "Nombre" },
           { key: "breed", label: "Raza" },
           { key: "color", label: "Color" },
+          { key: "gender", label: "Sexo" },
           { key: "birthdate", label: "Fecha de nacimiento" },
           {
             wrapper: (value, pet) => (

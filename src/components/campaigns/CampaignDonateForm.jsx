@@ -23,11 +23,11 @@ export default function CampaignDonateForm({ onSubmit, errors, customer }) {
               <p style={{ color: "red" }}>{errors.non_field_errors[0]}</p>
             ) : null}
 
-            <label htmlFor="donorFirstnameField">Nombre</label>
+            <label htmlFor="donorFirstNameField">Nombre</label>
             <input
               type="text"
               name="donor_first_name"
-              id="donorFirstnameField"
+              id="donorFirstNameField"
               defaultValue={customer.first_name}
             />
             {errors.donor_first_name ? (

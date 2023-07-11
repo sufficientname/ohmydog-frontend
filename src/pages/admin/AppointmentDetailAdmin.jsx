@@ -46,7 +46,7 @@ export default function AppointmentDetailAdminPage() {
         <div className="row">
           <div className="column">
             <div>
-              <p>Cliente: {appointmentDetail.user_fullname}</p>
+              <p>Cliente: {appointmentDetail.user_full_name}</p>
               <p>Mascota: {appointmentDetail.pet_name}</p>
               <p>Motivo: {appointmentDetail.reason}</p>
               <p>Fecha solicitada: {appointmentDetail.date}</p>

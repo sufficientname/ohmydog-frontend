@@ -14,7 +14,7 @@ export const timeslots = [
 
 export const statuses = [
   { id: "PEN", name: "Pendiente" },
-  { id: "APR", name: "Aceptado" },
+  { id: "ACE", name: "Aceptado" },
   { id: "REJ", name: "Rechazado" },
   { id: "CAN", name: "Cancelado" },
   { id: "COM", name: "Completado" },
