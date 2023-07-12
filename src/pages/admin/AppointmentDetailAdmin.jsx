@@ -48,13 +48,13 @@ export default function AppointmentDetailAdminPage() {
             <div>
               <p>
                 Cliente:{" "}
-                <Link to={`/admin/users/${appointmentDetail.user_id}`}>
+                <Link to={`/admin/users/${appointmentDetail.user}`}>
                   {appointmentDetail.user_full_name}
                 </Link>
               </p>
               <p>
                 Mascota:{" "}
-                <Link to={`/admin/pets/${appointmentDetail.pet_id}`}>
+                <Link to={`/admin/pets/${appointmentDetail.pet}`}>
                   {appointmentDetail.pet_name}
                 </Link>
               </p>

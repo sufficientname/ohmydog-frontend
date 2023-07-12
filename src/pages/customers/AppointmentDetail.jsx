@@ -43,7 +43,7 @@ export default function AppointmentDetailPage() {
         <div>
           <p>
             Mascota:{" "}
-            <Link to={`/pets/${appointmentDetail.pet_id}`}>
+            <Link to={`/pets/${appointmentDetail.pet}`}>
               {appointmentDetail.pet_name}
             </Link>
           </p>

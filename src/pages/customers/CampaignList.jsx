@@ -52,7 +52,7 @@ export default function CampaignListPage() {
       <Table
         headers={[
           { key: "name", label: "Nombre" },
-          { key: "goal_amount", label: "Monto objetivo" },
+          // { key: "goal_amount", label: "Monto objetivo" },
           { key: "current_amount", label: "Monto recaudado" },
           {
             key: "start_date",

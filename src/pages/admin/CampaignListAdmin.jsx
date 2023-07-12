@@ -82,7 +82,7 @@ export default function CampaignListAdminPage() {
         headers={[
           { key: "name", label: "Nombre" },
           { key: "status", label: "Estado" },
-          { key: "goal_amount", label: "Monto objetivo" },
+          // { key: "goal_amount", label: "Monto objetivo" },
           { key: "current_amount", label: "Monto recaudado" },
           {
             key: "start_date",

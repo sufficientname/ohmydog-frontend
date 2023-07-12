@@ -61,7 +61,7 @@ export default function CampaignDetailAdminPage() {
           <p>Descripcion: {campaignDetail.description}</p>
           <p>Fecha de inicio: {campaignDetail.start_date}</p>
           <p>Fecha de fin: {campaignDetail.end_date}</p>
-          <p>Monto objetivo: {campaignDetail.goal_amount}</p>
+          {/* <p>Monto objetivo: {campaignDetail.goal_amount}</p> */}
           <p>Monto recaudado: {campaignDetail.current_amount}</p>
           <p>Estado: {campaignDetail.status}</p>
         </div>

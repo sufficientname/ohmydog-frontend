@@ -40,6 +40,7 @@ export default function ContactForm({ onSubmit, errors }) {
           <p style={{ color: "red" }}>{errors.end_date[0]}</p>
         ) : null}
 
+        {/* 
         <label htmlFor="goalAmountField">Monto a recaudar</label>
         <input
           type="number"
@@ -50,6 +51,7 @@ export default function ContactForm({ onSubmit, errors }) {
         {errors.goal_amount ? (
           <p style={{ color: "red" }}>{errors.goal_amount[0]}</p>
         ) : null}
+         */}
 
         <input
           className="button-primary container"
