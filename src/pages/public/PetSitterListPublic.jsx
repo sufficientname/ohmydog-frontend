@@ -18,14 +18,9 @@ export default function PetSitterListPublicPage() {
     listPetSitters({ status: "PUB" });
   }
 
-  function onClickCompletedPetSitters(event) {
+  function onClickPausedPetSitters(event) {
     setStep(1);
-    listPetSitters({ status: "COM" });
-  }
-
-  function onClickAllPetSitters(event) {
-    setStep(2);
-    listPetSitters();
+    listPetSitters({ status: "PAU" });
   }
 
   return (
@@ -47,15 +42,9 @@ export default function PetSitterListPublicPage() {
         <div className="column">
           <button
             className="button container"
-            onClick={onClickCompletedPetSitters}
+            onClick={onClickPausedPetSitters}
           >
-            Encontrados
-          </button>
-        </div>
-
-        <div className="column">
-          <button className="button container" onClick={onClickAllPetSitters}>
-            Todos
+            Pausados
           </button>
         </div>
       </div>

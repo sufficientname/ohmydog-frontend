@@ -25,9 +25,9 @@ export default function PetSitterListAdminPage() {
     listPetSitters({ status: "PUB" });
   }
 
-  function onClickCompletedPetSitters(event) {
+  function onClickPausedPetSitters(event) {
     setStep(1);
-    listPetSitters({ status: "COM" });
+    listPetSitters({ status: "PAU" });
   }
 
   function onClickAllPetSitters(event) {
@@ -65,9 +65,9 @@ export default function PetSitterListAdminPage() {
         <div className="column">
           <button
             className="button container"
-            onClick={onClickCompletedPetSitters}
+            onClick={onClickPausedPetSitters}
           >
-            Encontrados
+            Pausados
           </button>
         </div>
 
