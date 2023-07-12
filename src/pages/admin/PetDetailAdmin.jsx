@@ -28,7 +28,7 @@ export default function PetDetailAdminPage() {
         <div>
           <p>
             Cliente:{" "}
-            <Link to={`/admin/users/${appointmentDetail.user}`}>
+            <Link to={`/admin/users/${petDetail.user}`}>
               {petDetail.user_full_name}
             </Link>
           </p>
