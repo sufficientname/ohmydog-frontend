@@ -90,9 +90,6 @@ export default function PetSearchCreateForm({ onSubmit, errors }) {
           <p style={{ color: "red" }}>{errors.last_seen_area[0]}</p>
         ) : null}
 
-        <label htmlFor="petPhotoField">Foto</label>
-        <input type="file" name="pet_photo" id="petPhotoField" />
-
         <br></br>
 
         <input
