@@ -29,7 +29,7 @@ export default function PetDetailAdminPage() {
           <p>
             Cliente:{" "}
             <Link to={`/admin/users/${appointmentDetail.user}`}>
-              {appointmentDetail.user_full_name}
+              {petDetail.user_full_name}
             </Link>
           </p>
           <p>Nombre: {petDetail.name}</p>
