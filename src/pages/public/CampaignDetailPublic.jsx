@@ -27,7 +27,7 @@ export default function CampaignDetailPublicPage() {
 
   return (
     <>
-      <h1>Anuncio de paseador o cuidador</h1>
+      <h1>Campaña de recaudacion</h1>
 
       <Loader loading={campaignsLoading}>
         <hr></hr>

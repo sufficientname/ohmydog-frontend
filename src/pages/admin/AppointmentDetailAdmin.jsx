@@ -58,7 +58,7 @@ export default function AppointmentDetailAdminPage() {
                   {appointmentDetail.pet_name}
                 </Link>
               </p>
-              xw
+
               <p>Motivo: {appointmentDetail.reason}</p>
               <p>Fecha solicitada: {appointmentDetail.date}</p>
               <p>Franja horaria solicitada: {appointmentDetail.timeslot}</p>
